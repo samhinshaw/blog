@@ -1,8 +1,9 @@
 {
   "name": "reptarBlog",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sam's Reptar Blog!",
   "main": "reptar.config.js",
+  "repository": "https://www.github.com/samhinshaw/reptar_blog",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,5 +14,17 @@
     "normalize.css": "^7.0.0",
     "reptar-excerpt": "^1.0.0",
     "reptar-html-minifier": "^1.0.0"
+  },
+  "devDependencies": {
+    "bulma": "^0.4.3",
+    "css-loader": "^0.28.4",
+    "node-sass": "^4.5.3",
+    "postcss": "^6.0.6",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.18.2",
+    "webpack": "^2.6.1"
+  },
+  "jshintConfig": {
+    "esversion": 6
   }
 }
