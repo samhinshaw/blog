@@ -7,3 +7,9 @@
 h1:hover {
   color: #546e7a;
 }
+
+a:hover,
+a:focus {
+  text-decoration: none;
+  color: #546e7a;
+}

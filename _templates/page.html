@@ -2,18 +2,33 @@
 
 {% block body_class %}page-template{% endblock%}
 
-{% block content %}
+  {% block header_title %}
 
-<article class="page">
+    <section class="hero is-small is-dark">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+            <a href="/">
+              {{file.title}}
+            </a>
+          </h1>
+          <h2 class="subtitle">
+            {{file.subtitle}}
+          </h2>
+        </div>
+      </div>
+    </section>
 
-  <header class="page-header">
-    <h1 class="page-title">{{file.title}}</h1>
-  </header>
+  {% endblock %}
 
-  <section class="page-content">
-    {{file.content | safe}}
-  </section>
+  {% block content %}
 
-</article>
+    <article class="page">
 
-{% endblock%}
+      <section class="page-content">
+        {{file.content | safe}}
+      </section>
+
+    </article>
+
+    {% endblock%}

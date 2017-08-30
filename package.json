@@ -13,5 +13,8 @@
     "normalize.css": "^7.0.0",
     "reptar-excerpt": "^1.0.0",
     "reptar-html-minifier": "^1.0.0"
+  },
+  "devDependencies": {
+    "prettier": "^1.6.1"
   }
 }

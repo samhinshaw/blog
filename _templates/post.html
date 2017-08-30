@@ -1,28 +1,38 @@
 {% extends 'base.html' %}
 
-{% block body_class %}post-template{% endblock%}
+{% block header_title %}
 
-{% block content %}
+  <section class="hero is-small is-dark">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          <a href="{{file.url}}">{{file.title}}</a>
+        </h1>
+        <h2 class="subtitle">
+          <time class="post-date" datetime="{{file.date | date('D MMMM YYYY')}}">{{file.date | date('D MMMM YYYY')}}</time>
+          <span>&middot;
+            {% for tag in file.tags %}
+              <a href="/tag/{{tag}}/">{{tag}}</a>
+              {% endfor%}</span>
+          </h2>
 
-<article class="post">
-
-  <header class="post-header">
-    <h1 class="post-title">{{file.title}}</h1>
-    <section class="post-meta">
-      <time class="post-date" datetime="{{file.date | date('D MMMM YYYY')}}">{{file.date | date('D MMMM YYYY')}}</time>
-      <span>&middot; {% for tag in file.tags %}
-        <a href="/tag/{{tag}}/">{{tag}}</a>
-      {% endfor%}</span>
+        </div>
+      </div>
     </section>
-  </header>
+  {% endblock %}
 
-  <section class="post-content">
-    {{file.content | safe}}
-  </section>
+  {% block body_class %}post-template{% endblock%}
 
-  <footer class="post-footer">
-  </footer>
+    {% block content %}
 
-</article>
+      <article class="post">
 
-{% endblock%}
+        <section class="post-content">
+          {{file.content | safe}}
+        </section>
+
+        <footer class="post-footer"></footer>
+
+      </article>
+
+      {% endblock%}

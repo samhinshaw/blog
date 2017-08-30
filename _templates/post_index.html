@@ -1,9 +1,34 @@
 {% extends 'base.html' %}
 
-{% block body_class %}{% if pagination.page > 1 %}archive-template paged{% else %}home-template{% endif %}{% endblock%}
+{% block header_title %}
 
-{% block content %}
+  <section class="hero is-small is-dark">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">
+          <a href="/">
+            Blog
+          </a>
+        </h1>
+        <h2 class="subtitle">
+          {{file.subtitle}}
+        </h2>
+      </div>
+    </div>
+  </section>
 
-{% include '_loop.html' %}
+{% endblock %}
 
-{% endblock%}
+{% block body_class %}
+  {% if pagination.page > 1 %}
+    archive-template paged
+  {% else %}
+    home-template
+  {% endif %}
+  {% endblock%}
+
+  {% block content %}
+
+    {% include '_loop.html' %}
+
+    {% endblock%}
