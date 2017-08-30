@@ -10,7 +10,9 @@ module.exports = {
     email: "samuel.hinshaw@gmail.com",
     description: "My personal website! Enjoy!",
     baseurl: "", // the subpath of your site, e.g. /blog
-    url: "http://samhinshaw.com"
+    url: "http://samhinshaw.com",
+    twitter_username: "samhinshaw",
+    github_username: "samhinshaw"
   },
   // Where things are.
   // If you have a unique layout for your site and want to
@@ -98,10 +100,8 @@ module.exports = {
   // should have. Can be either a string which assumes it's an npm module or
   // a function which is the middleware itself, or an array of either.
   middlewares: [
-    noopMiddleware,
-    "webpack"
-    // 'babel',
-    // 'sass'
+    noopMiddleware
+    // "webpack"
   ],
   // Lifecycle methods are called at certain points in the lifecycle of Reptar.
   // Each value can be either a string or a function or an array of either.

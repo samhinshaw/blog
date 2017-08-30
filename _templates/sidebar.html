@@ -1,0 +1,37 @@
+<div class="sidebar">
+  <div class="container sidebar-sticky"> <!-- <div class="container sidebar-sticky"> to make the sidebar anchor to the bottom -->
+    <div class="sidebar-about">
+      <img class="avatar" src="{{ absolute_url }}public/sam.jpg" height="200px" width="200px" alt="me">
+      <h1>
+        <a href="{{ absolute_url }}">
+          {{ site.title }}
+        </a>
+      </h1>
+      <div class="lead">
+        <img src="{{ absolute_url }}public/computer.png" height="25px" width = "25px" alt="tech">
+        <img src="{{ absolute_url }}public/cat.png"      height="25px" width = "25px" alt="cats">
+        <img src="{{ absolute_url }}public/coffee.png"   height="25px" width = "25px" alt="coffee">
+        <!-- {{ site.description }} -->
+        <p class="tagline">Passionate about tech, science, and development. Graduate Student at UBC.</p>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item{% if file.url == absolute_url %} active{% endif %}" href="{{ absolute_url }}">Home</a>
+
+      {% if file.layout == 'post_listing' %}
+      <a class="sidebar-nav-item active" href="{{ absolute_url }}posts">Posts</a>
+      {% else %}
+      <a class="sidebar-nav-item" href="{{ absolute_url }}posts">Posts</a>
+      {% endif %}
+
+      {% for node in site.pages %}
+        {% if node.title != null %}
+          {% if node.layout == "page" %}
+            <a class="sidebar-nav-item{% if file.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </nav>
+  </div>
+</div>

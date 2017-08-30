@@ -5,24 +5,25 @@
   "main": "reptar.config.js",
   "repository": "https://www.github.com/samhinshaw/reptar_blog",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "webpack && reptar serve",
+    "build": "webpack && reptar build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "babel-preset-env": "^1.6.0",
+    "node-sass": "^4.5.3",
     "normalize.css": "^7.0.0",
     "reptar-excerpt": "^1.0.0",
-    "reptar-html-minifier": "^1.0.0"
+    "reptar-html-minifier": "^1.0.0",
+    "sass-loader": "^6.0.6"
   },
   "devDependencies": {
-    "bulma": "^0.4.3",
-    "css-loader": "^0.28.4",
-    "node-sass": "^4.5.3",
-    "postcss": "^6.0.6",
-    "sass-loader": "^6.0.6",
+    "css-loader": "^0.28.5",
+    "postcss": "^6.0.10",
     "style-loader": "^0.18.2",
-    "webpack": "^2.6.1"
+    "webpack": "^2.7.0"
   },
   "jshintConfig": {
     "esversion": 6
