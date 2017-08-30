@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Sam Hinshaw</title>
+  <meta name="description" content="My personal website! Enjoy!">
+  <meta name="keywords" content="" />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" type="text/css" href="/css/bulma.css" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+</head>
+<body class="post-template">
+
+  <header class="main-header">
+    <div class="vertical">
+      <div class="main-header-content">
+        <h1 class="page-title">
+          <a href="/">Sam Hinshaw</a>
+        </h1>
+        <div>
+          
+          <a href="/about/">About</a>
+          
+          <a href="/more/">More</a>
+          
+          <a href="/projects/">Projects</a>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="content" class="content" role="main">
+    
+
+<article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Automatically Update Rstudio</h1>
+    <section class="post-meta">
+      <time class="post-date" datetime="23 September 2016">23 September 2016</time>
+      <span>&middot; 
+        <a href="/tag/how-to/">how-to</a>
+      </span>
+    </section>
+  </header>
+
+  <section class="post-content">
+    <img src="/images/rstudio.png" class="fit image">
+<p>Information on package downloads were obtained from the <a href="https://support.rstudio.com/hc/en-us/articles/203842428-Getting-the-newest-RStudio-builds">RStudio website</a>, and this automation was prompted by <a href="https://github.com/STAT545-UBC/Discussion/issues/334">a question asked by a student on GitHub</a>.</p>
+<h3>Step 1. Write your script</h3>
+<p>I like to keep my automation scripts in <code>~/scripts</code>, but you may have a different personal preference.  In any case, the script I wrote is as follows:</p>
+<pre><code><span class="hljs-keyword">echo</span> <span class="hljs-string">"Commencing RStudio update on"</span> $(date +<span class="hljs-string">"%A %b %d, %Y"</span>) at $(date +<span class="hljs-string">"%r"</span>)
+<span class="hljs-keyword">cd</span> /home/shinshaw/Downloads
+<span class="hljs-built_in">mkdir</span> rstudio &amp;&amp; <span class="hljs-keyword">cd</span> rstudio
+wget -O rstudio.<span class="hljs-keyword">deb</span> http://www.rstudio.org/download/latest/preview/desktop/ubuntu64/rstudio-latest-amd64.<span class="hljs-keyword">deb</span>
+sudo dpkg -i rstudio.<span class="hljs-keyword">deb</span>
+<span class="hljs-keyword">cd</span> /home/shinshaw/Downloads
+rm -r rstudio/
+</code></pre>
+<p>Notes:</p>
+<ul>
+<li>I am using absolute file paths here to ensure no weirdness occurs when running this script via crontab.</li>
+<li>You can change your <code>echo</code> messages to add any other useful information.  If you'd like to check datetime language, run <code>date --help</code> in terminal.</li>
+<li>You can change URL in the script to download any version of Rstudio you wish, as per the <a href="https://support.rstudio.com/hc/en-us/articles/203842428-Getting-the-newest-RStudio-builds">RStudio website</a>!  You can choose from:
+<ul>
+<li>Release:
+<ul>
+<li>stable</li>
+<li>preview</li>
+<li>daily</li>
+</ul>
+</li>
+<li>Installation Type
+<ul>
+<li>desktop</li>
+<li>server</li>
+</ul>
+</li>
+<li>OS
+<ul>
+<li>mac</li>
+<li>windows</li>
+<li>fedora32</li>
+<li>fedora64</li>
+<li>ubuntu32</li>
+<li>ubuntu64</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Make sure the script you've saved is executable.  For me, this was:</p>
+<pre><code>chmod +x ~/scripts/updateRstudio<span class="hljs-selector-class">.sh</span>
+</code></pre>
+<h3>Step 2. Schedule Script</h3>
+<p>Next, you'll need to schedule this script to run at a given time.  I've chosen to update my RStudio build at 4am on Sunday morning.  This should make pretty certain that I'm not running into any errors. Now, it is very important that we access the root crontab scheduler, and not your personal crontab scheduler, as we'll be installing packages which requires elevated permissions. In terminal, type:</p>
+<pre><code><span class="hljs-attribute">sudo crontab -e</span>
+</code></pre>
+<p>This will open crontab in your default text editor, nano for me.  In crontab, add a line such as:</p>
+<pre><code><span class="hljs-symbol">00 </span><span class="hljs-number">04</span> * * <span class="hljs-number">7</span> /home/shinshaw/scripts/updateRstudio.sh &gt;&gt; /home/shinshaw/scripts/logs/updateRstudio.<span class="hljs-keyword">log</span> <span class="hljs-number">2</span>&gt;&amp;<span class="hljs-number">1</span>
+</code></pre>
+<p>Let's work through this line:</p>
+<ol>
+<li><code>00 04 * * 7</code>
+<ul>
+<li>This tells crontab when to run. Check the <a href="http://man7.org/linux/man-pages/man5/crontab.5.html">crontab manual</a> (or ) for further details.</li>
+</ul>
+</li>
+<li><code>/home/shinshaw/scripts/updateRstudio.sh</code>
+<ul>
+<li>This tells crontab to execute my script</li>
+</ul>
+</li>
+<li><code>&gt;&gt; /home/shinshaw/scripts/logs/updateRstudio.log 2&gt;&amp;1</code>
+<ul>
+<li>This tells crontab to save the stdout of my script to <code>~/scripts/logs/updateRstudio.log</code>, and <code>2&gt;&amp;1</code> tells it to include stderr as well.</li>
+</ul>
+</li>
+</ol>
+
+  </section>
+
+  <footer class="post-footer">
+  </footer>
+
+</article>
+
+
+
+    
+  </main>
+
+  <footer class="site-footer clearfix">
+    <p class="footer-description">
+      &copy; Sam Hinshaw
+    </p>
+    <p class="footer-published">
+      joyfully published by <a href="https://github.com/reptar/reptar">reptar</a>
+    </p>
+  </footer>
+
+  <script type="text/javascript" src="/js/main.js"></script>
+</body>
+</html>

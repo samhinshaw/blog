@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>Sam Hinshaw</title>
+  <meta name="description" content="My personal website! Enjoy!">
+  <meta name="keywords" content="" />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="shortcut icon" href="/favicon.ico">
+
+  <link rel="stylesheet" type="text/css" href="/css/bulma.css" />
+  <link rel="stylesheet" type="text/css" href="/css/main.css" />
+  <link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+</head>
+<body class="post-template">
+
+  <header class="main-header">
+    <div class="vertical">
+      <div class="main-header-content">
+        <h1 class="page-title">
+          <a href="/">Sam Hinshaw</a>
+        </h1>
+        <div>
+          
+          <a href="/about/">About</a>
+          
+          <a href="/more/">More</a>
+          
+          <a href="/projects/">Projects</a>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="content" class="content" role="main">
+    
+
+<article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">How to Setup Your SSH Keys</h1>
+    <section class="post-meta">
+      <time class="post-date" datetime="9 February 2017">9 February 2017</time>
+      <span>&middot; 
+        <a href="/tag/how-to/">how-to</a>
+      </span>
+    </section>
+  </header>
+
+  <section class="post-content">
+    <h2>Create SSH Keys</h2>
+<ol>
+<li>Make sure SSH-Agent is running <code>eval $(ssh-agent)</code>
+<ul>
+<li>Alternatively, add this to your <code>~/.bashrc</code>:</li>
+</ul>
+<pre><code class="language-bash"><span class="hljs-built_in">eval</span> $(ssh-agent) &gt; /dev/null`
+<span class="hljs-built_in">source</span> ~/Dropbox/Ubuntu/scripts/ssh-find-agent.sh
+set_ssh_agent_socket
+</code></pre>
+</li>
+<li>Check to see if you have any existing keys: <code>ls ~/.ssh</code></li>
+<li>Create your SSH keys: <code>ssh-keygen -t rsa -b 4096 -C &quot;you.email@example.com&quot;</code></li>
+<li>Add your ssh keys to the SSH Agent: <code>ssh-add -t 15552000 ~/.ssh/id_rsa</code> The <code>-t</code> flag specifies a timeout value is in seconds. 15552000 seconds is six months.</li>
+</ol>
+<h2>Add your public key to your destination</h2>
+<h3>Using an online service such as GitHub, DigitalOcean, or Heroku</h3>
+<ol>
+<li>Download and install xclip. <code>sudo apt-get install xclip</code></li>
+<li>Use xclip to copy your ssh-keys to the clipboard <code>xclip -sel clip &lt; ~/.ssh/id_rsa.pub</code></li>
+<li>Paste this into the online form.</li>
+</ol>
+<h3>Using a remote server and <code>~/.ssh/authorized_keys</code></h3>
+<ol>
+<li>Using tunneled password, SSH into the machine and append the public key to your remote server's authorized_keys file. <code>cat ~/.ssh/id_rsa.pub | ssh you.email@example.com&quot;mkdir -p ~/.ssh &amp;&amp; cat &gt;&gt; ~/.ssh/authorized_keys&quot;</code></li>
+</ol>
+
+  </section>
+
+  <footer class="post-footer">
+  </footer>
+
+</article>
+
+
+
+    
+  </main>
+
+  <footer class="site-footer clearfix">
+    <p class="footer-description">
+      &copy; Sam Hinshaw
+    </p>
+    <p class="footer-published">
+      joyfully published by <a href="https://github.com/reptar/reptar">reptar</a>
+    </p>
+  </footer>
+
+  <script type="text/javascript" src="/js/main.js"></script>
+</body>
+</html>

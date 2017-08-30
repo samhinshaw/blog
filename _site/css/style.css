@@ -1,0 +1,9 @@
+.main-header-content {
+  background: #202020;
+  color: #f0f0f0;
+  padding: 20px;
+}
+
+h1:hover {
+  color: #546e7a;
+}

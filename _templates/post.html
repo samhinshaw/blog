@@ -1,16 +1,28 @@
-{% extends 'default.html' %}
+{% extends 'base.html' %}
+
+{% block body_class %}post-template{% endblock%}
 
 {% block content %}
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+<article class="post">
 
   <header class="post-header">
-    <h2 class="post-title" itemprop="name headline">{{ file.title }}</h2>
-    <p class="post-meta"><time datetime="{{ file.date | date }}" itemprop="datePublished">{{ file.date | date('MMM D, YYYY') }}</time>{% if file.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ file.author }}</span></span>{% endif %}</p>
+    <h1 class="post-title">{{file.title}}</h1>
+    <section class="post-meta">
+      <time class="post-date" datetime="{{file.date | date('D MMMM YYYY')}}">{{file.date | date('D MMMM YYYY')}}</time>
+      <span>&middot; {% for tag in file.tags %}
+        <a href="/tag/{{tag}}/">{{tag}}</a>
+      {% endfor%}</span>
+    </section>
   </header>
 
-  <div class="post-content" itemprop="articleBody">
-    {{ file.content }}
-  </div>
+  <section class="post-content">
+    {{file.content | safe}}
+  </section>
+
+  <footer class="post-footer">
+  </footer>
 
 </article>
+
 {% endblock%}

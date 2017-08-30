@@ -32,13 +32,18 @@ module.exports = {
     // It uses moment.js under the head and its format syntax as well:
     // http://momentjs.com/docs////displaying/format/
     dateFormat: "YYYY-M-D",
-    // Apply frontmatter values to a File based upon a defined scope.
+    // Apply frontmatter values to a File paged upon a defined scope.
     // If the scope matches a File then the default values are applied if they
     // are not already set.
     defaults: [
       {
         // Any file in this path will have the default values applied.
         scope: { path: "./" },
+        values: { template: "landing_page", permalink: "/" }
+      },
+      {
+        // Any file in this path will have the default values applied.
+        scope: { path: "./_root" },
         values: { template: "page", permalink: "/:title/" }
       },
       {
@@ -69,12 +74,26 @@ module.exports = {
   // This is where you configure your collections of content.
   // For more details refer to the Collections documentation.
   collections: {
-    post: {
-      path: "./_posts",
-      template: "index",
+    index: {
+      path: "./",
+      template: "landing_page",
       pageSize: 6,
       sort: { key: "date", order: "descending" },
-      permalink: { index: "/", page: "/page/:page/" }
+      permalink: { index: "/", page: "/" }
+    },
+    mainPages: {
+      path: "./_root",
+      template: "page",
+      pageSize: 6,
+      sort: { key: "date", order: "descending" },
+      permalink: { index: "/pages/", page: "/page/:page/" }
+    },
+    post: {
+      path: "./_posts",
+      template: "post_index",
+      pageSize: 6,
+      sort: { key: "date", order: "descending" },
+      permalink: { index: "/posts", page: "/page/:page/" }
     },
     tag: {
       metadata: "tags",
@@ -95,14 +114,11 @@ module.exports = {
   },
   // Only build files that have changed.
   // This is a performance improvement to the time it takes to build your site.
-  incremental: true,
+  incremental: false,
   // What middlewares you want enabled and what configuration settings they
   // should have. Can be either a string which assumes it's an npm module or
   // a function which is the middleware itself, or an array of either.
-  middlewares: [
-    noopMiddleware
-    // "webpack"
-  ],
+  middlewares: [noopMiddleware],
   // Lifecycle methods are called at certain points in the lifecycle of Reptar.
   // Each value can be either a string or a function or an array of either.
   lifecycle: {
