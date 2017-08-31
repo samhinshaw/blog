@@ -1,24 +1,5 @@
 {% extends 'base.html' %}
 
-{% block header_title %}
-
-  <section class="hero is-small is-dark">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">
-          <a href="/">
-            Blog
-          </a>
-        </h1>
-        <h2 class="subtitle">
-          {{file.subtitle}}
-        </h2>
-      </div>
-    </div>
-  </section>
-
-{% endblock %}
-
 {% block body_class %}
   {% if pagination.page > 1 %}
     archive-template paged

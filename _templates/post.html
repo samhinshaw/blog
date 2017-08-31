@@ -1,38 +1,10 @@
 {% extends 'base.html' %}
 
-{% block header_title %}
+{% block body_class %}post-template{% endblock%}
 
-  <section class="hero is-small is-dark">
-    <div class="hero-body">
-      <div class="container">
-        <h1 class="title">
-          <a href="{{file.url}}">{{file.title}}</a>
-        </h1>
-        <h2 class="subtitle">
-          <time class="post-date" datetime="{{file.date | date('D MMMM YYYY')}}">{{file.date | date('D MMMM YYYY')}}</time>
-          <span>&middot;
-            {% for tag in file.tags %}
-              <a href="/tag/{{tag}}/">{{tag}}</a>
-              {% endfor%}</span>
-          </h2>
+  {% block content %}
 
-        </div>
-      </div>
-    </section>
-  {% endblock %}
+    {{file.content | safe}}
 
-  {% block body_class %}post-template{% endblock%}
-
-    {% block content %}
-
-      <article class="post">
-
-        <section class="post-content">
-          {{file.content | safe}}
-        </section>
-
-        <footer class="post-footer"></footer>
-
-      </article>
-
-      {% endblock%}
+    {% include "_pagination.html" %}
+    {% endblock%}
