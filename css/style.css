@@ -27,3 +27,81 @@ a:focus {
 .footer {
   padding: 1.5rem;
 }
+
+.hero-body .title {
+  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  font-size: 2.5em;
+  margin-top: 0;
+}
+
+.Site-content {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6,
+.pagination {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  /*font-size: 1.5em;*/
+}
+
+.post:not(:first-child) {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  margin: 2rem 0;
+}
+
+.post-meta {
+  font-size: 0.9em;
+}
+
+.post .post-title {
+  margin-bottom: 0;
+}
+
+.pagination {
+  margin-top: 3rem;
+}
+
+/* Styling for social icons! */
+
+.icon i {
+  color: #363636;
+}
+
+a.icon:hover i,
+a.icon:focus i {
+  font-weight: 600;
+}
+
+a.social-twitter:hover i,
+a.social-twitter:focus i {
+  color: #55acee;
+}
+
+a.social-github:hover i,
+a.social-github:focus i {
+  color: #000000;
+}
+
+a.social-codepen:hover i,
+a.social-codepen:focus i {
+  color: #fcd000;
+}
+
+a.social-linkedin:hover i,
+a.social-linkedin:focus i {
+  color: #0077b5;
+}
+
+a.social-instagram:hover i,
+a.social-instagram:focus i {
+  color: #f167f5;
+}
