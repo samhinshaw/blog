@@ -73,25 +73,6 @@ a:focus {
   padding: 1.5rem;
 }
 
-/* Make the post headers Cormorant font and off-black */
-.header .title a {
-  color: #363636;
-  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
-    serif;
-  /*font-size: 2.5em;*/
-  /*margin-top: 0;*/
-}
-
-/* BUT make the hero headers white to contrast with the background */
-.landing-page-hero h1 {
-  color: #f0f0f0;
-  font-size: 7rem;
-  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
-    serif;
-  /*font-size: 2.5em;*/
-  /*margin-top: 0;*/
-}
-
 .Site-content article {
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
 }
@@ -134,7 +115,7 @@ h6,
 }
 
 .avatar {
-  margin: 0 auto;
+  margin: 2rem;
 }
 
 .post-meta,
@@ -145,12 +126,54 @@ h6,
   font-weight: 200;
 }
 
-/* set the background of the landing page hero to a picture I took */
-.landing-page-hero {
-  background-image: url("/images/dog-mountain-fir.jpg");
+/* Hero properties */
+
+/* Make the post headers Cormorant font and off-black */
+.header .title a {
+  color: #363636;
+  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  /*font-size: 2.5em;*/
+  /*margin-top: 0;*/
+}
+
+/* BUT make the hero headers white to contrast with the background */
+.image-hero h1 {
+  color: #f0f0f0;
+  font-size: 7rem;
+  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  /*font-size: 2.5em;*/
+  /*margin-top: 0;*/
+}
+
+/* Set properties for heroes with image backgrounds. Setting an appropriate
+/* background color also helps insert the right text while loading the
+/* image! */
+.image-hero {
   background-size: cover;
   background-color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.landing-page-hero {
+  background-image: url("/images/dog-mountain-fir.jpg");
+  background-color: #485a28; /* Dark bkgrnd fallback (b/c dark picture) */
+}
+
+.about-page-hero {
+  background-image: url("/images/juniper-point.jpg");
+  background-color: #2e83a9; /* Dark bkgrnd fallback (b/c dark picture) */
+}
+
+/* For now I'm using a light photo, so let's change the text color */
+
+.blog-page-hero {
+  background-image: url("/images/getty-villa-wall.jpg");
+  background-color: #d7c079; /* Light bkgrnd fallback (b/c light picture) */
+}
+.blog-page-hero h1 {
+  color: #363636;
 }

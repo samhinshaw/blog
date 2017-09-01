@@ -74,13 +74,6 @@ module.exports = {
   // This is where you configure your collections of content.
   // For more details refer to the Collections documentation.
   collections: {
-    index: {
-      path: "./",
-      template: "landing_page",
-      pageSize: 6,
-      sort: { key: "date", order: "descending" },
-      permalink: { index: "/", page: "/" }
-    },
     mainPages: {
       path: "./_root",
       template: "page",
@@ -93,7 +86,7 @@ module.exports = {
       template: "post_index",
       pageSize: 6,
       sort: { key: "date", order: "descending" },
-      permalink: { index: "/posts/", page: "/page/:page/" }
+      permalink: { index: "/blog/", page: "/page/:page/" }
     },
     tag: {
       metadata: "tags",

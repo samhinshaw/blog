@@ -1,19 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'common.html' %}
 
 {% block body_class %}page-template{% endblock%}
 
-  {% block content %}
-    <div class="columns is-desktop">
-      <div class="column is-8 is-offset-2">
+  {% block not_in_common %}
+    <div class="Site-content">
+      <section class="hero is-medium">
 
-        <article class="page">
+        <div class="image-hero {{file.heroName}}">
+          <div class="container has-text-centered">
+            <div class="content is-primary">
+              <h1 class="title">
+                {{file.heroText}}
+              </h1>
+            </div>
+          </div>
+        </div>
 
-          <section class="page-content">
+      </section>
+
+      <div class="columns is-desktop">
+        <div class="column is-8 is-offset-2">
+
+          <section class="content">
             {{file.content | safe}}
           </section>
 
-        </article>
+        </div>
       </div>
     </div>
-
     {% endblock%}

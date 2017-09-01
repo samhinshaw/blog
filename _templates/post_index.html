@@ -1,18 +1,31 @@
-{% extends 'base.html' %}
+{% extends 'common.html' %}
 
-{% block body_class %}
-  {% if pagination.page > 1 %}
-    archive-template paged
-  {% else %}
-    home-template
-  {% endif %}
-  {% endblock%}
+{% block not_in_common %}
+  <section class="hero is-medium">
 
-  {% block content %}
-    <div class="columns is-desktop">
-      <div class="column is-10 is-offset-1">
-        {% include '_loop.html' %}
-        {% include "_pagination.html" %}
+    <div class="image-hero hero-body blog-page-hero">
+      <div class="container has-text-centered">
+        <div class="content is-primary">
+          <h1 class="title">
+            Blog
+          </h1>
+        </div>
       </div>
     </div>
-    {% endblock%}
+
+  </section>
+
+  <section class="section Site-content">
+    <div class="container is-tablet">
+      <div class="content">
+
+        <div class="columns is-desktop">
+          <div class="column is-10 is-offset-1">
+            {% include '_loop.html' %}
+            {% include "_pagination.html" %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock%}

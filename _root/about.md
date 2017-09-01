@@ -1,21 +1,11 @@
 ---
 title: About
-template: base
+template: page
+heroName: hero-body about-page-hero
+heroText: About Me
 ---
 
-<section class="hero Site-content">
-
-  <div class="hero-body landing-page-hero">
-    <div class="container has-text-centered">
-      <div class="content is-primary">
-        <h1 class="title is-1">Welcome</h1>
-      </div>
-    </div>
-  </div>
-
-</section>
-
-<div class="content has-text-centered">
+<div class="content has-text-centered Site-content">
   <img src="/images/sam_avatar.png" alt="Profile Picture" height="150" width="150" class="avatar">
 </div>
 
