@@ -1,9 +1,211 @@
+/* Styling for social icons! */
+
+.icon i {
+  color: #444;
+}
+
+a.icon:hover i,
+a.icon:focus i {
+  font-weight: 600;
+}
+
+a.social-twitter:hover i,
+a.social-twitter:focus i {
+  color: #55acee;
+}
+
+a.social-github:hover i,
+a.social-github:focus i {
+  color: #000000;
+}
+
+a.social-codepen:hover i,
+a.social-codepen:focus i {
+  color: #fcd000;
+}
+
+a.social-linkedin:hover i,
+a.social-linkedin:focus i {
+  color: #0077b5;
+}
+
+a.social-instagram:hover i,
+a.social-instagram:focus i {
+  color: #f167f5;
+}
+
+/* styling for sticky footer! */
+
+.Site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.Site-content {
+  flex: 1;
+}
+
+/* custom styling */
+
 .main-header-content {
   background: #202020;
   color: #f0f0f0;
   padding: 20px;
 }
 
-h1:hover {
+a {
+  color: #444;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
   color: #546e7a;
+  text-decoration: none;
+}
+
+.footer {
+  padding: 1.5rem;
+}
+
+.Site-content .content {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+/* Formatting for post page to make the blog post listings more beautiful! */
+
+h2,
+h3,
+h4,
+h5,
+h6,
+.pagination {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  /*font-size: 1.5em;*/
+}
+
+.post:first-child {
+  margin-top: 0;
+}
+
+.post {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  margin: 2rem 0;
+}
+
+.post-meta {
+  display: inline-block;
+  font-size: 0.9em;
+}
+
+.post .post-title {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.pagination {
+  margin-top: 3rem;
+}
+
+.post-meta,
+.post-excerpt {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  font-weight: 200;
+}
+
+/* avatar formatting */
+.avatar {
+  margin: 2rem;
+}
+
+/* Hero properties */
+
+/* Make the post headers Cormorant font and off-black */
+.header .title a {
+  color: #444;
+  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  /*font-size: 2.5em;*/
+  /*margin-top: 0;*/
+}
+
+/* BUT make the hero headers white to contrast with the background */
+.image-hero h1 {
+  color: #f0f0f0;
+  font-size: 7rem;
+  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  /*font-size: 2.5em;*/
+  /*margin-top: 0;*/
+}
+
+/* Set properties for heroes with image backgrounds. Setting an appropriate
+/* background color also helps insert the right text while loading the
+/* image! */
+.image-hero {
+  background-size: cover;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing-page-hero {
+  background-image: url("/images/dog-mountain-fir.jpg");
+  background-color: #485a28; /* Dark bkgrnd fallback (b/c dark picture) */
+}
+
+/* Stop the landing page hero form being link-colored */
+.landing-page-hero a,
+.landing-page-hero span {
+  color: #f0f0f0;
+}
+
+/* Make mid-dots a bit bolder */
+.landing-page-hero span {
+  font-weight: 800;
+}
+
+.landing-page-hero a:hover,
+.landing-page-hero a:focus {
+  text-decoration: underline;
+}
+
+.about-page-hero {
+  background-image: url("/images/juniper-point.jpg");
+  background-color: #2e83a9; /* Dark bkgrnd fallback (b/c dark picture) */
+}
+.blog-page-hero {
+  background-image: url("/images/sailing-centre-sunset_stylized.jpg");
+  background-color: #262226; /* Dark bkgrnd fallback (b/c dark picture) */
+}
+
+/* For now I'm using a light photo, so let's change the text color */
+.projects-page-hero {
+  background-image: url("/images/lions-gate.jpg");
+  background-color: #d7c079; /* Light bkgrnd fallback (b/c light picture) */
+}
+
+.projects-page-hero h1 {
+  color: #f0f0f0;
+}
+
+/* Modal Card properties */
+
+/* Create very thin underline for a tags within the modal card body */
+.modal-card-body a {
+  box-shadow: inset 0 0px 0 #f0f0f0, inset 0 -0.5px 0 #444;
+}
+
+.modal-card-head {
+  border-bottom: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

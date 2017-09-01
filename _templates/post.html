@@ -1,16 +1,19 @@
-{% extends 'default.html' %}
+{% extends 'base.html' %}
 
-{% block content %}
-<article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+{% block body_class %}post-template{% endblock%}
 
-  <header class="post-header">
-    <h2 class="post-title" itemprop="name headline">{{ file.title }}</h2>
-    <p class="post-meta"><time datetime="{{ file.date | date }}" itemprop="datePublished">{{ file.date | date('MMM D, YYYY') }}</time>{% if file.author %} • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">{{ file.author }}</span></span>{% endif %}</p>
-  </header>
+  {% block content %}
+    <div class="columns is-desktop">
+      <div class="column is-8 is-offset-2">
 
-  <div class="post-content" itemprop="articleBody">
-    {{ file.content }}
-  </div>
+        <article class="page">
 
-</article>
-{% endblock%}
+          <section class="page-content">
+            {{file.content | safe}}
+          </section>
+
+        </article>
+      </div>
+    </div>
+    {% include "_pagination.html" %}
+    {% endblock%}
