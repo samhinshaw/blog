@@ -1,7 +1,7 @@
 /* Styling for social icons! */
 
 .icon i {
-  color: #363636;
+  color: #444;
 }
 
 a.icon:hover i,
@@ -55,7 +55,7 @@ a.social-instagram:focus i {
 }
 
 a {
-  color: #363636;
+  color: #444;
   text-decoration: none;
 }
 
@@ -129,7 +129,7 @@ h6,
 
 /* Make the post headers Cormorant font and off-black */
 .header .title a {
-  color: #363636;
+  color: #444;
   font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
     serif;
   /*font-size: 2.5em;*/
@@ -195,4 +195,17 @@ h6,
 
 .projects-page-hero h1 {
   color: #f0f0f0;
+}
+
+/* Modal Card properties */
+
+/* Create very thin underline for a tags within the modal card body */
+.modal-card-body a {
+  box-shadow: inset 0 0px 0 #f0f0f0, inset 0 -0.5px 0 #444;
+}
+
+.modal-card-head {
+  border-bottom: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
