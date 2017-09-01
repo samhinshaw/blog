@@ -3,8 +3,17 @@
 {% block body_class %}post-template{% endblock%}
 
   {% block content %}
+    <div class="columns is-desktop">
+      <div class="column is-8 is-offset-2">
 
-    {{file.content | safe}}
+        <article class="page">
 
+          <section class="page-content">
+            {{file.content | safe}}
+          </section>
+
+        </article>
+      </div>
+    </div>
     {% include "_pagination.html" %}
     {% endblock%}

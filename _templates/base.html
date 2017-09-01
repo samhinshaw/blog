@@ -1,177 +1,56 @@
-<!DOCTYPE html>
-<html>
+{% extends 'common.html' %}
 
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+{% block not_in_common %}
+  <header class="header">
+    <div class="container has-text-centered">
+      <div class="content is-primary">
+        <h1 class="title is-1">
+          <a href="{{file.url}}">
+            {% block header_title %}
 
-    <title>
-      {% block head_title %}{{site.title}}{% endblock %}
-    </title>
-    <meta name="description" content="{{site.description}}">
-    <meta name="keywords" content="{{site.keywords}}"/>
+              {% if file.title %}
+                {{file.title}}
+              {% else %}
+                {{site.title}}
+              {% endif %}
 
-    <meta name="HandheldFriendly" content="True"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <link rel="shortcut icon" href="/images/favicon.ico">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css"> -->
-    <link rel="stylesheet" type="text/css" href="/css/bulma.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:600" rel="stylesheet">
-  </head>
-
-  <body class="{% block body_class %}{% endblock %} Site">
-
-    <nav class="navbar">
-      <div class="container">
-        <div class="navbar-brand">
-          <a class="navbar-item" href="/">
-            <img src="/images/sam_logo.png" alt="Sam Hinshaw" height="28">
+            {% endblock %}
           </a>
-          <div class="navbar-burger" data-target="navMenu">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
+        </h1>
 
-        <div id="navMenu" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item" href="/posts">Blog</a>
-            {% for file in collections.mainPages.files %}
-              <a class="navbar-item" href="{{file.url}}">{{file.title}}</a>
-            {% endfor %}
-          </div>
-          <div class="navbar-end">
-            <!-- <a class="navbar-item is-active">
-              Home
-            </a> -->
-          </div>
-        </div>
-      </div>
-    </nav>
-
-    <section class="hero is-small is-dark">
-
-      <!-- Hero Header (Navbar within hero) -->
-      <!-- <div class="hero-head"></div> -->
-
-      <!-- Hero Body (Normal hero content) -->
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <h1 class="title">
-            <a href="{{file.url}}">
-              {% block header_title %}
-
-                {% if file.title %}
-                  {{file.title}}
-                {% else %}
-                  {{site.title}}
-                {% endif %}
-
-              {% endblock %}
-            </a>
-          </h1>
-          <h2 class="subtitle">
-            <!-- Check to see if this file is part of the "post"
+        <h2 class="subtitle">
+          <!-- Check to see if this file is part of the "post"
             collection. `indexOf()` returns the index of the object in the
             array but returns -1 if the object is not in the array. If the
             file IS part of the post collections, we'll have the date &
             tags as the subtitle. -->
-            {% if collections.post.files.indexOf(file) > 0 %}
-              <time class="post-date" datetime="{{file.date | date('D MMMM YYYY')}}">{{file.date | date('D MMMM YYYY')}}</time>
-              <span>&middot;
-                {% for tag in file.tags %}
-                  <a href="/tag/{{tag}}/">{{tag}}</a>
-                  {% endfor%}
-                </span>
-                <!-- If the file is not part of the post collection then
+          {% if collections.post.files.indexOf(file) > 0 %}
+            <time class="post-date" datetime="{{file.date | date('D MMMM YYYY')}}">{{file.date | date('D MMMM YYYY')}}</time>
+            <span>&middot;
+              {% for tag in file.tags %}
+                <a href="/tag/{{tag}}/">{{tag}}</a>
+                {% endfor%}
+              </span>
+              <!-- If the file is not part of the post collection then
                 it's not a blog post! Then we'll use the provided subtitle.
                 If the provided subtitle does not exist, it will be blank.  -->
-              {% elif file.subtitle %}
-                {{file.subtitle}}
-              {% else %}
+            {% elif file.subtitle %}
+              {{file.subtitle}}
+            {% else %}
 
-              {% endif %}
-            </h2>
+            {% endif %}
+          </h2>
 
+        </div>
+      </div>
+    </header>
+
+    <section class="section Site-content">
+      <div class="container is-tablet">
+        <div class="content">
+          {% block content %}{% endblock%}
           </div>
         </div>
-        <!-- Hero footer: will stick at the bottom -->
-        <!-- <div class="hero-foot">
-        <nav class="tabs is-boxed">
-          <div class="container is-tablet">
-            <ul>
-              <li class="is-active"><a>Overview</a></li>
-              <li><a>Modifiers</a></li>
-              <li><a>Grid</a></li>
-              <li><a>Elements</a></li>
-              <li><a>Components</a></li>
-              <li><a>Layout</a></li>
-            </ul>
-          </div>
-        </nav>
-      </div> -->
       </section>
 
-      <section class="section Site-content">
-        <div class="container is-tablet">
-          <div class="content">
-            <div class="columns is-desktop">
-              <div class="column is-8 is-offset-2">
-                {% block content %}{% endblock%}
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </section>
-
-        <footer class="footer">
-          <div class="container is-tablet">
-            <div class="content has-text-centered">
-              <!-- Twitter -->
-
-              <span class="icon">
-                <a class="icon social-twitter" href="https://twitter.com/samhinshaw">
-                  <i class="social fa fa-twitter"></i>
-                </a>
-              </span>
-
-              <!-- GitHub -->
-              <span class="icon">
-                <a class="icon social-github" href="https://github.com/samhinshaw">
-                  <i class="social fa fa-github"></i>
-                </a>
-              </span>
-              <!-- Codepen -->
-              <span class="icon">
-                <a class="icon social-codepen" href="https://codepen.io/samhinshaw">
-                  <i class="social fa fa-codepen"></i>
-                </a>
-              </span>
-              <!-- LinkedIn -->
-              <span class="icon">
-                <a class="icon social-linkedin" href="http://linkedin.com/in/samhinshaw">
-                  <i class="social fa fa-linkedin"></i>
-                </a>
-              </span>
-              <!-- Instagram -->
-              <span class="icon">
-                <a class="icon social-instagram" href="https://instagram.com/holtonhinshaw/">
-                  <i class="social fa fa-instagram"></i>
-                </a>
-              </span>
-            </div>
-          </div>
-        </footer>
-
-        <script type="text/javascript" src="/js/main.js"></script>
-      </body>
-
-    </html>
+      {% endblock%}

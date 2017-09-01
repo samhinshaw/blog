@@ -93,7 +93,7 @@ module.exports = {
       template: "post_index",
       pageSize: 6,
       sort: { key: "date", order: "descending" },
-      permalink: { index: "/posts", page: "/page/:page/" }
+      permalink: { index: "/posts/", page: "/page/:page/" }
     },
     tag: {
       metadata: "tags",

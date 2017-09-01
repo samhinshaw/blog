@@ -9,8 +9,10 @@
   {% endblock%}
 
   {% block content %}
-
-    {% include '_loop.html' %}
-    {% include "_pagination.html" %}
-
+    <div class="columns is-desktop">
+      <div class="column is-10 is-offset-1">
+        {% include '_loop.html' %}
+        {% include "_pagination.html" %}
+      </div>
+    </div>
     {% endblock%}

@@ -1,75 +1,3 @@
-.main-header-content {
-  background: #202020;
-  color: #f0f0f0;
-  padding: 20px;
-}
-
-h1:hover {
-  color: #546e7a;
-}
-
-a:hover,
-a:focus {
-  color: #546e7a;
-  text-decoration: none;
-}
-
-.Site {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.Site-content {
-  flex: 1;
-}
-
-.footer {
-  padding: 1.5rem;
-}
-
-.hero-body .title {
-  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
-    serif;
-  font-size: 2.5em;
-  margin-top: 0;
-}
-
-.Site-content {
-  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
-}
-
-h2,
-h3,
-h4,
-h5,
-h6,
-.pagination {
-  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
-    Arial, sans-serif;
-  /*font-size: 1.5em;*/
-}
-
-.post:not(:first-child) {
-  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
-    Arial, sans-serif;
-  margin: 2rem 0;
-}
-
-.post-meta {
-  font-size: 0.9em;
-}
-
-.post .post-title {
-  margin-bottom: 0;
-}
-
-.pagination {
-  margin-top: 3rem;
-}
-
 /* Styling for social icons! */
 
 .icon i {
@@ -104,4 +32,125 @@ a.social-linkedin:focus i {
 a.social-instagram:hover i,
 a.social-instagram:focus i {
   color: #f167f5;
+}
+
+/* styling for sticky footer! */
+
+.Site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.Site-content {
+  flex: 1;
+}
+
+/* custom styling */
+
+.main-header-content {
+  background: #202020;
+  color: #f0f0f0;
+  padding: 20px;
+}
+
+/*h1:hover {
+  color: #546e7a;
+}*/
+
+a {
+  color: #363636;
+  text-decoration: none;
+}
+
+a:hover,
+a:focus {
+  color: #546e7a;
+  text-decoration: none;
+}
+
+.footer {
+  padding: 1.5rem;
+}
+
+/* Make the post headers Cormorant font and off-black */
+.header .title a {
+  color: #363636;
+  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  /*font-size: 2.5em;*/
+  /*margin-top: 0;*/
+}
+
+/* BUT make the hero headers white to contrast with the background */
+.landing-page-hero h1 {
+  color: #f0f0f0;
+  font-size: 7rem;
+  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  /*font-size: 2.5em;*/
+  /*margin-top: 0;*/
+}
+
+.Site-content article {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6,
+.pagination {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  /*font-size: 1.5em;*/
+}
+
+.post:first-child {
+  margin-top: 0;
+}
+
+.post {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  margin: 2rem 0;
+}
+
+.post-meta {
+  display: inline-block;
+  font-size: 0.9em;
+}
+
+.post .post-title {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.pagination {
+  margin-top: 3rem;
+}
+
+.avatar {
+  margin: 0 auto;
+}
+
+.post-meta,
+.post-excerpt {
+  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  font-weight: 200;
+}
+
+/* set the background of the landing page hero to a picture I took */
+.landing-page-hero {
+  background-image: url("/images/dog-mountain-fir.jpg");
+  background-size: cover;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
