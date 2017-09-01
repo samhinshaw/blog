@@ -7,7 +7,7 @@
       <section class="hero is-medium">
 
         <div class="image-hero {{file.heroName}}">
-          <div class="container has-text-centered">
+          <div class="container has-text-centered is-desktop">
             <div class="content is-primary">
               <h1 class="title">
                 {{file.heroText}}
@@ -18,14 +18,20 @@
 
       </section>
 
-      <div class="columns is-desktop">
-        <div class="column is-8 is-offset-2">
+      <section class="section">
+        <div class="container is-tablet">
+          <div class="content">
 
-          <section class="content">
-            {{file.content | safe}}
-          </section>
+            <div class="columns is-desktop">
+              <div class="column is-8 is-offset-2">
 
+                {{file.content | safe}}
+
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
     </div>
     {% endblock%}

@@ -54,10 +54,6 @@ a.social-instagram:focus i {
   padding: 20px;
 }
 
-/*h1:hover {
-  color: #546e7a;
-}*/
-
 a {
   color: #363636;
   text-decoration: none;
@@ -73,9 +69,11 @@ a:focus {
   padding: 1.5rem;
 }
 
-.Site-content article {
+.Site-content .content {
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
 }
+
+/* Formatting for post page to make the blog post listings more beautiful! */
 
 h2,
 h3,
@@ -114,16 +112,17 @@ h6,
   margin-top: 3rem;
 }
 
-.avatar {
-  margin: 2rem;
-}
-
 .post-meta,
 .post-excerpt {
   font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
     Arial, sans-serif;
   font-weight: 200;
+}
+
+/* avatar formatting */
+.avatar {
+  margin: 2rem;
 }
 
 /* Hero properties */
@@ -163,17 +162,37 @@ h6,
   background-color: #485a28; /* Dark bkgrnd fallback (b/c dark picture) */
 }
 
+/* Stop the landing page hero form being link-colored */
+.landing-page-hero a,
+.landing-page-hero span {
+  color: #f0f0f0;
+}
+
+/* Make mid-dots a bit bolder */
+.landing-page-hero span {
+  font-weight: 800;
+}
+
+.landing-page-hero a:hover,
+.landing-page-hero a:focus {
+  text-decoration: underline;
+}
+
 .about-page-hero {
   background-image: url("/images/juniper-point.jpg");
   background-color: #2e83a9; /* Dark bkgrnd fallback (b/c dark picture) */
 }
+.blog-page-hero {
+  background-image: url("/images/sailing-centre-sunset_stylized.jpg");
+  background-color: #262226; /* Dark bkgrnd fallback (b/c dark picture) */
+}
 
 /* For now I'm using a light photo, so let's change the text color */
-
-.blog-page-hero {
-  background-image: url("/images/getty-villa-wall.jpg");
+.projects-page-hero {
+  background-image: url("/images/lions-gate.jpg");
   background-color: #d7c079; /* Light bkgrnd fallback (b/c light picture) */
 }
-.blog-page-hero h1 {
-  color: #363636;
+
+.projects-page-hero h1 {
+  color: #f0f0f0;
 }
