@@ -105,6 +105,12 @@ module.exports = {
     host: "127.0.0.1",
     baseurl: ""
   },
+  ignore: [
+    // Ignore repo root files only needed for GitHub repo'.
+    "readme.md",
+    "LICENSE",
+    "LICENSE_PHOTOS"
+  ],
   // Only build files that have changed.
   // This is a performance improvement to the time it takes to build your site.
   incremental: false,
