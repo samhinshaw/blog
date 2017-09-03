@@ -4,19 +4,21 @@
   color: #444;
 }
 
-a.icon:hover i,
-a.icon:focus i {
+/*footer a.icon:hover i,
+footer a.icon:focus i {
   font-weight: 600;
-}
+}*/
 
 a.social-twitter:hover i,
 a.social-twitter:focus i {
   color: #55acee;
 }
 
+/* On GitHub.com, the footer icon changes from light (#c6cbd1) to dark
+/* (#959da5) on hover. */
 a.social-github:hover i,
 a.social-github:focus i {
-  color: #000000;
+  color: #959da5;
 }
 
 a.social-codepen:hover i,
@@ -152,9 +154,10 @@ h6,
 .image-hero {
   background-size: cover;
   background-color: #fff;
+  /* Make the header text center vertically within the hero */
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .landing-page-hero {
@@ -204,8 +207,13 @@ h6,
   box-shadow: inset 0 0px 0 #f0f0f0, inset 0 -0.5px 0 #444;
 }
 
+/*Except for the github logo*/
+.modal-card-body a.icon {
+  box-shadow: none;
+}
+
+/*Remove the rounded corners from the modal*/
 .modal-card-head {
-  border-bottom: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  border: 0;
+  border-radius: 0;
 }
