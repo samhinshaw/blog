@@ -24,34 +24,34 @@
             array but returns -1 if the object is not in the array. If the
             file IS part of the post collections, we'll have the date &
             tags as the subtitle. -->
-          {% if collections.post.files.indexOf(file) > 0 %}
+          {% if collections.post.files.indexOf(file) >= 0 %}
             <time class="post-date" datetime="{{file.date | date('D MMMM YYYY')}}">{{file.date | date('D MMMM YYYY')}}</time>
-            <span>&middot;
+            <!-- <span>&middot;
               {% for tag in file.tags %}
                 <a href="/tag/{{tag}}/">{{tag}}</a>
                 {% endfor%}
-              </span>
-              <!-- If the file is not part of the post collection then
+              </span> -->
+            <!-- If the file is not part of the post collection then
                 it's not a blog post! Then we'll use the provided subtitle.
                 If the provided subtitle does not exist, it will be blank.  -->
-            {% elif file.subtitle %}
-              {{file.subtitle}}
-            {% else %}
+          {% elif file.subtitle %}
+            {{file.subtitle}}
+          {% else %}
 
-            {% endif %}
-          </h2>
+          {% endif %}
+        </h2>
 
+      </div>
+    </div>
+  </header>
+
+  <section class="section Site-content">
+    <div class="container is-tablet">
+      <div class="content">
+
+        {% block content %}{% endblock%}
         </div>
       </div>
-    </header>
+    </section>
 
-    <section class="section Site-content">
-      <div class="container is-tablet">
-        <div class="content">
-
-          {% block content %}{% endblock%}
-          </div>
-        </div>
-      </section>
-
-      {% endblock%}
+    {% endblock%}

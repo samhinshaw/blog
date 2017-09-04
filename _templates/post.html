@@ -4,15 +4,13 @@
 
   {% block content %}
     <div class="columns is-desktop">
+      <!-- <div class="column is-2">
+        <button class="button is-white">
+          <a href="javascript:history.back()">Back</a>
+        </button>
+      </div> -->
       <div class="column is-8 is-offset-2">
-
-        <article class="page">
-
-          <section class="page-content">
-            {{file.content | safe}}
-          </section>
-
-        </article>
+        {{file.content | safe}}
       </div>
     </div>
     {% include "_pagination.html" %}
