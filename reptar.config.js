@@ -78,7 +78,7 @@ module.exports = {
       path: "./_root",
       template: "page",
       pageSize: 6,
-      sort: { key: "date", order: "descending" },
+      sort: { key: "title", order: "ascending" },
       permalink: { index: "/pages/", page: "/page/:page/" }
     },
     post: {
@@ -87,13 +87,6 @@ module.exports = {
       pageSize: 6,
       sort: { key: "date", order: "descending" },
       permalink: { index: "/blog/", page: "/page/:page/" }
-    },
-    tag: {
-      metadata: "tags",
-      template: "tag",
-      pageSize: 6,
-      sort: { key: "date", order: "descending" },
-      permalink: { index: "/tag/:metadata/", page: "/tag/:metadata/:page/" }
     }
   },
   // If we should remove the compile destination folder before writing.
