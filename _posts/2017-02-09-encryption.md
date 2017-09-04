@@ -2,13 +2,11 @@
 layout: post
 title: Encryption Commands for LetsEncrypt
 date: 2017-02-09
-tags:
-- how-to
+excerpt: How to setup a LetsEncrypt HTTPS certificate on your webserver.
 ---
 
-
 ```bash
-sudo letsencrypt certonly -a webroot --webroot-path=/home/shinshaw/serve/blog -d blog.samhinshaw.com
+sudo letsencrypt certonly -a webroot --webroot-path=<web/server/directory> -d <domain-name>
 
 sudo nano /etc/nginx/snippets/ssl-blog.samhinshaw.com.conf
 

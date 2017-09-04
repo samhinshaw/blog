@@ -1,35 +1,36 @@
 ---
 layout: post
-title: How to Install NodeJS & Hyper
+title: Installing Node.js on Linux
 date: 2017-02-09
-tags:
-- how-to
+excerpt: How to get Node.js up and running without Homebrew.
 ---
 
-## NodeJS
+Installing Node.js on macOS is as easy as `brew install`. However, on other unix systems, installing Node.js isn't quite as easy as `apt-get install`. First we need to execute the setup scripts.
 
-For the current NodeJS LTS:
-1. Use Setup Script: `curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -`
-2. apt-get: `sudo apt-get install -y nodejs`
+For the current Node.js LTS:
+```bash
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
 
-For the latest v7:
-1. Use Setup Script: `curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -`
-2. apt-get: `sudo apt-get install -y nodejs`
+For the latest:
+```bash
+curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
 
+Afterwards, it is important to check your global install path. Unfortunately, this is not always set correctly, and may default to `/usr`, necessitating elevated permissions to install packages globally. This is well documented in the [Node.js docs](https://docs.npmjs.com/getting-started/fixing-npm-permissions), but I will briefly reiterate the commands here:
 
-## Hyper
+First check your global install path:
+```bash
+npm config get prefix
+```
 
-For current release:
-1. Download deb - `wget https://hyper-updates.now.sh/download/linux_deb`
-2. `sudo dpkg -i hyper.deb`
-
-To build dev version from source:
-1. Clone dev repo from github `git clone https://github.com/zeit/hyper.git`
-2. Install linux dependencies: `sudo apt-get install icnsutils graphicsmagick xz-utils rpm`
-3. Install node dependencies `cd hyper && npm install`
-4. Test build:
-	+ `npm run dev`
-	+ In separate process `cd hyper && npm run app`
-5. If all is working, generate binaries `npm run dist`
-6. Install packaged binaries `cd dist && sudo dpkg -i hyper.deb`
-7. Create symlink to /usr/bin `sudo ln -s /opt/Hyper/hyper /usr/bin/hyper`
+If this directory is not user-writeable, it is **strongly** recommended to change it. The official recommendation is to use `~/.npm-global`.
+```bash
+mkdir ~/.npm-global
+npm config set prefix '~/.npm-global'
+# Replace ~/.profile with your shell start script of choice
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.profile
+source ~/.profile
+```

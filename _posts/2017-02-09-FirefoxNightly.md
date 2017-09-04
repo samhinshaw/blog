@@ -2,8 +2,7 @@
 layout: post
 title: How to Install Firefox Nightly
 date: 2017-02-09
-tags:
-- how-to
+draft: true
 ---
 
 
