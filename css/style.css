@@ -57,13 +57,21 @@ a.social-instagram:focus i {
 }
 
 a {
+  color: #4b95b5;
+}
+
+a:hover {
+  color: #000;
+}
+
+footer a {
   color: #444;
   text-decoration: none;
 }
 
-a:hover,
-a:focus {
-  color: #546e7a;
+footer a:hover,
+footer a:focus {
+  color: #4b95b5;
   text-decoration: none;
 }
 
@@ -100,13 +108,11 @@ h6,
   margin: 2rem 0;
 }
 
-.post-meta {
-  display: inline-block;
+.post .post-meta {
   font-size: 0.9em;
 }
 
 .post .post-title {
-  display: inline-block;
   margin-bottom: 0;
 }
 
@@ -127,6 +133,18 @@ h6,
   margin: 2rem;
 }
 
+.avatar-container {
+  margin-top: -2em;
+}
+
+.avatar-container .name {
+  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  font-size: 2rem;
+  margin-top: -3rem;
+  margin-bottom: 1rem;
+}
+
 /* Hero properties */
 
 /* Make the post headers Cormorant font and off-black */
@@ -138,34 +156,44 @@ h6,
   /*margin-top: 0;*/
 }
 
+.header .subtitle {
+  padding-top: 0.5em;
+  margin-bottom: 0;
+}
+
 /* BUT make the hero headers white to contrast with the background */
 .image-hero h1 {
   color: #f0f0f0;
-  font-size: 7rem;
   font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
     serif;
-  /*font-size: 2.5em;*/
-  /*margin-top: 0;*/
+  font-size: 7rem;
+}
+
+.image-hero h2 {
+  color: #f0f0f0;
+  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+    serif;
+  font-size: 3rem;
 }
 
 /* Set properties for heroes with image backgrounds. Setting an appropriate
 /* background color also helps insert the right text while loading the
 /* image! */
 .image-hero {
-  background-size: cover;
-  background-color: #fff;
-  /* Make the header text center vertically within the hero */
   align-items: center;
+  background-color: #fff;
+  background-size: cover;
+  /* Make the header text center vertically within the hero */
   display: flex;
   justify-content: center;
 }
 
 .landing-page-hero {
-  background-image: url("/images/dog-mountain-fir.jpg");
   background-color: #485a28; /* Dark bkgrnd fallback (b/c dark picture) */
+  background-image: url("/images/dog-mountain-fir.jpg");
 }
 
-/* Stop the landing page hero form being link-colored */
+/* Stop the landing page hero from being link-colored */
 .landing-page-hero a,
 .landing-page-hero span {
   color: #f0f0f0;
@@ -182,22 +210,18 @@ h6,
 }
 
 .about-page-hero {
-  background-image: url("/images/juniper-point.jpg");
   background-color: #2e83a9; /* Dark bkgrnd fallback (b/c dark picture) */
+  background-image: url("/images/juniper-point.jpg");
 }
 .blog-page-hero {
-  background-image: url("/images/sailing-centre-sunset_stylized.jpg");
   background-color: #262226; /* Dark bkgrnd fallback (b/c dark picture) */
+  background-image: url("/images/sailing-centre-sunset_stylized.jpg");
 }
 
 /* For now I'm using a light photo, so let's change the text color */
 .projects-page-hero {
-  background-image: url("/images/lions-gate.jpg");
   background-color: #d7c079; /* Light bkgrnd fallback (b/c light picture) */
-}
-
-.projects-page-hero h1 {
-  color: #f0f0f0;
+  background-image: url("/images/lions-gate.jpg");
 }
 
 /* Modal Card properties */
@@ -216,4 +240,15 @@ h6,
 .modal-card-head {
   border: 0;
   border-radius: 0;
+}
+
+/* Lower padding in code blocks */
+.content pre {
+  padding: 0;
+}
+
+/* Reduce odd spacing when we have a nested list */
+.content li ul {
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
 }
