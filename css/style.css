@@ -157,6 +157,10 @@ h6,
   margin-bottom: 0;
 }
 
+.image-hero .container {
+  margin: 0;
+}
+
 /* BUT make the hero headers white to contrast with the background */
 .image-hero h1 {
   color: #f0f0f0;
