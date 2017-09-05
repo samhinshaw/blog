@@ -20,7 +20,7 @@ module.exports = {
   // them here. All files are relative to where this file is found.
   path: {
     source: "./",
-    destination: "./_site",
+    destination: "$HOME/serve/samhinshaw.com/html",
     templates: "./_templates",
     data: "./_data"
   },
