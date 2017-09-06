@@ -210,7 +210,7 @@ module.exports = {
   // What middlewares you want enabled and what configuration settings they
   // should have. Can be either a string which assumes it's an npm module or
   // a function which is the middleware itself, or an array of either.
-  middlewares: ["reptar-excerpt", noopMiddleware],
+  middlewares: [noopMiddleware],
   // Lifecycle methods are called at certain points in the lifecycle of Reptar.
   // Each value can be either a string or a function or an array of either.
   lifecycle: {
