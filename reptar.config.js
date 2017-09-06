@@ -26,6 +26,9 @@ module.exports = {
   },
   // Individual File configuration.
   file: {
+    // What key from a File's frontmatter Reptar should use
+    // as the property to grab the URL of the file from.
+    urlKey: "url",
     // The format that your date values are formatted as.
     // This is used when parsing date objects.
     // This current format supports dates like 2016-2-28
@@ -89,8 +92,101 @@ module.exports = {
       permalink: { index: "/blog/", page: "/page/:page/" }
     }
   },
+  // Configure how non-markdown files should be processed. This is primarily
+  // for js, less, sass, etc files.
+  //
+  // Reptar will iterate over this array of asset processors and find the first
+  // match using the `test` value, passing in the source file path.
+  // If the test value is a:
+  //  string: it compares the file path from the beginning of the string.
+  //    Example:
+  //      filePath = '/my/file.less', test: 'less' will not match.
+  //      filePath = '/my/file.less', test: '/my/file' will match.
+  //  RegExp: will run filePath.match(regExp) for a match.
+  //  function: will give the function the filePath value and must return
+  //    a boolean.
+  //
+  // The `use` value defines what object to use when processing the asset.
+  // If the value for `use` is:
+  //  string: Reptar will assume is an npm module and attempt to load it.
+  //  object: The object must have two function properties,
+  //    `calculateDestination` to define the destination path for an asset
+  //    `render` to actually render the asset.
+  assets: [
+    {
+      test: /\.less$/,
+      use: "less"
+    },
+    {
+      test: /\.js$/,
+      use: "browserify"
+    },
+    {
+      test: /\.s[ac]ss$/,
+      use: "sass"
+      // {
+      //   // The generic object for using anything aside from an npm package
+      //   calculateDestination(destination) {
+      //     return destination.replace(/\.s[ac]ss$/, ".css");
+      //   },
+      //   render(filePath) {
+      //     let sass = require("node-sass");
+      //     let fs = require("fs");
+      //     const path = require("path");
+      //     let result = sass.render(
+      //       {
+      //         file: filePath.path,
+      //         outputStyle: "compressed"
+      //       },
+      //       function(error, result) {
+      //         // node-style callback from v3.0.0 onwards
+      //         if (error) {
+      //           console.log(error.status); // used to be "code" in v2x and below
+      //           console.log(error.column);
+      //           console.log(error.message);
+      //           console.log(error.line);
+      //         } else {
+      //           // console.log(result.css.toString());
+      //           // console.log(result.stats);
+      //           // or better
+      //           // console.log(JSON.stringify(result.map)); // note, JSON.stringify accepts Buffer too
+      //           // filePath.data.content = result.css.toString();
+      //           //
+      //           let writePath = path.join(
+      //             filePath._renderer._config.root,
+      //             filePath.destination
+      //           );
+      //
+      //           // console.log(globalData);
+      //           fs.writeFile(writePath, result.css.toString(), "utf8", function(
+      //             err
+      //           ) {
+      //             if (err) {
+      //               return console.log(err);
+      //             }
+      //           });
+      //           return filePath;
+      //         }
+      //       }
+      //     );
+      //     return result;
+      //   }
+      // }
+    }
+  ],
   // If we should remove the compile destination folder before writing.
-  cleanDestination: false,
+  cleanDestination: true,
+  slug: { lower: true },
+  // Markdown.
+  // This lets you customize how markdown is handled.
+  markdown: {
+    // What file extensions we should recognize as a markdown file.
+    extensions: ["markdown", "mkdown", "mkdn", "mkd", "md"],
+    // Options given directly when creating our markdown parser.
+    // Documentation here:
+    // https://github.com/markdown-it/markdown-it//init-with-presets-and-options
+    options: { preset: "commonmark", highlight: true }
+  },
   // Serving.
   // When running `reptar serve` what settings should be used.
   server: {
@@ -102,15 +198,19 @@ module.exports = {
     // Ignore repo root files only needed for GitHub repo'.
     "readme.md",
     "LICENSE",
-    "LICENSE_PHOTOS"
+    "LICENSE_PHOTOS",
+    // Ignore any file prefixed with `_`.
+    /^_.+/
   ],
   // Only build files that have changed.
   // This is a performance improvement to the time it takes to build your site.
   incremental: false,
+  // Where files created via `reptar new` should be placed.
+  newFilePermalink: "/_posts/:date|YYYY-:date|MM-:date|D-:title.md",
   // What middlewares you want enabled and what configuration settings they
   // should have. Can be either a string which assumes it's an npm module or
   // a function which is the middleware itself, or an array of either.
-  middlewares: [noopMiddleware],
+  middlewares: ["reptar-excerpt", noopMiddleware],
   // Lifecycle methods are called at certain points in the lifecycle of Reptar.
   // Each value can be either a string or a function or an array of either.
   lifecycle: {

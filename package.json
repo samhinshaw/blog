@@ -1,5 +1,5 @@
 {
-  "name": "test_site",
+  "name": "sam_blog",
   "version": "1.0.0",
   "description": "",
   "main": "reptar.config.js",
@@ -8,13 +8,18 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "repo": "https://github.com/samhinshaw/reptar_blog",
+  "license": "GPL-3.0",
   "dependencies": {
+    "bulma": "^0.5.1",
     "normalize.css": "^7.0.0",
     "reptar-excerpt": "^1.0.0",
     "reptar-html-minifier": "^1.0.0"
   },
   "devDependencies": {
-    "prettier": "^1.6.1"
+    "less-plugin-npm-import": "^2.1.0",
+    "node-sass": "^4.5.3",
+    "prettier": "^1.6.1",
+    "sass-module-importer": "^1.4.0"
   }
 }

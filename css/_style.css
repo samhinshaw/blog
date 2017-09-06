@@ -162,18 +162,27 @@ h6,
 }
 
 /* BUT make the hero headers white to contrast with the background */
-.image-hero h1 {
+.image-hero .title {
   color: #f0f0f0;
   font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
     serif;
-  font-size: 7rem;
+  font-size: 20vmin;
 }
 
-.image-hero h2 {
+.image-hero .subtitle {
   color: #f0f0f0;
   font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
     serif;
-  font-size: 3rem;
+  font-size: 7vmin;
+}
+
+/* Unless otherwise specified, make h1s 10vmin */
+.blog-post .title {
+  font-size: 10vmin;
+}
+
+.blog-post .subtitle {
+  font-size: 5vmin;
 }
 
 /* Set properties for heroes with image backgrounds. Setting an appropriate
