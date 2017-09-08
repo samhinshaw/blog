@@ -235,7 +235,7 @@ h6,
 
 .error-page-hero {
   background-color: #3c3f2b; /* Dark bkgrnd fallback (b/c dark picture) */
-  background-image: url("/images/first-lake.jpg");
+  background-image: url("/images/first-lake-crop.jpg");
 }
 
 /* make error page hero text smaller becuse they will tend to be longer &
