@@ -54,7 +54,7 @@ module.exports = {
         // Because this path is more specific it will over-write the previous
         // defaults.
         scope: { path: "./_posts" },
-        values: { template: "post", permalink: "/:title/" }
+        values: { template: "post", permalink: "/blog/:title/" }
       },
       {
         // Any file with this matching metadata will have the default values
@@ -89,7 +89,7 @@ module.exports = {
       template: "post_index",
       pageSize: 6,
       sort: { key: "date", order: "descending" },
-      permalink: { index: "/blog/", page: "/page/:page/" }
+      permalink: { index: "/blog/", page: "/blog/:page/" }
     }
   },
   // Configure how non-markdown files should be processed. This is primarily
