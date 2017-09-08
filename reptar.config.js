@@ -46,6 +46,11 @@ module.exports = {
       },
       {
         // Any file in this path will have the default values applied.
+        scope: { path: "./_error" },
+        values: { template: "page", permalink: "/:title" }
+      },
+      {
+        // Any file in this path will have the default values applied.
         scope: { path: "./_root" },
         values: { template: "page", permalink: "/:title/" }
       },

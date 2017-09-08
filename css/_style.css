@@ -137,8 +137,8 @@ h6,
   font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
     serif;
   font-size: 2rem;
-  margin-top: -3rem;
   margin-bottom: 1rem;
+  margin-top: -3rem;
 }
 
 /* Hero properties */
@@ -153,8 +153,8 @@ h6,
 }
 
 .header .subtitle {
-  padding-top: 0.5em;
   margin-bottom: 0;
+  padding-top: 0.5em;
 }
 
 .image-hero .container {
@@ -231,6 +231,17 @@ h6,
 .projects-page-hero {
   background-color: #d7c079; /* Light bkgrnd fallback (b/c light picture) */
   background-image: url("/images/lions-gate.jpg");
+}
+
+.error-page-hero {
+  background-color: #3c3f2b; /* Dark bkgrnd fallback (b/c dark picture) */
+  background-image: url("/images/first-lake.jpg");
+}
+
+/* make error page hero text smaller becuse they will tend to be longer &
+/* more descriptive */
+.error-page-hero .title {
+  font-size: 12vmin;
 }
 
 /* Modal Card properties */
