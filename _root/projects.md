@@ -8,9 +8,11 @@ heroText: Projects
 <div class="columns is-desktop">
   <div class="column is-8 is-offset-2">
 
-## [MetaBridge](https://www.metabridge.org) (forthcoming)
+## [MetaBridge](/metabridge/) <sup>BETA</sup>
 
-An systems biology-based integrative analysis platform for integration of metabolomics data. Built in [Shiny](https://shiny.rstudio.com/), this application allows users to upload a list of metabolites and get back a list of directly interacting enzymes and the genes that encode for those enzymes. Currently the only supported species is *Homo sapiens*.
+A systems biology-based integrative analysis platform for integration of metabolomics data. Built in [Shiny](https://shiny.rstudio.com/), this application allows users to upload a list of metabolites and get back a list of directly interacting enzymes and the genes that encode for those enzymes. Currently the only supported species is *Homo sapiens*.
+
+*NOTE: The MetaBridge beta is hosted on a virtual private server in Seattle. Please do not upload any sensitive data (i.e. personally-identifiable patient data) during the beta period.*
 
 <h2 id="open-source">Open-Source Contributions</h2>
 
