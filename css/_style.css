@@ -322,3 +322,9 @@ code {
   background-color: #fff;
   border-radius: 8px;
 }
+
+/* Return <hr>s to their default (visible, non-zero) height */
+
+hr {
+  height: 1px;
+}
