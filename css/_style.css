@@ -80,7 +80,7 @@ footer a:focus {
 }
 
 .Site-content .content {
-  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
 /* Formatting for post page to make the blog post listings more beautiful! */
@@ -91,8 +91,8 @@ h4,
 h5,
 h6,
 .pagination {
-  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+  font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Helvetica,
     Arial, sans-serif;
   /*font-size: 1.5em;*/
 }
@@ -102,8 +102,8 @@ h6,
 }
 
 .post {
-  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+  font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Helvetica,
     Arial, sans-serif;
   margin: 2rem 0;
 }
@@ -118,8 +118,8 @@ h6,
 
 .post-meta,
 .post-excerpt {
-  font-family: BlinkMacSystemFont, -apple-system, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Helvetica,
+  font-family: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Helvetica,
     Arial, sans-serif;
   font-weight: 200;
 }
@@ -134,7 +134,7 @@ h6,
 }
 
 .avatar-container .name {
-  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+  font-family: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', Times,
     serif;
   font-size: 2rem;
   margin-bottom: 1rem;
@@ -146,7 +146,7 @@ h6,
 /* Make the post headers Cormorant font and off-black */
 .header .title a {
   color: #444;
-  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+  font-family: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', Times,
     serif;
   /*font-size: 2.5em;*/
   /*margin-top: 0;*/
@@ -164,14 +164,14 @@ h6,
 /* BUT make the hero headers white to contrast with the background */
 .image-hero .title {
   color: #f0f0f0;
-  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+  font-family: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', Times,
     serif;
   font-size: 20vmin;
 }
 
 .image-hero .subtitle {
   color: #f0f0f0;
-  font-family: "Cormorant Garamond", Georgia, Cambria, "Times New Roman", Times,
+  font-family: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', Times,
     serif;
   font-size: 7vmin;
 }
@@ -199,7 +199,7 @@ h6,
 
 .landing-page-hero {
   background-color: #485a28; /* Dark bkgrnd fallback (b/c dark picture) */
-  background-image: url("/images/dog-mountain-fir.jpg");
+  background-image: url('/images/dog-mountain-fir.jpg');
 }
 
 /* Stop the landing page hero from being link-colored */
@@ -220,22 +220,22 @@ h6,
 
 .about-page-hero {
   background-color: #2e83a9; /* Dark bkgrnd fallback (b/c dark picture) */
-  background-image: url("/images/juniper-point.jpg");
+  background-image: url('/images/juniper-point.jpg');
 }
 .blog-page-hero {
   background-color: #262226; /* Dark bkgrnd fallback (b/c dark picture) */
-  background-image: url("/images/sailing-centre-sunset_stylized.jpg");
+  background-image: url('/images/sailing-centre-sunset_stylized.jpg');
 }
 
 /* For now I'm using a light photo, so let's change the text color */
 .projects-page-hero {
   background-color: #d7c079; /* Light bkgrnd fallback (b/c light picture) */
-  background-image: url("/images/lions-gate.jpg");
+  background-image: url('/images/lions-gate.jpg');
 }
 
 .error-page-hero {
   background-color: #3c3f2b; /* Dark bkgrnd fallback (b/c dark picture) */
-  background-image: url("/images/first-lake-crop.jpg");
+  background-image: url('/images/first-lake-crop.jpg');
 }
 
 /* make error page hero text smaller becuse they will tend to be longer &
@@ -275,6 +275,48 @@ h6,
 
 /* Create thin dotted line for hovertext in articles */
 
-.hoverText {
+.hover-text {
   box-shadow: inset 0 0px 0 #fff, inset 0 -0.2px 0 #444;
+}
+
+/* Make pre tags use Fira Code and use ligatures */
+
+@font-face {
+  font-family: 'Fira Code';
+  src: url(fonts/FiraCode-Regular.woff2);
+}
+
+/* @font-face {
+  font-family: 'FiraCode-Medium';
+  src: url(fonts/FiraCode-Medium.woff2);
+} */
+
+/* @font-face {
+  font-family: 'FiraCode-Light';
+  src: url(fonts/FiraCode-Light.woff2);
+} */
+
+code {
+  font-family: 'Fira Code', 'Monoid', 'Hasklig', 'Office Code Pro D',
+    'Roboto Mono', 'Droid Sans Mono', 'Ubuntu Mono', 'Inconsolata', 'monospace';
+  font-variant-ligatures: common-ligatures;
+}
+
+.content ::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.content ::-webkit-scrollbar:horizontal {
+  height: 9px;
+}
+
+.content ::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 2px solid white;
+  background-color: rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 0 0 0.5px rgba(255, 255, 255, 0.5);
+}
+.content ::-webkit-scrollbar-track {
+  background-color: #fff;
+  border-radius: 8px;
 }
