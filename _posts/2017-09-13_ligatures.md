@@ -15,7 +15,7 @@ excerpt: Implementing ligature-supported monospace fonts across multiple platfor
 
 ## Background
 
-What a busy week! On Monday, I started using Visual Studio Code, replacing my previous text editor of choice, Atom. As it turns out, Wes Bos of the [Syntax Podcast](https://syntax.fm/) ([@WesBos](https://twitter.com/wesbos)) is doing the same right now. I learned about ligature implementation in programming fonts [via his twitter](https://twitter.com/kiliman/status/907709797193134082) yesterday. Then today, I saw a [blog post](https://blog.rstudio.com/2017/09/13/rstudio-v1.1---the-little-things/) about some of the smaller features implemented in RStudio 1.1, and, of course, ligature support was added! 
+What a busy week! On Monday, I started using Visual Studio Code, replacing my previous text editor of choice, Atom. As it turns out, Wes Bos of the [Syntax Podcast](https://syntax.fm/) ([@WesBos](https://twitter.com/wesbos)) is doing the same right now. I learned about <span class="hover-text" title="from Latin: ligatus, 'bound'">ligature</span> implementation in programming fonts [via his twitter](https://twitter.com/kiliman/status/907709797193134082) yesterday. Then today, I saw a [blog post](https://blog.rstudio.com/2017/09/13/rstudio-v1.1---the-little-things/) about some of the smaller features implemented in RStudio 1.1, and, of course, ligature support was added! 
 
 Perhaps the most compelling reasons for me to check this out was the beautiful new assignment operator in R.
 ```r
@@ -39,7 +39,7 @@ Clone the [Fira Code Repository](https://github.com/tonsky/FiraCode) and install
 
 #### RStudio
 
-First make sure you have version 1.1.x installed. As of this writing, you must be on the [Preview](https://www.rstudio.com/products/rstudio/download/preview/) (really quite stable) or more experimental [Nightly](https://dailies.rstudio.com/) builds.  
+First make sure you have version 1.1.x of RStudio installed. As of this writing, you must be on the [Preview](https://www.rstudio.com/products/rstudio/download/preview/) (really quite stable) or more experimental [Nightly](https://dailies.rstudio.com/) builds.  
 
 Then set the default font to FiraCode and you're good to go!
 
@@ -75,7 +75,7 @@ plugins: [
 
 ### Web
 
-For web, you can simply use the WOFF2 webfont files! In your site's CSS, simply add:
+For web, you can use the WOFF2 webfont files. In your site's CSS, simply add:
 
 ```css
 /* Make pre tags use Fira Code and use ligatures */
@@ -97,11 +97,11 @@ code {
 
 ## Conclusion
 
-That was it! You're done! For the moment, I'm enjoying ligatures due to their aesthetic, but I am curious if I will run into issues in the future with difficulty distinguishing between different operators. Specifically, in JavaScript, the difference between `==` and `===` can be huge. But for now, I'm just going to enjoy!
+That was it! You're done! For the moment, I'm enjoying ligatures due to their aesthetic, but I am curious if I will run into issues in the future with difficulty distinguishing between different operators. Specifically, in JavaScript, the difference between `==` and `===` can be <span class="hover-text" title="the double equals operator performs type-coercion, triple equals does not.">code-breaking</span>. But for now, I'm just going to enjoy!
 
 For more comprehensive installation instructions and troubleshooting, check out the [Fira Code Wiki on GitHub](https://github.com/tonsky/FiraCode/wiki). 
 
-Let me know what you thought on [twitter](https://twitter.com/samhinshaw)!
+Let me know what you think on [twitter](https://twitter.com/samhinshaw)!
 
 *****
 
