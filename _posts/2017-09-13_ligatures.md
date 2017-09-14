@@ -95,13 +95,13 @@ code {
 }
 ```
 
-...and you're done!
-
 ## Conclusion
+
+That was it! You're done! For the moment, I'm enjoying ligatures due to their aesthetic, but I am curious if I will run into issues in the future with difficulty distinguishing between different operators. Specifically, in JavaScript, the difference between `==` and `===` can be huge. But for now, I'm just going to enjoy!
 
 For more comprehensive installation instructions and troubleshooting, check out the [Fira Code Wiki on GitHub](https://github.com/tonsky/FiraCode/wiki). 
 
-If this helped you, let me know [on twitter](https://twitter.com/samhinshaw)!
+Let me know what you thought on [twitter](https://twitter.com/samhinshaw)!
 
 *****
 

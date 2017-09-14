@@ -9,30 +9,30 @@ footer a.icon:focus i {
   font-weight: 600;
 }*/
 
-a.social-twitter:hover i,
-a.social-twitter:focus i {
+span.social-twitter:hover i,
+span.social-twitter:focus i {
   color: #55acee;
 }
 
 /* On GitHub.com, the footer icon changes from light (#c6cbd1) to dark
 /* (#959da5) on hover. */
-a.social-github:hover i,
-a.social-github:focus i {
+span.social-github:hover i,
+span.social-github:focus i {
   color: #959da5;
 }
 
-a.social-codepen:hover i,
-a.social-codepen:focus i {
+span.social-codepen:hover i,
+span.social-codepen:focus i {
   color: #fcd000;
 }
 
-a.social-linkedin:hover i,
-a.social-linkedin:focus i {
+span.social-linkedin:hover i,
+span.social-linkedin:focus i {
   color: #0077b5;
 }
 
-a.social-instagram:hover i,
-a.social-instagram:focus i {
+span.social-instagram:hover i,
+span.social-instagram:focus i {
   color: #f167f5;
 }
 
