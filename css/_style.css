@@ -283,7 +283,7 @@ h6,
 
 @font-face {
   font-family: 'Fira Code';
-  src: url(fonts/FiraCode-Regular.woff2);
+  src: url(../fonts/FiraCode-Regular.woff2);
 }
 
 /* @font-face {
@@ -293,13 +293,15 @@ h6,
 
 /* @font-face {
   font-family: 'FiraCode-Light';
-  src: url(fonts/FiraCode-Light.woff2);
+  src: url(../fonts/FiraCode-Light.woff2);
 } */
 
 code {
   font-family: 'Fira Code', 'Monoid', 'Hasklig', 'Office Code Pro D',
     'Roboto Mono', 'Droid Sans Mono', 'Ubuntu Mono', 'Inconsolata', 'monospace';
   font-variant-ligatures: common-ligatures;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .content ::-webkit-scrollbar {
