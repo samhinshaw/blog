@@ -5,6 +5,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=8j6GKx92P5">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=8j6GKx92P5">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=8j6GKx92P5">
+  <link rel="manifest" href="/manifest.json?v=8j6GKx92P5">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg?v=8j6GKx92P5" color="#353535">
+  <link rel="shortcut icon" href="/favicon.ico?v=8j6GKx92P5">
+  <meta name="apple-mobile-web-app-title" content="Sam Hinshaw">
+  <meta name="application-name" content="Sam Hinshaw">
+  <meta name="theme-color" content="#ffffff">
 
   <title>
     {% block head_title %}{{site.title}}{% endblock %}
@@ -13,9 +22,6 @@
   <meta name="keywords" content="{{site.keywords}}" />
 
   <meta name="HandheldFriendly" content="True" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="shortcut icon" href="/images/favicon.ico">
 
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.min.css"> -->
@@ -140,29 +146,14 @@
   </div>
 
   <script type="text/javascript" src="/js/main.js"></script>
+  <!-- Global Site Tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106038065-1"></script>
   <script>
-    (function (i, s, o, g, r, a, m) {
-      i["GoogleAnalyticsObject"] = r;
-      (i[r] =
-        i[r] ||
-        function () {
-          (i[r].q = i[r].q || []).push(arguments);
-        }),
-        (i[r].l = 1 * new Date());
-      (a = s.createElement(o)), (m = s.getElementsByTagName(o)[0]);
-      a.async = 1;
-      a.src = g;
-      m.parentNode.insertBefore(a, m);
-    })(
-      window,
-      document,
-      "script",
-      "https://www.google-analytics.com/analytics.js",
-      "ga"
-      );
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments) };
+    gtag('js', new Date());
 
-    ga("create", "UA-106038065-1", "auto");
-    ga("send", "pageview");
+    gtag('config', 'UA-106038065-1');
   </script>
 </body>
 
