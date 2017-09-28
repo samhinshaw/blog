@@ -2,7 +2,7 @@
 layout: post
 title: Ligature Support in Monospace Fonts
 date: 2017-09-13
-excerpt: Implementing ligature-supported monospace fonts across multiple platforms
+excerpt: Implementing ligature-supported monospace fonts across multiple platforms.
 ---
 
 <div class="has-text-centered">

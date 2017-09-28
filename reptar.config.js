@@ -6,67 +6,67 @@ module.exports = {
   // Any values placed here are globally accessible
   // from any template context via the `site` key.
   site: {
-    title: "Sam Hinshaw",
-    email: "samuel.hinshaw@gmail.com",
-    description: "My personal website! Enjoy!",
-    baseurl: "", // the subpath of your site, e.g. /blog
-    url: "http://samhinshaw.com",
-    twitter_username: "samhinshaw",
-    github_username: "samhinshaw"
+    title: 'Sam Hinshaw',
+    email: 'samuel.hinshaw@gmail.com',
+    description: 'My personal website! Enjoy!',
+    baseurl: '', // the subpath of your site, e.g. /blog
+    url: 'http://samhinshaw.com',
+    twitter_username: 'samhinshaw',
+    github_username: 'samhinshaw',
   },
   // Where things are.
   // If you have a unique layout for your site and want to
   // change where Reptar looks for certain files you can change
   // them here. All files are relative to where this file is found.
   path: {
-    source: "./",
-    destination: "../../serve/samhinshaw.com/html",
-    templates: "./_templates",
-    data: "./_data"
+    source: './',
+    destination: '../../serve/samhinshaw.com/html',
+    templates: './_templates',
+    data: './_data',
   },
   // Individual File configuration.
   file: {
     // What key from a File's frontmatter Reptar should use
     // as the property to grab the URL of the file from.
-    urlKey: "url",
+    urlKey: 'url',
     // The format that your date values are formatted as.
     // This is used when parsing date objects.
     // This current format supports dates like 2016-2-28
     // It uses moment.js under the head and its format syntax as well:
     // http://momentjs.com/docs////displaying/format/
-    dateFormat: "YYYY-M-D",
+    dateFormat: 'YYYY-M-D',
     // Apply frontmatter values to a File paged upon a defined scope.
     // If the scope matches a File then the default values are applied if they
     // are not already set.
     defaults: [
       {
         // Any file in this path will have the default values applied.
-        scope: { path: "./" },
-        values: { template: "landing_page", permalink: "/" }
+        scope: { path: './' },
+        values: { template: 'landing_page', permalink: '/' },
       },
       {
         // Any file in this path will have the default values applied.
-        scope: { path: "./_error" },
-        values: { template: "page", permalink: "/:title.html" }
+        scope: { path: './_error' },
+        values: { template: 'page', permalink: '/:title.html' },
       },
       {
         // Any file in this path will have the default values applied.
-        scope: { path: "./_root" },
-        values: { template: "page", permalink: "/:title/" }
+        scope: { path: './_root' },
+        values: { template: 'page', permalink: '/:title/' },
       },
       {
         // Any file in this path will have the default values applied.
         // Because this path is more specific it will over-write the previous
         // defaults.
-        scope: { path: "./_posts" },
-        values: { template: "post", permalink: "/blog/:title/" }
+        scope: { path: './_posts' },
+        values: { template: 'post', permalink: '/blog/:title/' },
       },
       {
         // Any file with this matching metadata will have the default values
         // applied.
         scope: { metadata: { draft: true } },
-        values: { template: "draft" }
-      }
+        values: { template: 'draft' },
+      },
     ],
     // Filter out Files.
     filters: {
@@ -75,27 +75,27 @@ module.exports = {
       // If the date is in the future then it is filtered out.
       futureDate: {
         // Customize what key we should use to pull the date value from.
-        key: "date"
-      }
-    }
+        key: 'date',
+      },
+    },
   },
   // This is where you configure your collections of content.
   // For more details refer to the Collections documentation.
   collections: {
     mainPages: {
-      path: "./_root",
-      template: "page",
+      path: './_root',
+      template: 'page',
       pageSize: 6,
-      sort: { key: "title", order: "ascending" },
-      permalink: { index: "/pages/", page: "/page/:page/" }
+      sort: { key: 'title', order: 'ascending' },
+      permalink: { index: '/pages/', page: '/page/:page/' },
     },
     post: {
-      path: "./_posts",
-      template: "post_index",
+      path: './_posts',
+      template: 'post_index',
       pageSize: 6,
-      sort: { key: "date", order: "descending" },
-      permalink: { index: "/blog/", page: "/blog/:page/" }
-    }
+      sort: { key: 'date', order: 'descending' },
+      permalink: { index: '/blog/', page: '/blog/:page/' },
+    },
   },
   // Configure how non-markdown files should be processed. This is primarily
   // for js, less, sass, etc files.
@@ -120,15 +120,15 @@ module.exports = {
   assets: [
     {
       test: /\.less$/,
-      use: "less"
+      use: 'less',
     },
     {
       test: /\.js$/,
-      use: "browserify"
+      use: 'browserify',
     },
     {
       test: /\.s[ac]ss$/,
-      use: "sass"
+      use: 'sass',
       // {
       //   // The generic object for using anything aside from an npm package
       //   calculateDestination(destination) {
@@ -177,7 +177,7 @@ module.exports = {
       //     return result;
       //   }
       // }
-    }
+    },
   ],
   // If we should remove the compile destination folder before writing.
   cleanDestination: true,
@@ -186,32 +186,32 @@ module.exports = {
   // This lets you customize how markdown is handled.
   markdown: {
     // What file extensions we should recognize as a markdown file.
-    extensions: ["markdown", "mkdown", "mkdn", "mkd", "md"],
+    extensions: ['markdown', 'mkdown', 'mkdn', 'mkd', 'md'],
     // Options given directly when creating our markdown parser.
     // Documentation here:
     // https://github.com/markdown-it/markdown-it//init-with-presets-and-options
-    options: { preset: "commonmark", highlight: true }
+    options: { preset: 'commonmark', highlight: true },
   },
   // Serving.
   // When running `reptar serve` what settings should be used.
   server: {
     port: 8080,
-    host: "127.0.0.1",
-    baseurl: ""
+    host: '127.0.0.1',
+    baseurl: '',
   },
   ignore: [
     // Ignore repo root files only needed for GitHub repo'.
-    "readme.md",
-    "LICENSE",
-    "LICENSE_PHOTOS",
+    'readme.md',
+    'LICENSE',
+    'LICENSE_PHOTOS',
     // Ignore any file prefixed with `_`.
-    /^_.+/
+    /^_.+/,
   ],
   // Only build files that have changed.
   // This is a performance improvement to the time it takes to build your site.
   incremental: false,
   // Where files created via `reptar new` should be placed.
-  newFilePermalink: "/_posts/:date|YYYY-:date|MM-:date|D-:title.md",
+  newFilePermalink: '/_posts/:date|YYYY-:date|MM-:date|D-:title.md',
   // What middlewares you want enabled and what configuration settings they
   // should have. Can be either a string which assumes it's an npm module or
   // a function which is the middleware itself, or an array of either.
@@ -222,6 +222,6 @@ module.exports = {
     willUpdate: noopMiddleware,
     didUpdate: noopMiddleware,
     willBuild: noopMiddleware,
-    didBuild: noopMiddleware
-  }
+    didBuild: noopMiddleware,
+  },
 };
