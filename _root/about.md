@@ -14,16 +14,19 @@ subtitle: Sam Hinshaw
   </div>
   <div class="column is-8-desktop is-12-tablet is-12-mobile">
 
-I am a PhD student in bioinformatics at The University of British Columbia studying methodologies for integrative analysis of multi-omic datasets, specifically transcriptomics and metabolomics. While I started programming exclusively in R (<a href="https://twitter.com/hashtag/rstats">#rstats</a>), I have since learned JavaScript and Python, delving deeper into object-oriented and functional programming. This has enabled me to become proficient in development as well as scripting, allowing me to create fully functional applications to make my research methodologies available to the public.
+I am a PhD student in bioinformatics at The University of British Columbia studying integrative analysis of multi-omic datasets, specifically transcriptomics and metabolomics. I am building tools to make bioinformatics more accessible to scientists without technical expertise. 
+
+While I started programming exclusively in <span class="hover-text" title="#rstats"><a href="https://twitter.com/hashtag/rstats">R</a></span>, I have since taught myself Python and JavaScript, delving deeper into object-oriented and functional programming. This has enabled me to become proficient in development as well as scripting, allowing me to create fully functional applications to make my research methodologies available to the public.
 
 I have always had a passion for technology, and in my spare time I like to hack things together. As I learn more, I have begun to give back to the community by contributing to [open-source projects](/projects#open-source).
 
 Other interests of mine include:
 - Running 🏃
 - Baking 🥖
-- Hiking & Camping 🌲
+- Hiking & camping 🌲
 - Photography 📸
 - Coffee ☕
+- Craft beer 🍺
 
   </div>
   <div class="column is-4 is-hidden-touch">

@@ -8,9 +8,10 @@ module.exports = {
   site: {
     title: 'Sam Hinshaw',
     email: 'samuel.hinshaw@gmail.com',
-    description: 'My personal website! Enjoy!',
+    description:
+      'Sam Hinshaw: Bioinformatics & Web Development. I do integrative analysis of multi-omic data and make tools to help all scientists do bioinformatics.',
     baseurl: '', // the subpath of your site, e.g. /blog
-    url: 'http://samhinshaw.com',
+    url: 'http://www.samhinshaw.com',
     twitter_username: 'samhinshaw',
     github_username: 'samhinshaw',
   },
