@@ -1,57 +1,40 @@
-{% extends 'common.html' %}
+{% extends 'common.html' %} {% block not_in_common %}
+<header class="header blog-post">
+  <div class="container has-text-centered">
+    <div class="content is-primary">
+      <h1 class="title">
+        <a href="{{file.url}}">
+          {% block header_title %} {% if file.title %} {{file.title}} {% else %} {{site.title}} {% endif %} {% endblock %}
+        </a>
+      </h1>
 
-{% block not_in_common %}
-  <header class="header blog-post">
-    <div class="container has-text-centered">
-      <div class="content is-primary">
-        <h1 class="title">
-          <a href="{{file.url}}">
-            {% block header_title %}
-
-              {% if file.title %}
-                {{file.title}}
-              {% else %}
-                {{site.title}}
-              {% endif %}
-
-            {% endblock %}
-          </a>
-        </h1>
-
-        <h2 class="subtitle">
-          <!-- Check to see if this file is part of the "post"
+      <h2 class="subtitle">
+        <!-- Check to see if this file is part of the "post"
             collection. `indexOf()` returns the index of the object in the
             array but returns -1 if the object is not in the array. If the
             file IS part of the post collections, we'll have the date &
             tags as the subtitle. -->
-          {% if collections.post.files.indexOf(file) >= 0 %}
-            <time class="post-date" datetime="{{file.date | date('D MMMM YYYY')}}">{{file.date | date('D MMMM YYYY')}}</time>
-            <!-- <span>&middot;
+        {% if collections.post.files.indexOf(file) >= 0 %}
+        <time class="post-date" datetime="{{file.date | date('D MMMM YYYY')}}">{{file.date | date('D MMMM YYYY')}}</time>
+        <!-- <span>&middot;
               {% for tag in file.tags %}
                 <a href="/tag/{{tag}}/">{{tag}}</a>
                 {% endfor%}
               </span> -->
-            <!-- If the file is not part of the post collection then
+        <!-- If the file is not part of the post collection then
                 it's not a blog post! Then we'll use the provided subtitle.
                 If the provided subtitle does not exist, it will be blank.  -->
-          {% elif file.subtitle %}
-            {{file.subtitle}}
-          {% else %}
+        {% elif file.subtitle %} {{file.subtitle}} {% else %} {% endif %}
+      </h2>
 
-          {% endif %}
-        </h2>
-
-      </div>
     </div>
-  </header>
+  </div>
+</header>
 
-  <section class="section Site-content blog-post">
-    <div class="container is-tablet">
-      <div class="content">
+<section class="section Site-content blog-post">
+  <div class="container is-desktop">
+    {% block content %}{% endblock%}
+  </div>
+</section>
 
-        {% block content %}{% endblock%}
-        </div>
-      </div>
-    </section>
-
-    {% endblock%}
+{% endblock%}

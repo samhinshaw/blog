@@ -47,6 +47,7 @@ Then set the default font to FiraCode and you're good to go!
 
 Open settings and add the following lines
 ```js
+{
   // Enable ligature support
   "editor.fontLigatures": true,
   // Choose one:
@@ -56,6 +57,7 @@ Open settings and add the following lines
   // "editor.fontFamily": "FiraCode-Retina"
   // or
   // "editor.fontFamily": "Fira Code Retina"
+}
 ```
 
 #### Terminal 
@@ -64,13 +66,11 @@ I use Hyper as my terminal emulator for exactly this situation! I love being abl
 
 In your `~/.hyper.js` config file, add:
 ```js
-fontFamily: '"FiraCode-Retina", "Fira Code"',
+{
+  fontFamily: '"FiraCode-Retina", "Fira Code"',
 
-// Install the hyper-ligatures plugin to 
-// enable ligature support within Hyper
-plugins: [
-    'hyper-ligatures'
-]
+  plugins: 'hyper-ligatures'
+}
 ```
 
 ### Web

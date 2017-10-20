@@ -1,35 +1,31 @@
-{% extends 'common.html' %}
+{% extends 'common.html' %} {% block body_class %}page-template{% endblock%} {% block not_in_common %}
+<div class="Site-content base-page">
+  <section class="hero is-medium">
 
-{% block body_class %}page-template{% endblock%}
-
-  {% block not_in_common %}
-    <div class="Site-content base-page">
-      <section class="hero is-medium">
-
-        <div class="image-hero {{file.heroName}}">
-          <div class="container has-text-centered is-desktop">
-            <div class="content is-primary">
-              <h1 class="title">
-                {{file.heroText}}
-              </h1>
-              {% if file.subtitle %}
-                <h2 class="subtitle">
-                  {{file.subtitle}}
-                </h2>
-              {% endif %}
-            </div>
-          </div>
+    <div class="image-hero {{file.heroName}}">
+      <div class="container has-text-centered is-desktop">
+        <div class="content is-primary">
+          <h1 class="title">
+            {{file.heroText}}
+          </h1>
+          {% if file.subtitle %}
+          <h2 class="subtitle">
+            {{file.subtitle}}
+          </h2>
+          {% endif %}
         </div>
-
-      </section>
-
-      <section class="section">
-        <div class="container is-tablet">
-          <div class="content">
-            {{file.content | safe}}
-          </div>
-        </div>
-      </section>
-
+      </div>
     </div>
-    {% endblock%}
+
+  </section>
+
+  <section class="section">
+    <div class="container is-tablet">
+      <div class="content">
+        {{file.content | safe}}
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock%}

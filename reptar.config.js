@@ -1,4 +1,28 @@
 const noopMiddleware = () => {};
+const htmlMinify = () => {};
+
+// const configureMarkdown = (Plugin, options) => {
+//   Plugin.markdown.configure((md) => {
+//     md.use(
+//       {
+//         langPrefix: 'language-',
+//         typographer: true,
+//       },
+//       options,
+//     );
+//   });
+// };
+
+const configureMarkdown = (reptar) => {
+  reptar.renderer._md.options.typographer = true;
+  reptar.renderer._md.options.langPrefix = '';
+  return reptar;
+};
+
+// const printProps = (reptar) => {
+//   console.log(Object.getOwnPropertyNames(reptar.renderer._md.options.langPrefix));
+//   console.log(Object.getOwnPropertyNames(reptar.renderer._md.options.tyopgrapher));
+// };
 
 module.exports = {
   // Site settings.
@@ -191,7 +215,10 @@ module.exports = {
     // Options given directly when creating our markdown parser.
     // Documentation here:
     // https://github.com/markdown-it/markdown-it//init-with-presets-and-options
-    options: { preset: 'commonmark', highlight: true },
+    options: {
+      preset: 'commonmark',
+      highlight: true,
+    },
   },
   // Serving.
   // When running `reptar serve` what settings should be used.
@@ -216,7 +243,7 @@ module.exports = {
   // What middlewares you want enabled and what configuration settings they
   // should have. Can be either a string which assumes it's an npm module or
   // a function which is the middleware itself, or an array of either.
-  middlewares: [noopMiddleware],
+  middlewares: [noopMiddleware, htmlMinify, configureMarkdown, 'reptar-excerpt'],
   // Lifecycle methods are called at certain points in the lifecycle of Reptar.
   // Each value can be either a string or a function or an array of either.
   lifecycle: {

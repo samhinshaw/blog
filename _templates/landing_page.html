@@ -1,29 +1,25 @@
-{% extends 'common.html' %}
+{% extends 'common.html' %} {% block body_class %}page-template{% endblock%} {% block not_in_common %}
 
-{% block body_class %}page-template{% endblock%}
+<section class="hero Site-content base-page">
 
-  {% block not_in_common %}
+  <div class="image-hero {{file.heroName}}">
+    <div class="container has-text-centered">
+      <div class="content is-primary">
+        <h1 class="title">
+          {{file.heroText}}
+        </h1>
+        <h2 class="subtitle">
+          <a href="/about">About</a>
+          <span>&middot;</span>
+          <a href="/blog">Blog</a>
+          <span>&middot;</span>
+          <a href="/projects">Projects</a>
+        </h2>
 
-    <section class="hero Site-content base-page">
-
-      <div class="image-hero {{file.heroName}}">
-        <div class="container has-text-centered">
-          <div class="content is-primary">
-            <h1 class="title">
-              {{file.heroText}}
-            </h1>
-            <h2 class="subtitle">
-              <a href="/about">About</a>
-              <span>&middot;</span>
-              <a href="/blog">Blog</a>
-              <span>&middot;</span>
-              <a href="/projects">Projects</a>
-            </h2>
-
-          </div>
-        </div>
       </div>
+    </div>
+  </div>
 
-    </section>
+</section>
 
-    {% endblock%}
+{% endblock%}
