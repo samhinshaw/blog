@@ -301,7 +301,7 @@ code {
 code {
   background-color: #f0f0f0;
   color: #444;
-  padding: 0;
+  padding: 0.15em 0.5em 0.15em;
   font-size: 0.875em;
 }
 /* But make code blocks themed like Atom's One Dark Theme */
