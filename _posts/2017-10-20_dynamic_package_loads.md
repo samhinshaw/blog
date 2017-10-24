@@ -128,22 +128,22 @@ Thanks to HTML5's `classList()`, this is just some native JS.
 
 And that's it! You're done! Your button will transform:
 
-<div class="field is-grouped">
-  <p class="control">
-    <button class="button is-large is-primary" disabled id="getStarted" title="Let's Go!" type="button">
-      <i class="fa fa-circle-o-notch fa fa-spin"></i>
-      <span>&nbsp;Loading R Packages...</span>
-    </button>
-  </p>
-  <p class="control">
-    <span class="icon is-large">
-      <i class="fa fa-2x fa-arrow-right"></i>
-    </span>
-  </p>
-  <p class="control">
-    <button class="button is-large is-primary" id="getStarted" title="Let's Go!" type="button">
-      <span>Get Started</span>
-    </button>
-  </p>
-</div>
+<center>
+  <button class="button is-large is-primary" disabled id="getStarted" title="Let's Go!" type="button">
+    <i class="fa fa-circle-o-notch fa fa-spin"></i>
+    <span>&nbsp;Loading R Packages...</span>
+  </button>
+</center>
+<br>
+<center>
+  <span class="icon is-large">
+    <i class="fa fa-2x fa-arrow-down"></i>
+  </span>
+</center>
+<br>
+<center>
+  <button class="button is-large is-primary" id="getStarted" title="Let's Go!" type="button">
+    <span>Get Started</span>
+  </button>
+</center>
 <br>
