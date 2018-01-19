@@ -121,20 +121,10 @@ h6,
   font-weight: 200;
 }
 
-/* avatar formatting */
+/* avatar clipping */
 .avatar {
-  margin: 2rem;
-}
-
-.avatar-container {
-  margin-top: -2em;
-}
-
-.avatar-container .name {
-  font-family: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', Times, serif;
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  margin-top: -3rem;
+  -webkit-clip-path: circle(50% at 50% 50%);
+  clip-path: circle(50% at 50% 50%);
 }
 
 /* Hero properties */
