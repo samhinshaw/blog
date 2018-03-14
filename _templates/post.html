@@ -2,11 +2,7 @@
 <div class="columns is-tablet is-centered">
   <div class="column is-8-desktop is-10-tablet">
     <div class="content">
-      {{file.content | safe}} {% if file.lastUpdated %}
-      <p>
-        <em>This post was last updated on {{file.lastUpdated | date('MMM Do, YYYY')}}</em>
-      </p>
-      {% endif %}
+      {{file.content | safe}}
     </div>
   </div>
 </div>
