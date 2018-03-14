@@ -26,8 +26,12 @@
                 If the provided subtitle does not exist, it will be blank.  -->
         {% elif file.subtitle %} {{file.subtitle}} {% else %} {% endif %}
       </h2>
-
     </div>
+    {% if file.lastUpdated %}
+    <p class="has-text-centered">
+      <em>Updated {{file.lastUpdated | date('MMM Do, YYYY')}}</em>
+    </p>
+    {% endif %}
   </div>
 </header>
 

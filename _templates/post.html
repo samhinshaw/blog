@@ -1,11 +1,5 @@
 {% extends 'base.html' %} {% block body_class %}post-template{% endblock%} {% block content %}
-<div class="columns is-tablet">
-  <!-- <div class="column is-2">
-        <button class="button is-white">
-          <a href="javascript:history.back()">Back</a>
-        </button>
-      </div> -->
-  <div class="column is-2-desktop is-1-tablet"></div>
+<div class="columns is-tablet is-centered">
   <div class="column is-8-desktop is-10-tablet">
     <div class="content">
       {{file.content | safe}} {% if file.lastUpdated %}
