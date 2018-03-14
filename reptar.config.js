@@ -156,7 +156,8 @@ module.exports = {
       //           // console.log(result.css.toString());
       //           // console.log(result.stats);
       //           // or better
-      //           // console.log(JSON.stringify(result.map)); // note, JSON.stringify accepts Buffer too
+      //           // console.log(JSON.stringify(result.map));
+      //           // note, JSON.stringify accepts Buffer too
       //           // filePath.data.content = result.css.toString();
       //           //
       //           let writePath = path.join(
