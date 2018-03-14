@@ -9,30 +9,30 @@ footer a.icon:focus i {
   font-weight: 600;
 }*/
 
-span.social-twitter:hover i,
-span.social-twitter:focus i {
+span.social-twitter:hover a,
+span.social-twitter:focus a {
   color: #55acee;
 }
 
 /* On GitHub.com, the footer icon changes from light (#c6cbd1) to dark
 /* (#959da5) on hover. */
-span.social-github:hover i,
-span.social-github:focus i {
+span.social-github:hover a,
+span.social-github:focus a {
   color: #959da5;
 }
 
-span.social-codepen:hover i,
-span.social-codepen:focus i {
+span.social-codepen:hover a,
+span.social-codepen:focus a {
   color: #fcd000;
 }
 
-span.social-linkedin:hover i,
-span.social-linkedin:focus i {
+span.social-linkedin:hover a,
+span.social-linkedin:focus a {
   color: #0077b5;
 }
 
-span.social-instagram:hover i,
-span.social-instagram:focus i {
+span.social-instagram:hover a,
+span.social-instagram:focus a {
   color: #f167f5;
 }
 
@@ -314,6 +314,7 @@ pre {
   border: 2px solid white;
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-box-shadow: 0 0 0.5px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 0.5px rgba(255, 255, 255, 0.5);
 }
 .content ::-webkit-scrollbar-track {
   background-color: #fff;

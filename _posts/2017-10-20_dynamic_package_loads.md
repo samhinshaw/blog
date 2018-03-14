@@ -24,7 +24,7 @@ In my app, my landing page has a large hero with a "Get Started" button. This pr
 
 <center>
   <button class="button is-large is-primary" disabled id="getStarted" title="Let's Go!" type="button">
-    <i class="fa fa-circle-o-notch fa fa-spin"></i>
+    <i class="fas fa-circle-notch fa-spin"></i>
     <span>&nbsp;Loading R Packages...</span>
   </button>
 </center>
@@ -33,7 +33,7 @@ In my app, my landing page has a large hero with a "Get Started" button. This pr
 HTML Markup with <span class="hover-text" title="This button will appear slightly differently in bootstrap--I am using the Bulma CSS framework on my blog.">Bootstrap</span>:
 ```html
 <button class="btn btn-default btn-lg disabled" id="getStarted" title="Let's Go!" type="button">
-  <i class="fa fa-circle-o-notch fa fa-spin"></i>
+  <i class="fas fa-circle-notch fa-spin"></i>
    <span>&nbsp;Loading R Packages...</span>
 </button>
 ``` 
@@ -46,8 +46,8 @@ actionButton(
   class   = "btn-primary btn-lg disabled", # css-tooltip
   title   = "Let's Go!",
   icon(
-    name  = "circle-o-notch", 
-    class = "fa fa-spin", 
+    name  = "circle-notch", 
+    class = "fa-spin", 
     lib   = "font-awesome"
   )
 )
@@ -130,14 +130,14 @@ And that's it! You're done! Your button will transform:
 
 <center>
   <button class="button is-large is-primary" disabled id="getStarted" title="Let's Go!" type="button">
-    <i class="fa fa-circle-o-notch fa fa-spin"></i>
+    <i class="fas fa-circle-notch fa-spin"></i>
     <span>&nbsp;Loading R Packages...</span>
   </button>
 </center>
 <br>
 <center>
   <span class="icon is-large">
-    <i class="fa fa-2x fa-arrow-down"></i>
+    <i class="fas fa-2x fa-arrow-down"></i>
   </span>
 </center>
 <br>
