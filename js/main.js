@@ -21,6 +21,20 @@ const handlers = {
           target.classList.toggle('is-active');
         });
       });
+
+      navbarBurgers.forEach((el) => {
+        el.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            // Get the target from the "data-target" attribute
+            let target = el.dataset.target;
+            target = document.getElementById(target);
+
+            // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+            el.classList.toggle('is-active');
+            target.classList.toggle('is-active');
+          }
+        });
+      });
     }
   },
   toggleCopyrightModal: () => {
