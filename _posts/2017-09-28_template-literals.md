@@ -2,6 +2,7 @@
 layout: post
 title: Wrapping Template Literals in VS Code
 date: 2017-09-28
+lastUpdated: 2018-03-14
 excerpt: How to get VS Code to wrap your template literals, not replace them.
 draft: false
 ---
@@ -46,3 +47,16 @@ The snippet below is what I came up with.
 Open your keybindings file via the command palette (&#8984;+&#8679;+P, 'Preferences: Open Keyboard Shortcuts File') and paste this object at the end of your keybindings.json file. 
 
 Whenever you want to surround some text with backticks, highlight the text and hit &#8984;+K and then \`. 
+
+## Bonus: Toggle Quote Types
+
+The VS Code extension "[ECMAScript Quotes Transformer](https://marketplace.visualstudio.com/items?itemName=vilicvane.es-quotes)" allows you to quickly toggle between quote styles! In your `keybindings.json` file, add a keybinding for toggling as such:
+
+```json
+  {
+    "key": "alt+shift+`",
+    "command": "esQuotes.transformBetweenQuotes"
+  }
+```
+
+Then, when your cursor is within a quoted string, use the shortcut to toggle between `` ` ``, `"`, and `'` as your surrounding pairs. This is super handy when you quickly want to transform a regular string into a template string to add a variable!
