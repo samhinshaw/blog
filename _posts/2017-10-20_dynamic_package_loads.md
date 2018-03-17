@@ -13,7 +13,7 @@ Shiny is a powerful framework for quickly building user interfaces around R prog
 
 In Shiny, R packages are loaded during app initialization. Unfortunately, this occurs before [first paint](https://developers.google.com/web/tools/lighthouse/audits/first-meaningful-paint), as the app's UI is actually rendered from R. This leads to poor UX, because package loads are extremely penalizing. However, if you are simply loading packages for data manipulation, there is no reason to block initial page rendering with your package loads. 
 
-Unfortunately, ~~Shiny does not have the luxury of [non-blocking, asynchronous calls](https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/)~~. _Edit: [Shiny can now make non-blocking calls](https://rstudio.github.io/promises/articles/shiny.html) with the `Promises` package, and the `Shiny@async` branch!_ However, we can still improve user experience by loading our packages that do not affect UI _after_ first paint.
+Unfortunately, <del>Shiny does not have the luxury of <a href="https://nodejs.org/en/docs/guides/blocking-vs-non-blocking/">non-blocking, asynchronous calls</a></del>. _Edit: [Shiny can now make non-blocking calls](https://rstudio.github.io/promises/articles/shiny.html) with the `Promises` package, and the `Shiny@async` branch!_ However, we can still improve user experience by loading our packages that do not affect UI _after_ first paint.
 
 Here I will present one solution for lazy-loading packages in Shiny.
 
