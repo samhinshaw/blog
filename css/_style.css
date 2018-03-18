@@ -1,6 +1,6 @@
 /* Styling for social icons! */
 
-.icon i {
+.icon a {
   color: #444;
 }
 
@@ -38,13 +38,13 @@ footer a.icon:focus i {
 
 /* styling for sticky footer! */
 
-.Site {
+.flex-body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.Site-content {
+.flex-content {
   flex: 1;
 }
 
@@ -79,7 +79,7 @@ footer a:focus:not(.icon) {
   padding: 1.5rem;
 }
 
-.Site-content .content {
+.flex-content .content {
   font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
 }
 
