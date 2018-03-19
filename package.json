@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "",
-  "repo": "https://github.com/samhinshaw/reptar_blog",
+  "repo": "https://github.com/samhinshaw/blog",
   "license": "GPL-3.0",
   "dependencies": {
     "bulma": "^0.5.1",
