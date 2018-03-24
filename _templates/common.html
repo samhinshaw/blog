@@ -15,15 +15,14 @@
   <meta name="application-name" content="Sam Hinshaw">
   <meta name="theme-color" content="#ffffff"> 
   {% if file.layout === 'post' %}
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:creator" content="@samhinshaw" />
     <!-- Using OpenGraph here to increase compatibility and reduce redundancy. -->
     <meta property="og:title" content="{{file.title}}" />
     <meta property="og:description" content="{{file.excerpt}}" />
     {% if file.heroImage %}
-      <meta name="twitter:image" content="{{site.url}}/images/{{file.heroImage}}" />
-      <meta name="twitter:image:alt" content="{{file.heroImageDescription}}" />
       <meta property="og:image" content="{{site.url}}/images/{{file.heroImage}}" />
+      <meta name="twitter:image:alt" content="{{file.heroImageDescription}}" />
     {% endif %}
   {% endif %}
 
