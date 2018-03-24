@@ -2,3 +2,4 @@ _site/*
 .DS_Store
 \$HOME
 node_modules/
+*.log

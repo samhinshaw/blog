@@ -21,8 +21,9 @@
     <meta property="og:title" content="{{file.title}}" />
     <meta property="og:description" content="{{file.excerpt}}" />
     {% if file.heroImage %}
-      <meta property="og:image" content="{{site.url}}/images/{{file.heroImage}}" />
+      <meta name="twitter:image" content="{{site.url}}/images/{{file.heroImage}}" />
       <meta name="twitter:image:alt" content="{{file.heroImageDescription}}" />
+      <meta property="og:image" content="{{site.url}}/images/{{file.heroImage}}" />
     {% endif %}
   {% endif %}
 
