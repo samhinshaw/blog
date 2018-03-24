@@ -50,12 +50,6 @@ footer a.icon:focus i {
 
 /* custom styling */
 
-.main-header-content {
-  background: #202020;
-  color: #f0f0f0;
-  padding: 20px;
-}
-
 a {
   color: #4b95b5;
 }
@@ -130,16 +124,17 @@ h6,
 /* Hero properties */
 
 /* Make the post headers Cormorant font and off-black */
-.header .title a {
-  color: #444;
-  font-family: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', Times, serif;
-  /*font-size: 2.5em;*/
-  /*margin-top: 0;*/
+.hero.blog-post {
+  color: #f0f0f0;
 }
 
-.header .subtitle {
+.hero.blog-post .subtitle {
   margin-bottom: 0;
   padding-top: 0.5em;
+}
+
+.hero.blog-post .hero-foot {
+  width: 100%;
 }
 
 .image-hero .container {
@@ -157,6 +152,10 @@ h6,
   color: #f0f0f0;
   font-family: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', Times, serif;
   font-size: 7vmin;
+}
+
+.image-hero .image-snippet {
+  margin-left: 1rem;
 }
 
 /* Unless otherwise specified, make h1s 10vmin */
@@ -201,25 +200,26 @@ h6,
   text-decoration: underline;
 }
 
-.about-page-hero {
-  background-color: #2e83a9; /* Dark bkgrnd fallback (b/c dark picture) */
+/* .about-page-hero {
+  background-color: #2e83a9; // Dark bkgrnd fallback (b/c dark picture) 
   background-image: url('/images/juniper-point.jpg');
-}
-.blog-page-hero {
-  background-color: #262226; /* Dark bkgrnd fallback (b/c dark picture) */
+} */
+
+/* .blog-page-hero {
+  background-color: #262226; // Dark bkgrnd fallback (b/c dark picture)
   background-image: url('/images/sailing-centre-sunset_stylized.jpg');
-}
+} */
 
 /* For now I'm using a light photo, so let's change the text color */
-.projects-page-hero {
-  background-color: #d7c079; /* Light bkgrnd fallback (b/c light picture) */
+/* .projects-page-hero {
+  background-color: #d7c079; // Light bkgrnd fallback (b/c light picture)
   background-image: url('/images/lions-gate.jpg');
-}
+} */
 
-.error-page-hero {
-  background-color: #3c3f2b; /* Dark bkgrnd fallback (b/c dark picture) */
+/* .error-page-hero {
+  background-color: #3c3f2b; // Dark bkgrnd fallback (b/c dark picture)
   background-image: url('/images/first-lake-crop.jpg');
-}
+} */
 
 /* make error page hero text smaller becuse they will tend to be longer &
 /* more descriptive */

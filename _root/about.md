@@ -1,7 +1,8 @@
 ---
 title: About
 template: page
-heroName: hero-body about-page-hero
+heroColor: '#2e83a9'
+heroImage: juniper-point.jpg
 heroText: About Me
 subtitle: Sam Hinshaw
 ---

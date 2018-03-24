@@ -1,7 +1,12 @@
 {% extends 'common.html' %} {% block not_in_common %}
 <section class="hero is-medium">
-
-  <div class="image-hero hero-body blog-page-hero">
+  <div 
+    class="image-hero hero-body" 
+    style="
+    background-color: #262226; 
+    background-image: url('/images/sailing-centre-sunset_stylized.jpg');
+    "
+  >
     <div class="container has-text-centered">
       <div class="content is-primary">
         <h1 class="title">
@@ -10,13 +15,11 @@
       </div>
     </div>
   </div>
-
 </section>
 
 <section class="section flex-content">
   <div class="container is-tablet">
     <div class="content">
-
       <div class="columns is-desktop">
         <div class="column is-8 is-offset-2">
           {% include '_loop.html' %} {% include "_pagination.html" %}
@@ -25,4 +28,4 @@
     </div>
   </div>
 </section>
-{% endblock%}
+{% endblock %}

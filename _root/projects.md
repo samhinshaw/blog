@@ -1,7 +1,8 @@
 ---
 title: Projects
 template: page
-heroName: hero-body projects-page-hero
+heroColor: '#d7c079'
+heroImage: lions-gate.jpg
 heroText: Projects
 ---
 

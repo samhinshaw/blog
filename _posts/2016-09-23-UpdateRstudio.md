@@ -3,6 +3,10 @@ layout: post
 title: Automatically Update Rstudio
 date: 2016-09-23
 excerpt: How to use Cron to automatically update Rstudio on unix-like systems. 
+heroImage: overhead-coffee-mug.jpg
+heroColor: '#F2D6BC'
+imageAuthor: Jakub Dziubak
+imageAuthorHandle: '@jckbck'
 ---
 
 I like to use the preview or daily versions of RStudio to get access to the latest features. However, unlike the stable version, these versions do not offer the ability to check for updates within the application!

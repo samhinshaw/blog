@@ -5,6 +5,10 @@ date: 2017-10-20
 lastUpdated: 2018-03-16
 excerpt: Lazy Loading of R Packages in Shiny via JavaScript event handling.
 draft: false
+heroImage: 'loading-dock.jpg'
+heroColor: '#025C75'
+imageAuthor: Hannes Egler
+imageAuthorHandle: '@egla'
 ---
 
 ## Introduction

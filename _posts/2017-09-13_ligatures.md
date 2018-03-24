@@ -3,6 +3,10 @@ layout: post
 title: Ligature Support in Monospace Fonts
 date: 2017-09-13
 excerpt: Implementing ligature-supported monospace fonts across multiple platforms.
+heroImage: arrow.jpg
+heroColor: '#959084'
+imageAuthor: Shirly Niv Marton
+imageAuthorHandle: '@sniv'
 ---
 
 <div class="has-text-centered">

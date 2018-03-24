@@ -1,24 +1,28 @@
 {% extends 'common.html' %} {% block body_class %}page-template{% endblock%} {% block not_in_common %}
-<div class="flex-content base-page">
-  <section class="hero is-medium">
-
-    <div class="image-hero {{file.heroName}}">
-      <div class="container has-text-centered is-desktop">
-        <div class="content is-primary">
-          <h1 class="title">
-            {{file.heroText}}
-          </h1>
-          {% if file.subtitle %}
-          <h2 class="subtitle">
-            {{file.subtitle}}
-          </h2>
-          {% endif %}
-        </div>
+<section class="hero is-medium">
+  <div 
+    class="image-hero hero-body"
+    style="
+    background-color: {{file.heroColor}};
+    background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2)), url('/images/{{file.heroImage}}');
+    "
+  >
+    <div class="container has-text-centered is-desktop">
+      <div class="content is-primary">
+        <h1 class="title">
+          {{file.heroText}}
+        </h1>
+        {% if file.subtitle %}
+        <h2 class="subtitle">
+          {{file.subtitle}}
+        </h2>
+        {% endif %}
       </div>
     </div>
+  </div>
+</section>
 
-  </section>
-
+<div class="flex-content base-page">
   <section class="section">
     <div class="container is-tablet">
       <div class="content">

@@ -13,7 +13,18 @@
   <link rel="shortcut icon" href="/favicon.ico?v=8j6GKx92P5">
   <meta name="apple-mobile-web-app-title" content="Sam Hinshaw">
   <meta name="application-name" content="Sam Hinshaw">
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#ffffff"> 
+  {% if file.layout === 'post' %}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content="@samhinshaw" />
+    <!-- Using OpenGraph here to increase compatibility and reduce redundancy. -->
+    <meta property="og:title" content="{{file.title}}" />
+    <meta property="og:description" content="{{file.excerpt}}" />
+    {% if file.heroImage %}
+      <meta property="og:image" content="{{site.url}}/images/{{file.heroImage}}" />
+      <meta name="twitter:image:alt" content="{{file.heroImageDescription}}" />
+    {% endif %}
+  {% endif %}
 
   <title>
     {% block head_title %}{{site.title}}{% endblock %}
@@ -120,7 +131,7 @@
         <div class="content">
           <p>
             &copy; 2018 Sam Hinshaw. Source code for this site is provided with a
-            <a href="https://github.com/samhinshaw/blog/blob/master/LICENSE">GPL-3.0 license</a>. Images on this site are provided with a
+            <a href="https://github.com/samhinshaw/blog/blob/master/LICENSE">GPL-3.0 license</a>. Unless otherwise noted, photos on this site are mine, and provided with a
             <a href="https://github.com/samhinshaw/blog/blob/master/LICENSE_PHOTOS">CC-BY-SA-4.0 license</a>.
           </p>
           <ul>

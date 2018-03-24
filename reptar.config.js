@@ -1,6 +1,22 @@
 const noopMiddleware = () => {};
 const htmlMinify = () => {};
 
+// Middleware to take descriptive image filename and turn it into meaningful alt-text
+// Note that though these are background images, we'll want the alt text for Twitter cards
+const altTextFromImage = function altTextFromImage(reptar) {
+  Object.keys(reptar.destination).map((fileKey) => {
+    const file = reptar.destination[fileKey];
+    if (file.data.heroImage) {
+      file.data.heroImageDescription = file.data.heroImage
+        .replace(/\.[^/.]+$/, '')
+        .split('-')
+        .join(' ');
+      return true;
+    }
+    return false;
+  });
+};
+
 module.exports = {
   // Site settings.
   // This is where you can put site-wide settings.
@@ -223,7 +239,7 @@ module.exports = {
   // What middlewares you want enabled and what configuration settings they
   // should have. Can be either a string which assumes it's an npm module or
   // a function which is the middleware itself, or an array of either.
-  middlewares: [noopMiddleware, htmlMinify, 'reptar-excerpt'],
+  middlewares: [noopMiddleware, htmlMinify, altTextFromImage, 'reptar-excerpt'],
   // Lifecycle methods are called at certain points in the lifecycle of Reptar.
   // Each value can be either a string or a function or an array of either.
   lifecycle: {

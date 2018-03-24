@@ -5,6 +5,10 @@ date: 2017-09-28
 lastUpdated: 2018-03-14
 excerpt: How to get VS Code to wrap your template literals, not replace them.
 draft: false
+heroImage: type-letters.jpg
+heroColor: '#7B706C'
+imageAuthor: Raphael Schaller
+imageAuthorHandle: '@raphaelphotoch'
 ---
 
 ## Intro
