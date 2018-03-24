@@ -10,7 +10,7 @@ subtitle: Sam Hinshaw
 <div class="columns is-desktop">
   <div class="column is-12-tablet is-12-mobile is-hidden-desktop">
     <div class="content has-text-centered">
-      <img class="avatar" src="/images/portrait.jpg" alt="Profile Picture" height="200" width="200">
+      <img class="avatar" src="/images/portrait_medium.jpg" alt="Profile Picture" height="200" width="200">
     </div>
   </div>
   <div class="column is-8-desktop is-12-tablet is-12-mobile">
@@ -33,7 +33,7 @@ Other interests of mine include:
   </div>
   <div class="column is-4 is-hidden-touch">
     <div class="content is-pulled-right">
-      <img class="avatar" src="/images/portrait.jpg" alt="Profile Picture" height="200" width="200">
+      <img class="avatar" src="/images/portrait_medium.jpg" alt="Profile Picture" height="200" width="200">
     </div>
   </div>
 </div>
