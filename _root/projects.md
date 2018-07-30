@@ -150,13 +150,19 @@ This website is a static site generated with [reptar](https://reptar.github.io)!
 
 ---
 
-### [python-myfitnesspal](https://github.com/coddingtonbear/python-myfitnesspal/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Asamhinshaw%20)
+### [python-myfitnesspal](https://github.com/coddingtonbear/python-myfitnesspal/commits?author=samhinshaw)
 
-An open API for MyFitnessPal written in Python. I have contributed various functionality to the project, including:
+An open API for MyFitnessPal written in Python. I have contributed:
 
 - The ability to pull exercise data from public and authenticated MyFitnessPal profiles.
 - The ability to determine when a diary entry has been marked as completed.
 - Tests to validate API stability.
+
+### [refined-twitter](https://github.com/sindresorhus/refined-twitter/commits?author=samhinshaw)
+
+A Browser extension that simplifies the Twitter interface and adds useful features. I have contributed:
+
+- Syntax highlighting in code snippets for the R programming language.
 
     </div>
   </div>

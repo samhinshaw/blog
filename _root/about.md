@@ -15,25 +15,29 @@ subtitle: Sam Hinshaw
   </div>
   <div class="column is-8-desktop is-12-tablet is-12-mobile">
 
-I am a graduate student in bioinformatics at The University of British Columbia studying integrative analysis of multi-omic datasets, specifically transcriptomics, proteomics, and metabolomics. I build tools to make bioinformatics more accessible to all scientists&mdash;limited technical expertise required! 
+I am a software developer that enjoys bringing new ideas to life. I enjoy solving complex problems with innovative solutions with cutting-edge tools. I like to ship clean, modular, testable code.
 
-While I started programming exclusively in <span class="hover-text" title="#rstats"><a href="https://twitter.com/hashtag/rstats">R</a></span>, I have since taught myself Python and JavaScript, delving deeper into modern web development techniques and frameworks. By focusing my time on software engineering, I can create fully functional applications to make my research methodologies available to the public.
+I am also a graduate student in bioinformatics at The University of British Columbia building tools to make bioinformatics more accessible to all scientists!
 
-I have always had a passion for technology, and in my spare time I like to hack things together. As I learn more, I have begun to give back to the community by contributing to [open-source projects](/projects#open-source).
+I program mostly in Python and Javascript, creating fully functional applications that make my research methodologies available to the public. There is also a special place in my heart for the first programming language I learned, <span class="hover-text" title="#rstats"><a href="https://twitter.com/hashtag/rstats">R</a></span>.
 
+I have always had a passion for technology, and in my spare time I like to hack things together. I also enjoy giving back to community by contributing to [open-source projects](/projects#open-source).
 
 Other interests of mine include:
-- 🏃‍ Running
+
+- 📸 [Photography](https://instagram.com/holtonhinshaw)
 - 🥖 Baking
-- 🌲 Hiking & camping
-- 📸 Photography
+- 🌲 Hiking
+- 🏕 Camping
+- 🏃‍ Running
+- 🏊‍ Swimming
 - ☕️ Coffee
 - 🍺 Craft beer
 
-  </div>
-  <div class="column is-4 is-hidden-touch">
-    <div class="content is-pulled-right">
-      <img class="avatar" src="/images/portrait_medium.jpg" alt="Profile Picture" height="200" width="200">
+    </div>
+    <div class="column is-4 is-hidden-touch">
+      <div class="content is-pulled-right">
+        <img class="avatar" src="/images/portrait_medium.jpg" alt="Profile Picture" height="200" width="200">
+      </div>
     </div>
   </div>
-</div>
