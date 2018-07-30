@@ -15,9 +15,9 @@ subtitle: Sam Hinshaw
   </div>
   <div class="column is-8-desktop is-12-tablet is-12-mobile">
 
-I am a software developer that enjoys bringing new ideas to life. I enjoy solving complex problems with innovative solutions with cutting-edge tools. I like to ship clean, modular, testable code.
+I am a software developer that enjoys bringing new ideas to life. I like to solve complex problems with innovative solutions using cutting-edge tools. I like to ship clean, modular, testable code.
 
-I am also a graduate student in bioinformatics at The University of British Columbia building tools to make bioinformatics more accessible to all scientists!
+I am also a graduate student in bioinformatics at The University of British Columbia where I build tools to make bioinformatics more accessible to all scientists. I welcome you to view a [detailed breakdown of all my projects](/projects).
 
 I program mostly in Python and Javascript, creating fully functional applications that make my research methodologies available to the public. There is also a special place in my heart for the first programming language I learned, <span class="hover-text" title="#rstats"><a href="https://twitter.com/hashtag/rstats">R</a></span>.
 
