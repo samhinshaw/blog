@@ -9,9 +9,34 @@ heroText: Projects
 <div class="columns is-desktop">
   <div class="column is-8 is-offset-2">
 
-<h3 class="is-size-3">Graduate Projects</h2>
+<h3 class="is-size-3">Professional Projects</h2>
 
-*****
+---
+
+<h4 class="is-size-4">
+  <span>Rudaux</span>
+  <span class="icon social-github">
+    &nbsp;
+    <a class="icon" href="https://github.com/samhinshaw/rudaux">
+      <i class="social fab fa-github"></i>
+    </a>
+  </span>
+</h4>
+
+Rudaux is a Python module which provides automated administration for a course taught with [JupyterHub](https://github.com/jupyterhub/jupyterhub) (a multi-user Jupyter notebook server) and the [Canvas Learning Management System](https://github.com/instructure/canvas-lms).
+
+The motivation for Rudaux is to reduce the setup burden on students and instructors so that both parties can focus on the course material. Rudaux orchestrates a system wherein students can click an assignment in the Canvas LMS which will authenticate them and send them straight to a Jupyter notebook in the browser. Their progress is saved on the course server as they go. Additionally, autograding (with [nbgrader](https://github.com/jupyter/nbgrader/)) is initiated for each assignment at its due date, sending the students' grades back to Canvas.
+
+**Concepts demonstrated**
+
+- Object-oriented programming with Python classes
+- Writing modular, testable code
+- Data management and transfer through multiple systems:
+  - JupyterHub (ZFS fileserver)
+  - nbgrader (SQLite database)
+  - Canvas (REST API)
+- Evaluation of client needs
+- Learning quickly while staying on a project schedule
 
 <h4 class="is-size-4">
   <a href="https://www.metabridge.org">MetaBridge</a>
@@ -23,10 +48,11 @@ heroText: Projects
   </span>
 </h4>
 
-A systems biology-based integrative analysis platform for integration of metabolomics data. Built in [Shiny](https://shiny.rstudio.com/), this application allows users to upload a list of metabolites and get back a list of directly interacting enzymes and the genes that encode for those enzymes. Currently the only supported species is *Homo sapiens*. Some planned features include: 
-- R package of MetaBridge, implementing all of the methods used here for use in scripted analyses. 
+A systems biology-based integrative analysis platform for integration of metabolomics data. Built in [Shiny](https://shiny.rstudio.com/), this application allows users to upload a list of metabolites and get back a list of directly interacting enzymes and the genes that encode for those enzymes. Currently the only supported species is _Homo sapiens_. Some planned features include:
 
-*NOTE: MetaBridge is hosted on Canadian soil at The University of British Columbia. No data uploaded to the server is saved.*
+- R package of MetaBridge, implementing all of the methods used here for use in scripted analyses.
+
+_NOTE: MetaBridge is hosted on Canadian soil at The University of British Columbia. No data uploaded to the server is saved._
 
 <h4 class="is-size-4">
   <a href="https://www.metabridge.org/dev">MetaBridge 2.0</a>
@@ -39,13 +65,15 @@ A systems biology-based integrative analysis platform for integration of metabol
   </span>
 </h4>
 
-MetaBridge 2.0 is a ground-up rewrite of MetaBridge 1.0! Written in React with Next.js, MetaBridge 2.0 will a scalable, performant version of the proof-of-concept application MetaBridge. As I write MetaBridge 2.0, you are welcome to follow its development! I am working as quickly as possible to reach feature parity with MetaBridge. From there, I will be able to implement new features, with full control over the full stack. Some planned features include: 
+MetaBridge 2.0 is a ground-up rewrite of MetaBridge. Written in React with Next.js, MetaBridge 2.0 will a scalable, performant version of the proof-of-concept application MetaBridge. As I write MetaBridge 2.0, you are welcome to follow its development! I am working as quickly as possible to reach feature parity with MetaBridge. From there, some planned features include:
+
 - User session management. Save your current analysis, and reupload it at any time to pick up where you left off! This is intended to help users share their work, and remove some of the downsides of working with web tools.
 - Public API for use in scripted analyses.
 
-*NOTE: MetaBridge 2.0 is hosted on Canadian soil at The University of British Columbia. No uploaded data is retained on the server, and users can purge their uploaded data manually.*
+_NOTE: MetaBridge 2.0 is hosted on Canadian soil at The University of British Columbia. No uploaded data is retained on the server, and users can purge their uploaded data manually._
 
 **Concepts demonstrated**
+
 - Client-side rendering with React
 - Server-side rendering and code-splitting with Next.js
 - Server routing with Node.js
@@ -54,10 +82,10 @@ MetaBridge 2.0 is a ground-up rewrite of MetaBridge 1.0! Written in React with N
 
 ## Personal Projects
 
-*****
+---
 
 <h3 class="is-size=3">
-  <a href="https://getse.xyz">Get Fit</a>
+  <a href="https://get-fit.xyz">Get Fit</a>
   <span class="icon social-github">
     &nbsp;
     <a class="icon" href="https://github.com/samhinshaw/get_fit">
@@ -68,8 +96,8 @@ MetaBridge 2.0 is a ground-up rewrite of MetaBridge 1.0! Written in React with N
 
 Get Fit is a fitness-tracking app to help with the difficulty of delayed gratification! We all know it's hard to stick to a workout schedule or a diet, but why? Humans are terrible at reasoning when it comes to delayed gratification, we always want everything now!! That's why I built this web app--to help tie long-term fitness goals to near-term rewards! Keep track of your diet and exercise and earn points towards short-term goals! It might take you a while to reach your ultimate goal, but you'll have fun along the way, and hopefully Get Fit will make it just a bit easier to not eat that tempting donut!
 
-
 **Concepts demonstrated**
+
 - Node.js server with and server routing Express
 - Data visualization with D3.js
 - Local user authentication with passport.js
@@ -81,7 +109,7 @@ Get Fit is a fitness-tracking app to help with the difficulty of delayed gratifi
 - Client-side logging with Rollbar
 - Client side DOM manipulation with vanilla JS and JQuery
 - Webpack for client-side dependency management and code bundling
-- Babel transpiling on client and server to enable ESNext features 
+- Babel transpiling on client and server to enable ESNext features
 - Asynchronous programming and routing with async/await and Promises
 - Security-conscious sever with Snyk
 - Deployment pipeline and server management with PM2
@@ -110,6 +138,7 @@ Get Fit is a fitness-tracking app to help with the difficulty of delayed gratifi
 This website is a static site generated with [reptar](https://reptar.github.io)!
 
 **Concepts demonstrated**
+
 - Webpage templating with EJS
 - Flexbox CSS with Bulma
 - Client side DOM manipulation with vanilla JS and JQuery
@@ -119,15 +148,15 @@ This website is a static site generated with [reptar](https://reptar.github.io)!
   Open-Source Contributions
 </h3>
 
-*****
+---
 
 ### [python-myfitnesspal](https://github.com/coddingtonbear/python-myfitnesspal/pulls?utf8=%E2%9C%93&q=is%3Apr%20author%3Asamhinshaw%20)
 
 An open API for MyFitnessPal written in Python. I have contributed various functionality to the project, including:
 
-* The ability to pull exercise data from public and authenticated MyFitnessPal profiles.
-* The ability to determine when a diary entry has been marked as completed.
-* Tests to validate API stability.
+- The ability to pull exercise data from public and authenticated MyFitnessPal profiles.
+- The ability to determine when a diary entry has been marked as completed.
+- Tests to validate API stability.
 
+    </div>
   </div>
-</div>
