@@ -158,6 +158,13 @@ An open API for MyFitnessPal written in Python. I have contributed:
 - The ability to determine when a diary entry has been marked as completed.
 - Tests to validate API stability.
 
+### [ltiauthenticator](https://github.com/jupyterhub/ltiauthenticator/commits?author=samhinshaw)
+
+A tool that converts JupyterHub into a LTI Tool Provider, which can be then easily used with various Tool Consumers, such as Canvas, EdX, Moodle, Blackboard, etc. I have contributed:
+
+- The capability to receive Canvas user ID parameters from Canvas LTI launch requests.
+- Instructions documenting setting up LTI authentication for JupyterHub with the Canvas Learning Management System.
+
 ### [refined-twitter](https://github.com/sindresorhus/refined-twitter/commits?author=samhinshaw)
 
 A Browser extension that simplifies the Twitter interface and adds useful features. I have contributed:
