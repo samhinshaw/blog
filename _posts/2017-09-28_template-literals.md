@@ -8,16 +8,16 @@ draft: false
 heroImage: type-letters.jpg
 heroColor: '#7B706C'
 imageAuthor: Raphael Schaller
-imageAuthorHandle: '@raphaelphotoch'
+imageLink: https://unsplash.com/@raphaelphotoch
 ---
 
 ## Intro
 
-Recently, I have been frustrated with VS Code not respecting ES6 template literals when constructing strings. 
+Recently, I have been frustrated with VS Code not respecting ES6 template literals when constructing strings.
 
 Say you want turn a particular chunk of code into a string. Normally, you would highlight the text and type `'`. The highlighted text will automatically be surrounded by single quotes! However, if you attempt this with a backtick (`` ` ``), the entire text is replaced by a backtick (as you would expect with any other character). My main frustration is that this highlight-quoting works with backticks in markdown documents, but not JS files!
 
-I decided to figure out how to get around this. First, I found an issue discussing the original implementation in markdown highlighting in the [vscode repository](https://github.com/Microsoft/vscode/issues/1307). This pointed me towards the [markdown language configuration options](https://github.com/Microsoft/vscode/blob/master/extensions/markdown/language-configuration.json). 
+I decided to figure out how to get around this. First, I found an issue discussing the original implementation in markdown highlighting in the [vscode repository](https://github.com/Microsoft/vscode/issues/1307). This pointed me towards the [markdown language configuration options](https://github.com/Microsoft/vscode/blob/master/extensions/markdown/language-configuration.json).
 
 ## Method 1: Language Configuration
 
@@ -33,34 +33,34 @@ Voila! You are all good to go! You can update this for any language you would li
 
 ## Method 2: Keybinding
 
-If, instead, you wanted to be able to do this for any language with a keybind, the docs for vscode show you [how to implement and keybind your own snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets). 
+If, instead, you wanted to be able to do this for any language with a keybind, the docs for vscode show you [how to implement and keybind your own snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
 
-The snippet below is what I came up with. 
+The snippet below is what I came up with.
 
 ```json
-  {
-    "key": "cmd+k `",
-    "command": "editor.action.insertSnippet",
-    "when": "editorTextFocus",
-    "args": {
-      "snippet": "`${1:${TM_SELECTED_TEXT}}`$0"
-    }
+{
+  "key": "cmd+k `",
+  "command": "editor.action.insertSnippet",
+  "when": "editorTextFocus",
+  "args": {
+    "snippet": "`${1:${TM_SELECTED_TEXT}}`$0"
   }
+}
 ```
 
-Open your keybindings file via the command palette (&#8984;+&#8679;+P, 'Preferences: Open Keyboard Shortcuts File') and paste this object at the end of your keybindings.json file. 
+Open your keybindings file via the command palette (&#8984;+&#8679;+P, 'Preferences: Open Keyboard Shortcuts File') and paste this object at the end of your keybindings.json file.
 
-Whenever you want to surround some text with backticks, highlight the text and hit &#8984;+K and then \`. 
+Whenever you want to surround some text with backticks, highlight the text and hit &#8984;+K and then \`.
 
 ## Bonus: Toggle Quote Types
 
 The VS Code extension "[ECMAScript Quotes Transformer](https://marketplace.visualstudio.com/items?itemName=vilicvane.es-quotes)" allows you to quickly toggle between quote styles! In your `keybindings.json` file, add a keybinding for toggling as such:
 
 ```json
-  {
-    "key": "alt+shift+`",
-    "command": "esQuotes.transformBetweenQuotes"
-  }
+{
+  "key": "alt+shift+`",
+  "command": "esQuotes.transformBetweenQuotes"
+}
 ```
 
 Then, when your cursor is within a quoted string, use the shortcut to toggle between `` ` ``, `"`, and `'` as your surrounding pairs. This is super handy when you quickly want to transform a regular string into a template string to add a variable!
