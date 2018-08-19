@@ -326,3 +326,9 @@ pre {
 hr {
   height: 1px;
 }
+
+/* Make description lists have underlined terms */
+
+dt {
+  text-decoration: underline;
+}
