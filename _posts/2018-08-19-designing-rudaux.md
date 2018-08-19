@@ -49,13 +49,11 @@ For its initial release, Rudaux was designed expressly with the UBC's new Data S
 - [Canvas](#canvas)
 - [GitHub Repositories](#github-repositories)
 - [Configuration](#configuration)
-- [JupyterHub Server](#jupyterhub-server)
-- [Grading Server](#grading-server)
-- [ZFS Snapshotting](#zfs-snapshotting) (optional)
+- [JupyterHub Servers](#jupyterhub-servers)
 
 <h2 id='canvas'>Canvas</h2>
 
-[Canvas](https://www.canvaslms.com/) was the ideal choice for our Learning Management System (LMS). The University of British Columbia is launching its installation of Canvas this fall, and it brings a whole host of features that other LMSs do not offer.
+[Canvas](https://www.canvaslms.com/) was the ideal choice for our Learning Management System (LMS). The University of British Columbia (UBC) is launching its installation of Canvas this fall, and it brings a whole host of features that other LMSs do not offer.
 
 > Insert some stuff about Canvas here
 
@@ -93,9 +91,28 @@ We refer to the first, private repository as our **instructors' repository**. In
 
 Our second, public repository only contains the student copies of the assignments (the `release/` step of nbgrader). We refer to this as the **students' repository**. Each link we provide in Canvas has a query string attached which triggers nbgitpuller to sync the student's home directory to this repository and redirect them to the assignment's notebook.
 
-<h2 id='two-servers'>Two Servers</h2>
+<h2 id='jupyterhub-servers'>JupyterHub Servers</h2>
 
-We use two virtual machines running JupyterHub to administer DSCI 100. The first is solely dedicated to student use. It consists of a JupyterHub server with LTI authentication and docker spawning. Students log in from a Canvas [LTI launch request](https://samhinshaw.github.io/rudaux-docs/examples/objects/#lti-launch-request)
+We use two JupyterHub servers to administer DSCI 100. These virtual machines for these servers are provisioned with Terraform, and set up with Ansible. [Ian Allison](https://github.com/ianabc) put in a tremendous amount of work setting up these servers and making their deployments programmatic and reproducible. All of the code for setting up these servers is available in our [infrastructure repository](https://github.ubc.ca/UBC-DSCI/dsc100-infra).
+
+The first Jupyterhub server is dedicated solely to student use. Students log in by clicking on a LTI-enabled link in Canvas, and are authenticated and redirected to the notebook for that assignment. Using [dockerspawner](https://github.com/jupyterhub/dockerspawner), a docker container is spawned for each user, and their home directory is mapped to a folder on a ZFS fileserver. The directory structure of is roughly thus, where `/tank/home` is the mount point of the ZFS fileserver:
+
+```sh
+/tank/home
+└── dsci100
+    ├── canvas-user-id-1
+    │   └── student-repo-name
+    │       └── materials
+    │           ├── assignment1
+    │           └── assignment2
+    └── canvas-user-id-2
+        └── student-repo-name
+            └── materials
+                ├── assignment1
+                └── assignment2
+```
+
+By contrast, the grading server is only accessible to the instructor and TAs. This JupyterHub server uses [Shibboleth authentication](<https://en.wikipedia.org/wiki/Shibboleth_(Shibboleth_Consortium)>) for login and access control with UBC credentials. The grading is not done on the same server that students are using, as nbgrader can be quite resource-intensive, and we do not wish to degrade students' experience.
 
 ## Rudaux Internals
 
@@ -113,11 +130,13 @@ Integrated Technologies
 - jupyterhub
 - github
 
+<h2 id='reflections'>Reflections</h2>
+
 I had trouble deciding where some functions belonged. Notably, at first glance the `assign()` function makes most sense in the `Assignment` class. However, I ended up keeping this on the `Course` class, as it required cloning git repositories, a feature I did not wish to duplicate for each assignment.
 
 Another obstacle was where best to store state. I could store state within each class, but it would not be persisted through multiple script calls. Worried about keeping state in sync, for the initial release, I have opted to not persist state, and simply re-fetch fresh information at runtime.
 
-Looking Forward:
+<h2 id='looking-forward'>Looking Forward</h2>
 
 It would be interesting to implement a `Student` class, for operations needing to be done on specific students.
 

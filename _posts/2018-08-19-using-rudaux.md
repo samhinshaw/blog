@@ -9,70 +9,75 @@ imageAuthor: Galen Crout
 imageLink: https://unsplash.com/@galen_crout
 ---
 
-> For a lengthier discussion on the motivation behind development of Rudaux, please read my blog post _[Developing Rudaux](designing-rudaux)_.
+> This post is focused on the main functions of rudaux and how to implement it in your course's workflow. For a discussion on the motivation behind and development of rudaux, please read my blog post _[Designing Rudaux](designing-rudaux)_.
 
-Rudaux was designed to integrate Canvas, JupyterHub, and nbgrader, and is designed with a few key operations in mind:
+## What is Rudaux For?
 
-- Find external tool ID in Canvas
-- Pull student list from Canvas and sync with nbgrader.
+Rudaux was designed to integrate Canvas, JupyterHub, and nbgrader. It was designed to simplify course management, but there are a few operations in particular that would be nearly impossible without rudaux.
+
+- Syncing students and assignments between Canvas and nbgrader.
+- Constructing JupyterHub/nbgitpuller links for Canvas.
+- Scheduled automated grading of Jupyter notebooks.
+
+<!-- * Find external tool ID in Canvas
+* Pull student list from Canvas and sync with nbgrader.
   - Add missing students to nbgrader database
   - Delete students from database that have withdrawn from course.
-- Pull assignments from config file.
+* Pull assignments from config file.
   - Add assignments to nbgrader database.
-- Create student version of assignments with nbgrader assign.
+* Create student version of assignments with nbgrader assign.
   - Commit these files to the instructors repository & push.
   - Copy the student version to the public student repository.
   - Commit these files to the students repository & push.
-- Create assignments in Canvas.
+* Create assignments in Canvas.
   - Generate urlencoded nbgitpuller links to JupyterHub, referencing the relevant notebook in the public students repository.
-- Schedule grading.
-  - Add cron jobs to crontab which will initiate autograding at the assignment due date.
+* Schedule grading.
+  - Add cron jobs to crontab which will initiate autograding at the assignment due date. -->
 
-## Table of Contents
+## Configuration
 
-1. Classes
-2. High-level interface (CLI)
+To allow rudaux to be easily run from a [command-line interface](#command-line-interface), we decided to read configuration options from a file rather than requiring them to be specified at runtime. Please read the [rudaux configuration documentation](https://samhinshaw.github.io/rudaux-docs/config#configuring-rudaux) for a detailed breakdown of the necessary options, including a sample `rudaux_config.py`.
 
 ## Classes
 
-```py
-from rudaux import Course, Assignment
-```
+Rudaux has two main classes, `Course` and `Assignment`, which lets you perform operations on either the entire course at once, or on each assignment, respectively.
 
 ### Course
 
+A `Course` needs a configuration file to be instantiated, and must be pointed to the directory containing the config file.
+
+Note: If no directory is provided, rudaux defaults to the current directory.
+
 ```py
-dsci100 = Course('~/dsci100-instructors')
+from rudaux import Course
+dsci100 = Course(course_dir='/path/to/instructors/repository/')
 ```
+
+Upon instantiation, rudaux performs a few operations:
+
+1. Currently, it is assumed that this is your instructors' repository, and rudaux will therefore perform a `git pull` in this directory upon instantiation.
+
+   If the directory is in a dirty state, rudaux will prompt the user whether they wish to continue. This is important, as rudaux commits to git on your behalf. This prompt can be bypassed with `auto=True`.
+
+2. Rudaux looks for `nbgrader_config.py` and `rudaux_config.py` and reads the options stored therein. If rudaux cannot find either of these files, it will exit. Note: the `c.CourseDirectory.root` configuration option in nbgrader is overridden with the provided `course_dir`.
 
 ### Assignment
 
-```py
-class DataScienceAssignment(Assignment):
-  course = dsci100
+The assignment object
 
-homework_1 = DataScienceAssignment('homework_1')
-```
+<h2 id='command-line-interface'>Command-Line Interface</h2>
 
-Similarly:
+Rudaux has a command-line interface (CLI) which allows instructors to perform preconstructed sets of commands in one go.
 
-```py
-homework_1 = DataScienceAssignment('homework_1', course=dsci100)
-```
-
-## High-level Interface (CLI)
-
-### Initialize
+### Course Initialization
 
 ```sh
 rudaux init
 ```
 
-### Grade
+Rudaux init performs a few operations on the course.
 
-```sh
-rudaux grade 'homework_1'
-```
+1. Interface
 
 ```py
 course                                   \
@@ -82,6 +87,12 @@ course                                   \
   .assign(overwrite=args.overwrite)      \
   .create_canvas_assignments()           \
   .schedule_grading()
+```
+
+### Grade
+
+```sh
+rudaux grade 'homework_1'
 ```
 
 ### Submit
