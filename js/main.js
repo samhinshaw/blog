@@ -65,19 +65,22 @@ const handlers = {
     const messageHeader = document.getElementById(headerID);
     const messageBody = document.getElementById(bodyID);
 
-    // Listen for clicks and toggle visibility
-    messageHeader.addEventListener('click', () => {
-      // First, toggle visibility of the body text
-      messageBody.style.display = messageBody.style.display === 'none' ? '' : 'none';
-      // then change the chevron icon
-      const iconContainer = [...messageHeader.childNodes].find(node => node.className === 'icon');
-      const faContainer = [...iconContainer.childNodes].find(node => node.tagName === 'I');
-      const svg = [...faContainer.childNodes].find(node => node.tagName === 'svg');
+    // Only run if messageHeader & messageBody are present on the page
+    if (messageHeader && messageBody) {
+      // Listen for clicks and toggle visibility
+      messageHeader.addEventListener('click', () => {
+        // First, toggle visibility of the body text
+        messageBody.style.display = messageBody.style.display === 'none' ? '' : 'none';
+        // then change the chevron icon
+        const iconContainer = [...messageHeader.childNodes].find(node => node.className === 'icon');
+        const faContainer = [...iconContainer.childNodes].find(node => node.tagName === 'I');
+        const svg = [...faContainer.childNodes].find(node => node.tagName === 'svg');
 
-      // Toggle the classes of the SVG element, and font-awesome will do the rest
-      svg.classList.toggle('fa-chevron-down');
-      svg.classList.toggle('fa-chevron-up');
-    });
+        // Toggle the classes of the SVG element, and font-awesome will do the rest
+        svg.classList.toggle('fa-chevron-down');
+        svg.classList.toggle('fa-chevron-up');
+      });
+    }
   },
 };
 
