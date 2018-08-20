@@ -27,7 +27,7 @@
   {% endif %}
 
   <title>
-    {% block head_title %}{{site.title}}{% endblock %}
+    {% block header_title %} {% if file.title %} {{file.title}} {% else %} {{site.title}} {% endif %} {% endblock %}
   </title>
   <meta name="description" content="{{site.description}}">
   <meta name="keywords" content="{{site.keywords}}" />
