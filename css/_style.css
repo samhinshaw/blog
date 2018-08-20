@@ -327,8 +327,9 @@ hr {
   height: 1px;
 }
 
-/* Make description lists have underlined terms */
+/* Make description lists have underlined terms, but only for a top-level span! */
+/* This eliminates any underlined code blocks within a dt element. */
 
-dt {
+.content dt > span {
   text-decoration: underline;
 }
