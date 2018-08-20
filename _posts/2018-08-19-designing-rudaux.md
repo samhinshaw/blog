@@ -95,6 +95,8 @@ Our second, public repository only contains the student copies of the assignment
 
 We use two JupyterHub servers to administer DSCI 100. These virtual machines for these servers are provisioned with Terraform, and set up with Ansible. [Ian Allison](https://github.com/ianabc) put in a tremendous amount of work setting up these servers and making their deployments programmatic and reproducible. All of the code for setting up these servers is available in our [infrastructure repository](https://github.ubc.ca/UBC-DSCI/dsc100-infra).
 
+<h3 id='student-server'>Student Server</h3>
+
 The first Jupyterhub server is dedicated solely to student use. Students log in by clicking on a LTI-enabled link in Canvas, and are authenticated and redirected to the notebook for that assignment. Using [dockerspawner](https://github.com/jupyterhub/dockerspawner), a docker container is spawned for each user, and their home directory is mapped to a folder on a ZFS fileserver. The directory structure of is roughly thus, where `/tank/home` is the mount point of the ZFS fileserver:
 
 ```sh
@@ -111,6 +113,8 @@ The first Jupyterhub server is dedicated solely to student use. Students log in 
                 ├── assignment1
                 └── assignment2
 ```
+
+<h3 id='grading-server'>Grading Server</h3>
 
 By contrast, the grading server is only accessible to the instructor and TAs. This JupyterHub server uses [Shibboleth authentication](<https://en.wikipedia.org/wiki/Shibboleth_(Shibboleth_Consortium)>) for login and access control with UBC credentials. The grading is not done on the same server that students are using, as nbgrader can be quite resource-intensive, and we do not wish to degrade students' experience.
 
