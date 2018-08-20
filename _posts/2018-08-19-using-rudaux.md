@@ -9,6 +9,29 @@ imageAuthor: Galen Crout
 imageLink: https://unsplash.com/@galen_crout
 ---
 
+<nav class="level">
+  <div class="level-item has-text-centered">
+    <div>
+      <a href='https://samhinshaw.github.io/rudaux-docs/' class='has-text-grey-darker'>
+	     <span class="icon is-medium">
+	       <i class="fas fa-book fa-lg"></i>
+	     </span>
+        <p class="heading" >Documentation</p>
+      </a>
+    </div>
+  </div>
+  <div class="level-item has-text-centered">
+    <div>
+      <a href='http://github.com/samhinshaw/rudaux' class='has-text-grey-darker'>
+	     <span class="icon is-medium">
+	       <i class="fab fa-github fa-lg"></i>
+	     </span>
+        <p class="heading">Source Code</p>
+      </a>
+    </div>
+  </div>
+</nav>
+
 > This post is focused on the main functions of rudaux and how to implement it in your course's workflow. For a discussion on the motivation behind and development of rudaux, please read my blog post _[Designing Rudaux](designing-rudaux)_.
 
 ## What is Rudaux For?
@@ -105,7 +128,7 @@ course                                   \
   .schedule_grading()
 ```
 
-After [course instantiation](#course-instantiation), rudaux executes the following functions:
+After [course instantiation](#course-instantiation), rudaux executes the following methods:
 
 1. `.get_external_tool_id()` queries the Canvas API to find the id of the external tool by the name provided within rudaux_config. As discussed in the [rudaux configuration documentation](https://samhinshaw.github.io/rudaux-docs/config#configuring-rudaux), this is necessary to link your LTI launch keys to assignment links created in Canvas.
 2. `.get_students_from_canvas()` queries the Canvas API for your student list.
@@ -192,7 +215,7 @@ if not args.manual:
 
 ### Submit Grades
 
-This command only needs to be run on assignments which require manual feedback. If manual feedback is not necessary, the functions this command calls are already run by `rudaux grade`.
+This command only needs to be run on assignments which require manual feedback. If manual feedback is not necessary, the methods this command executes are already run by `rudaux grade`.
 
 ```sh
 rudaux submit 'homework_1'
