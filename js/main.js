@@ -58,6 +58,8 @@ const handlers = {
     });
   },
   toggleMessageVisibility: (headerID, bodyID) => {
+    // Note to self: read this post later to animate this:
+    // https://gomakethings.com/how-to-add-transition-animations-to-vanilla-javascript-show-and-hide-methods/
     // Listen for clicks on a message header
 
     const messageHeader = document.getElementById(headerID);
