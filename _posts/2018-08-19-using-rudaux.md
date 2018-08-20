@@ -9,30 +9,29 @@ imageAuthor: Galen Crout
 imageLink: https://unsplash.com/@galen_crout
 ---
 
-<!-- <nav class="level">
-  <div class="level-item has-text-centered">
-    <div>
-      <a href='https://samhinshaw.github.io/rudaux-docs/' class='has-text-grey-darker'>
-	     <span class="icon is-medium">
-	       <i class="fas fa-book fa-lg"></i>
-	     </span>
-        <p class="heading" >Documentation</p>
-      </a>
+<div class="card post-info">
+  <div class="card-content">
+    <div class="content">
+      <blockquote>
+        This post is focused on the main functions of rudaux and how to implement it in your course's workflow. For a discussion on the motivation behind and development of rudaux, please read <a href="designing-rudaux"><em>Designing Rudaux</em></a>.
+      </blockquote>
     </div>
   </div>
-  <div class="level-item has-text-centered">
-    <div>
-      <a href='http://github.com/samhinshaw/rudaux' class='has-text-grey-darker'>
-	     <span class="icon is-medium">
-	       <i class="fab fa-github fa-lg"></i>
-	     </span>
-        <p class="heading">Source Code</p>
-      </a>
-    </div>
-  </div>
-</nav> -->
-
-> This post is focused on the main functions of rudaux and how to implement it in your course's workflow. For a discussion on the motivation behind and development of rudaux, please read my blog post _[Designing Rudaux](designing-rudaux)_.
+  <footer class="card-footer">
+    <a href='https://samhinshaw.github.io/rudaux-docs/' class='card-footer-item'>
+      <span class="icon is-medium">
+        <i class="fas fa-book fa-lg"></i>
+      </span>
+      <span class='link-description'>Documentation</span>
+    </a>
+    <a href='http://github.com/samhinshaw/rudaux' class='card-footer-item'>
+      <span class="icon is-medium">
+        <i class="fab fa-github fa-lg"></i>
+      </span>
+      <span class='link-description'>Source Code</span>
+    </a>  
+  </footer>
+</div>
 
 ## What is Rudaux For?
 
