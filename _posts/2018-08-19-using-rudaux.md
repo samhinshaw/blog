@@ -61,6 +61,10 @@ Upon instantiation, rudaux performs a few operations:
 
 2. Rudaux looks for `nbgrader_config.py` and `rudaux_config.py` and reads the options stored therein. If rudaux cannot find either of these files, it will exit. Note: the `c.CourseDirectory.root` configuration option in nbgrader is overridden with the provided `course_dir`.
 
+3. Rudaux looks for a Canvas access token in the user's environment.
+
+4. Rudaux instantiates assignments for each assignment listed in the configuration file.s
+
 ### Assignment
 
 The assignment object
