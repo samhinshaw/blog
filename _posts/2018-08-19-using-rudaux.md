@@ -9,7 +9,7 @@ imageAuthor: Galen Crout
 imageLink: https://unsplash.com/@galen_crout
 ---
 
-<nav class="level">
+<!-- <nav class="level">
   <div class="level-item has-text-centered">
     <div>
       <a href='https://samhinshaw.github.io/rudaux-docs/' class='has-text-grey-darker'>
@@ -30,7 +30,7 @@ imageLink: https://unsplash.com/@galen_crout
       </a>
     </div>
   </div>
-</nav>
+</nav> -->
 
 > This post is focused on the main functions of rudaux and how to implement it in your course's workflow. For a discussion on the motivation behind and development of rudaux, please read my blog post _[Designing Rudaux](designing-rudaux)_.
 

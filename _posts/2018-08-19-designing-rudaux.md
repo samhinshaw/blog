@@ -9,28 +9,24 @@ imageAuthor: Samuel Zeller
 imageLink: https://unsplash.com/@samuelzeller
 ---
 
-<nav class="level">
+<!-- <div class="level">
   <div class="level-item has-text-centered">
-    <div>
-      <a href='https://samhinshaw.github.io/rudaux-docs/' class='has-text-grey-darker'>
-	     <span class="icon is-medium">
-	       <i class="fas fa-book fa-lg"></i>
-	     </span>
-        <p class="heading" >Documentation</p>
-      </a>
-    </div>
+    <a href='https://samhinshaw.github.io/rudaux-docs/' class='has-text-grey-darker'>
+      <span class="icon is-medium">
+        <i class="fas fa-book fa-lg"></i>
+      </span>
+      <span class="heading">Documentation</span>
+    </a>
   </div>
   <div class="level-item has-text-centered">
-    <div>
-      <a href='http://github.com/samhinshaw/rudaux' class='has-text-grey-darker'>
-	     <span class="icon is-medium">
-	       <i class="fab fa-github fa-lg"></i>
-	     </span>
-        <p class="heading">Source Code</p>
-      </a>
-    </div>
+    <a href='http://github.com/samhinshaw/rudaux' class='has-text-grey-darker'>
+      <span class="icon is-medium">
+        <i class="fab fa-github fa-lg"></i>
+      </span>
+      <span class="heading">Source Code</span>
+    </a>
   </div>
-</nav>
+</div> -->
 
 > This post is focused on the motivation and design process in building Rudaux. For information on how to use Rudaux to integrate Canvas and JupyterHub, please read _[Using Rudaux](../using-rudaux)_.
 
