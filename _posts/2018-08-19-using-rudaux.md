@@ -156,8 +156,19 @@ After [course instantiation](#course-instantiation), rudaux executes the followi
 This command was designed to be run as scheduled cron job, but can be run manually as well.
 
 ```sh
-rudaux grade 'homework_1'
+rudaux grade [-m] [-a] [--dir DIRECTORY] 'homework_1'
 ```
+
+Optional arguments:
+
+<dl>
+  <dt><code>--dir DIRECTORY</code></dt>
+  <dd>The directory containing configuration files.</dd>
+  <dt><code>-a</code></dt>
+  <dd>Tell rudaux this is not an interactive shell, do not prompt!</dd>
+  <dt><code>-m</code></dt>
+  <dd>Manual grading is necessary.</dd>
+</dl>
 
 Under the hood this is a bit more complex than course initialization:
 
@@ -172,25 +183,6 @@ course = course               \
 ```
 
 Next, rudaux finds the assignment from the assignments listed in the configuration&mdash;essentially an array filter with some error handling.
-
-```py
-# find assignment in config assignment list
-assignment = list(
-  filter(lambda assn: assn.name == args.assignment_name, course.assignments)
-)
-
-if len(assignment) <= 0:
-  sys.exit(f"No assignment named \"{args.assignment_name}\" found")
-else:
-  # Take the first result.
-  assignment = assignment[0]
-  # But notify if more than one was found
-  # Though this should never happen--assignment names must be unique.
-  if len(assignment) > 1:
-    print(
-      f"Multiple assignments named \"{args.assignment_name}\" were found. Grading the first one!"
-    )
-```
 
 Finally, rudaux collects and grades the assignments. If manual feedback was not indicated, feedback reports are generated and grades are submitted to Canvas.
 
@@ -208,10 +200,10 @@ if not args.manual:
     .submit()
 ```
 
-1. `.collect()` collects each student's assignment from the fileserver via the nbgrader API. If the fileserver has a ZFS snapshot named for that homework, it is assumed that the snapshot was scheduled to be taken at the assignment's due date, and the assignment is copied from that snapshot. Otherwise, the assignment is copied directly from the folder at the due date. Additionally, for each assignment `.collect()` successfully collects, `.collect()` also records a submission in the nbgrader gradebook. This is crucial, as **nbgrader will not assign grades to a student** when autograding an assignment if no submission is recorded for that student.
-2. `.grade()` initiates autograding of an assignment. This grading does not use the nbgrader API, but instead is containerized in the grading container to reduce potential damage by nefarious code execution. It is important to note that currently, a notebook is executed with the entire instructors repository mounted so that nbgrader has access to the gradebook. This containerization therefore provides limited security, as malicious code could alter grades for any student. However, other benefits of containerization still apply.
+1. `.collect()` collects each student's assignment from the fileserver. If the fileserver has a ZFS snapshot named for that homework, it is assumed that the snapshot was scheduled to be taken at the assignment's due date, and the assignment is copied from that snapshot. Otherwise, the assignment is copied directly from the folder at the due date. Additionally, for each assignment `.collect()` successfully collects, `.collect()` also records a submission in the nbgrader gradebook. This is crucial, as **nbgrader will not assign grades to a student** when autograding an assignment if no submission is recorded for that student.
+2. `.grade()` initiates containerized autograding of an assignment. It is important to note that currently, a notebook is executed with the entire instructors repository mounted into the container so that nbgrader has access to the gradebook. This containerization therefore provides limited security, as malicious code could alter grades for any student. However, other benefits of containerization still apply.
 3. `.feedback()` generates HTML feedback reports for each student's graded assignment via the nbgrader API. These will be uploaded to Canvas during submission via the File Upload API.
-4. `.submit()` submits the student's grade to Canvas. This method does not use the nbgrader gradebook API, as there is no API call to get a student's grade for a given assignment. Instead, rudaux repurposes logic from the nbgrader export function to tabulate a student's grade from the nbgrader gradebook.
+4. `.submit()` submits the each student's grade to the Canvas gradebook. This method does not use the nbgrader gradebook API, as there is no API call to get a student's grade for a given assignment. Instead, rudaux repurposes logic from the nbgrader export function to tabulate a student's grade from the nbgrader gradebook.
 
 ### Submit Grades
 
