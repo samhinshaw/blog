@@ -3,3 +3,4 @@ _site/*
 \$HOME
 node_modules/
 *.log
+.vscode
