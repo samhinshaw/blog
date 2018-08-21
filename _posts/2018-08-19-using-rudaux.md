@@ -225,3 +225,13 @@ assignment     \
   .feedback()  \
   .submit()
 ```
+
+## Conclusion
+
+This covers all of the main use-cases I have envisioned for rudaux. For more control, you will need to drop into Python and use rudaux's modules directly:
+
+```py
+from rudaux import Course, Assignment
+```
+
+For information on how to use these classes directly, please consult the [rudaux docs](https://samhinshaw.github.io/rudaux-docs/).
