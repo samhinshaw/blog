@@ -161,3 +161,9 @@ Another obstacle was where best to store state. I could store state within each 
 Most of the features I would like to implement for rudaux would be abstractions that remove some of [the assumptions that rudaux currently operates on](https://samhinshaw.github.io/rudaux-docs/config/#assumptions), making it applicable to more use cases. For example, it would be nice to be able to run rudaux from any location, scheduling cron jobs on the grading server remotely. Additionally, it would be great to abstract some of the git repo management, offering greater flexibility in course setup.
 
 Furthermore, I would like to contribute functionality back to the nbgrader API. Where functionality was lacking, I dug into the nbgrader source code and copied the relevant portions into rudaux. I have [already contributed a `feedback()` function](https://github.com/jupyter/nbgrader/pull/1003) to the nbgrader API. Ideally I would also like to add a function to the gradebook which returns a student's grade for a given assignment.
+
+## Your Thoughts
+
+What do you think? We'd love to hear your thoughts on rudaux and your potential use cases. Please visit the [rudaux issues](https://github.com/samhinshaw/rudaux/issues) to get started.
+
+You can [contact me](https://twitter.com/samhinshaw), or the course's creator, [Dr. Tiffany Timbers](https://twitter.com/tiffanytimbers) on twitter.
