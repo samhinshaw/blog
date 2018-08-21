@@ -9,6 +9,9 @@ imageAuthor: Galen Crout
 imageLink: https://unsplash.com/@galen_crout
 ---
 
+<!-- close content tag -->
+</div>
+
 <div class="card post-info">
   <div class="card-content">
     <div class="content">
@@ -32,6 +35,9 @@ imageLink: https://unsplash.com/@galen_crout
     </a>  
   </footer>
 </div>
+
+<!-- resume content tag -->
+<div class="content">
 
 ## What is Rudaux For?
 
