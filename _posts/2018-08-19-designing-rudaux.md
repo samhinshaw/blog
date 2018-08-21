@@ -2,7 +2,7 @@
 layout: post
 title: Designing Rudaux
 date: 2018-08-19
-excerpt: Canvas and JupyterHub Integration in UBC's Data Science 100.
+excerpt: The development of Canvas and JupyterHub Integration in UBC's Data Science 100.
 heroImage: paint-strokes.jpg
 heroColor: '#525659'
 imageAuthor: Samuel Zeller
@@ -43,7 +43,7 @@ imageLink: https://unsplash.com/@samuelzeller
 
 <h2 id='motivation'>Motivation</h2>
 
-Rudaux was designed to be an interface for course administration that automates away a lot of the tedious functions that an instructor might otherwise have to perform. These functions are vital to keep the course running smoothly, but take up valuable time and mindshare from the instructor during the semester, when they should be focusing on instruction. Some examples of these tasks include:
+Rudaux was designed to be an interface for course administration that automates away a lot of the tedious functions that an instructor might otherwise have to perform. These functions are vital to keep the course running smoothly but takes valuable from the instructor during the semester. Some examples of these tasks include:
 
 - Managing assignments in the learning management system.
 - Grading assignments.
@@ -57,7 +57,7 @@ For its initial release, Rudaux was designed expressly with the UBC's new Data S
 
 [Canvas](https://www.canvaslms.com/) was the ideal choice for our Learning Management System (LMS). The University of British Columbia (UBC) is launching its installation of Canvas this fall, and it brings a whole host of features that other LMSs do not offer.
 
-> Insert some stuff about Canvas here
+> Here it would be good to talk about why we decided to go with Canvas.
 
 <h4 id='lti-authentication'>LTI Authentication</h4>
 
@@ -140,9 +140,11 @@ The directory structure of is roughly thus, where `/tank/home` is the mount poin
 
 While the fileserver does not need to run a ZFS filesystem, it is advantageous for its ability to snapshot the filesystem. This allows us to take a snapshot at the exact time an assignment is due and copy from that snapshot without worry about files changing during copying.
 
-## Rudaux Internals
+## Rudaux
 
-Rudaux consists of 3 main parts.
+Rudaux was designed to harmonize these pieces of infrastructure. For an overview of its main functions, please see _[Using Rudaux](using-rudaux)_, or [rudaux's documentation](https://samhinshaw.github.io/rudaux-docs/).
+
+Rudaux consists of three main components:
 
 1. A `Course` class, which facilitates operations on an entire course.
 2. An `Assignment` class, which facilitates operations on individual assignments.
@@ -150,7 +152,7 @@ Rudaux consists of 3 main parts.
 
 <h2 id='reflections'>Reflections</h2>
 
-One of the decisions I had to make when building rudaux was where to put various functions--as a Course method or an Assignment method. One such example was the `assign()` function. At first, it might seem to be an obvious fit for an Assignment method. However, when assigning, it was necessary to clone the students' repository, copy the assinged versions of the assignment to it, and then commit and push the results. It would be wildly inefficient to do this multiple times when assigning multiple assignments in a row. Therefore, while it may have been possible to engineer a tricky solution to keep this method on the Assignment object, for simplicity I moved it to the Course object.
+One of the decisions I had to make when building rudaux was where to put various functions--as a Course method or an Assignment method. One such example was the `assign()` function. At first, it might seem to be an obvious fit for an Assignment method. However, when assigning, it was necessary to clone the students' repository, copy the assigned versions of the assignment to it, and then commit and push the results. It would be wildly inefficient to do this multiple times when assigning multiple assignments in a row. Therefore, while it may have been possible to engineer a tricky solution to keep this method on the Assignment object, for simplicity I moved it to the Course object.
 
 Another obstacle was where best to store state. I could store state within each class, but it would not be persisted through multiple script calls. Worried about keeping state in sync, for the initial release, I have opted to not persist state, and simply re-fetch fresh information at runtime.
 
