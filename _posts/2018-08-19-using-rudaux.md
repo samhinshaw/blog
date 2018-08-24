@@ -2,7 +2,7 @@
 layout: post
 title: Using Rudaux
 date: 2018-08-24
-excerpt: How to use rudaux to manage a course with Canvas, JupyterHub, and nbgrader.
+excerpt: Using rudaux to manage a course with Canvas, JupyterHub, and nbgrader.
 heroImage: radio-telescope-bw.jpg
 heroColor: '#1F1F1F'
 imageAuthor: Galen Crout
