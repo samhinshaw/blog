@@ -169,16 +169,16 @@ Rudaux consists of three main components:
 
 One of the decisions I had to make when building rudaux was where to put various functions--as a Course method or an Assignment method. One such example was the `assign()` function. At first, it might seem to be an obvious fit for an Assignment method. However, when assigning, it was necessary to clone the students' repository, copy the assigned versions of the assignment to it, and then commit and push the results. It would be wildly inefficient to do this multiple times when assigning multiple assignments in a row. Therefore, while it may have been possible to engineer a tricky solution to keep this method on the Assignment object, for simplicity I moved it to the Course object.
 
-Another obstacle was where best to store state. I could store state within each class, but it would not be persisted through multiple script calls. Worried about keeping state in sync, for the initial release, I have opted to not persist state, and simply re-fetch fresh information at runtime.
+Another obstacle was where best to store state. I could store state within each class, but it would not persist through multiple script calls. Worried about keeping state in sync, for the initial release, I have opted to not persist state, and simply re-fetch fresh information at runtime.
 
 <h2 id='looking-forward'>Looking Forward</h2>
 
-Most of the features I would like to implement for rudaux would be abstractions that remove some of [the assumptions that rudaux currently operates on](https://samhinshaw.github.io/rudaux-docs/config/#assumptions), making it applicable to more use cases. For example, it would be nice to be able to run rudaux from any location, scheduling cron jobs on the grading server remotely. Additionally, it would be great to abstract some of the git repo management, offering greater flexibility in course setup.
+In future, most of the features I would like to implement for rudaux would be abstractions that remove some of [the assumptions that rudaux currently operates on](https://samhinshaw.github.io/rudaux-docs/config/#assumptions), making it applicable to more use cases. For example, it would be nice to be able to run rudaux from any location, scheduling cron jobs on the grading server remotely. Additionally, it would be great to abstract some of the git repo management, offering greater flexibility in course setup.
 
 Furthermore, I would like to contribute functionality back to the nbgrader API. Where functionality was lacking, I dug into the nbgrader source code and copied the relevant portions into rudaux. I have [already contributed a `feedback()` function](https://github.com/jupyter/nbgrader/pull/1003) to the nbgrader API. Ideally I would also like to add a function to the gradebook which returns a student's grade for a given assignment.
 
 ## Your Thoughts
 
-What do you think? We'd love to hear your thoughts on rudaux and your potential use cases. Please visit the [rudaux issues](https://github.com/samhinshaw/rudaux/issues) to get started.
+What do you think? We'd love to hear your thoughts on rudaux and your potential use cases. Please visit the [rudaux issues](https://github.com/samhinshaw/rudaux/issues) to get started. We would also love others to try out rudaux and contribute to its growth and development. 
 
 You can [contact me](https://twitter.com/samhinshaw), or the course's creator, [Dr. Tiffany Timbers](https://twitter.com/tiffanytimbers) on twitter.
