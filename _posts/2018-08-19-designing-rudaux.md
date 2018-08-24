@@ -57,9 +57,7 @@ Therefore, with this in mind we decided upon using Canvas with JupyterHub for ou
 
 <h3 id='canvas'>Canvas</h3>
 
-[Canvas](https://www.canvaslms.com/) was the ideal choice for our Learning Management System (LMS). The University of British Columbia (UBC) is launching its installation of Canvas this fall, and it brings a whole host of features that other LMSs do not offer.
-
-> Here it would be good to talk about why we decided to go with Canvas.
+[Canvas](https://www.canvaslms.com/) was the ideal choice for our Learning Management System (LMS). The University of British Columbia (UBC) has recently adopted Canvas as their LMS in place of Connect (the system previously used) and as such there is a great deal of support for the Canvas LMS at our institution. Furthermore, Canvas is a widely used LMS that also uses and supports Learning Tools Interoperability (LTI) which is a standard method of linking/connecting a LMS to external service tools (e.g., iClicker, LockDown Browser, Piazza, etc). Importantly, a [LTI authenticator was recently developed for JupyterHub](https://github.com/jupyterhub/ltiauthenticator) and thus it is now possible to connect Canvas and JupyterHub using LTI. Although, to our knowledge this had never been done before. However, JupyterHub's LTI authenticator had been tested and used with the EdX LMS for a Spring 2018 [online offering of Berkely's Data8 course](https://www.edx.org/course/foundations-data-science-computational-uc-berkeleyx-data8-1x). 
 
 <h4 id='lti-authentication'>LTI Authentication</h4>
 
@@ -97,17 +95,18 @@ Therefore, with this in mind we decided upon using Canvas with JupyterHub for ou
 <!-- resume content tag -->
 <div class='content'>
 
-To manage access to our JupyterHub server, we are using the [ltiauthenticator module](https://github.com/jupyterhub/ltiauthenticator) for JupyterHub written by Yuvi Panda ([@yuvipanda](https://twitter.com/yuvipanda)). This module receives LTI launch requests from LTI consumers such as Canvas and passes the user's ID to JupyterHub as a username. If the launch request contains a Canvas ID parameter, it uses that as the user's ID. Otherwise, it uses the LTI User ID (see '[Course Privacy](#course-privacy)' for more information).
+To make this happen, we are using the [ltiauthenticator module](https://github.com/jupyterhub/ltiauthenticator) for JupyterHub written by Yuvi Panda ([@yuvipanda](https://twitter.com/yuvipanda)). This module receives LTI launch requests from LTI consumers such as Canvas and passes the user's ID to JupyterHub as a username. If the launch request contains a Canvas ID parameter, it uses that as the user's ID. Otherwise, it uses the LTI User ID (see '[Course Privacy](#course-privacy)' for more information).
 
 For more detailed information on setting up LTI authentication between Canvas and JupyterHub, please read the [ltiauthenticator documentation](https://github.com/jupyterhub/ltiauthenticator#canvas).
 
 <h3 id='github-repositories'>GitHub Repositories</h3>
 
-Borrowing from the Master of Data Science Model, and to maximize compatibility with nbgrader, we chose to store all of our course documents in one private GitHub repository, and a subset of these&mdash;the student files in a public repository.
+Borrowing from the [UBC Master of Data Science](https://ubc-mds.github.io/) course management model, and to maximize compatibility with nbgrader, we chose to store all of our course documents in one private GitHub repository, and a subset of these&mdash;the student lab/assignment files where the solutions have been removed in a public repository.
 
 We refer to the first, private repository as our **instructors' repository**. In this repository we have the master copies of the assignments (the `source/` step of nbgrader), which contains the solutions as well as the tests. We also have the `gradebook.db` SQLite database checked-in to version control. We intend to implement a more appropriate solution for managing this in the future, but for the first run of the course, we believe it to be an acceptable solution.
 
-Our second, public repository only contains the student copies of the assignments (the `release/` step of nbgrader). We refer to this as the **students' repository**. Each link we provide in Canvas has a query string attached which triggers nbgitpuller to sync the student's home directory to this repository and redirect them to the assignment's notebook.
+Our second, public repository only contains the student copies of the assignments (the `release/` step of nbgrader). We refer to this as the **students' repository**. Each link we provide in Canvas (which the students see and access as an assignment button) has a query string attached which triggers a program, called nbgitpuller, to sync the student's home directory to this repository and redirect them to the assignment's notebook. nbgitpuller is a very nicely designed tool which is able to redirect the student to the appropriate version of the file they should be working on. For example, the first time the student accesses the notebook it pulls it from the public GitHub students' repository and stores a copy for that Student on the JupyterHub server. The next time the student goes to work on the same notebook, nbgitpuller is able to redirect the student to copy on the server that they were previously working on. Additionally, if the Instructor needs to send updates/changes to the the public GitHub students' repository copy, the next time the student goes to that notebook through Canvas, nbgitpuller will try to pull and merge those changes. 
+
 
 <h3 id='jupyterhub-servers'>JupyterHub Servers</h3>
 
