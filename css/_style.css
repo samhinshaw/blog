@@ -337,26 +337,26 @@ hr {
 
 /* Style post info card */
 
-.post-info .card-content {
+#post-info .card-content {
   padding: 0;
 }
 
-.post-info .card-footer,
-.post-info .card-footer-item {
+#post-info .card-footer,
+#post-info .card-footer-item {
   border: none;
 }
 
-.post-info .card-footer {
+#post-info .card-footer {
   background-color: whitesmoke;
   border-left: 5px solid #dbdbdb;
 }
 
-.post-info {
+#post-info {
   margin-bottom: 4em;
   box-shadow: none;
 }
 
-.post-info .card-footer-item .link-description {
+#post-info .card-footer-item .link-description {
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;

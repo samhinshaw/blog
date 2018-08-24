@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Designing Rudaux
-date: 2018-08-19
+date: 2018-08-24
 excerpt: Development of Canvas and JupyterHub Integration for UBC's Data Science 100.
 heroImage: paint-strokes.jpg
 heroColor: '#525659'
@@ -12,11 +12,11 @@ imageLink: https://unsplash.com/@samuelzeller
 <!-- close content tag -->
 </div>
 
-<div class="card post-info">
+<div class="card post-info" id='post-info'>
   <div class="card-content">
     <div class="content">
       <blockquote>
-        This post is focused on the motivation and design process in building Rudaux. For information on how to use Rudaux to integrate Canvas and JupyterHub, please read <a href="using-rudaux"><em>Using Rudaux</em></a>.
+        This post is focused on the motivation and design process in building Rudaux. For information on how to use Rudaux to integrate Canvas and JupyterHub, please read <a href="../using-rudaux"><em>Using Rudaux</em></a>.
       </blockquote>
     </div>
   </div>
@@ -38,8 +38,6 @@ imageLink: https://unsplash.com/@samuelzeller
 
 <!-- resume content tag -->
 <div class="content">
-
-<!-- > This post is focused on the motivation and design process in building Rudaux. For information on how to use Rudaux to integrate Canvas and JupyterHub, please read _[Using Rudaux](../using-rudaux)_. -->
 
 <h2 id='motivation'>Motivation</h2>
 
@@ -158,7 +156,7 @@ While the fileserver does not need to run a ZFS filesystem, it is advantageous f
 
 ## Rudaux
 
-Rudaux was designed to harmonize these pieces of infrastructure. For an overview of its main functions, please see _[Using Rudaux](using-rudaux)_, or [rudaux's documentation](https://ubc-dsci.github.io/rudaux-docs/).
+Rudaux was designed to harmonize these pieces of infrastructure. For an overview of its main functions, please see _[Using Rudaux](../using-rudaux)_, or [rudaux's documentation](https://ubc-dsci.github.io/rudaux-docs/).
 
 Rudaux consists of three main components:
 

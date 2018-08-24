@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using Rudaux
-date: 2018-08-19
+date: 2018-08-24
 excerpt: Using rudaux to manage a course with Canvas, JupyterHub, and nbgrader.
 heroImage: radio-telescope-bw.jpg
 heroColor: '#1F1F1F'
@@ -12,11 +12,11 @@ imageLink: https://unsplash.com/@galen_crout
 <!-- close content tag -->
 </div>
 
-<div class="card post-info">
+<div class="card post-info" id='post-info'>
   <div class="card-content">
     <div class="content">
       <blockquote>
-        This post is focused on the main functions of rudaux and how to implement it in your course's workflow. For a discussion on the motivation behind and development of rudaux, please read <a href="designing-rudaux"><em>Designing Rudaux</em></a>.
+        This post is focused on the main functions of rudaux and how to implement it in your course's workflow. For a discussion on the motivation behind and development of rudaux, please read <a href="../designing-rudaux"><em>Designing Rudaux</em></a>.
       </blockquote>
     </div>
   </div>
@@ -63,7 +63,7 @@ Rudaux is named after the French artist and astronomer Lucien Rudaux, a pioneer 
 
 ## Where Should I Run Rudaux?
 
-One of rudaux's best features is its ability to schedule automatic grading of assignments. However, because of this, it is assumed that you will be executing these commands from your [grading server](designing-rudaux#grading-server) in a JupyterHub terminal. However, if you are not scheduling automated grading, you can run rudaux from wherever you wish! This gives you more flexibility in setting up access tokens and ssh keys.
+One of rudaux's best features is its ability to schedule automatic grading of assignments. However, because of this, it is assumed that you will be executing these commands from your [grading server](../designing-rudaux#grading-server) in a JupyterHub terminal. However, if you are not scheduling automated grading, you can run rudaux from wherever you wish! This gives you more flexibility in setting up access tokens and ssh keys.
 
 ## Configuration
 
