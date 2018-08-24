@@ -7,6 +7,7 @@ heroImage: paint-strokes.jpg
 heroColor: '#525659'
 imageAuthor: Samuel Zeller
 imageLink: https://unsplash.com/@samuelzeller
+byline: Sam Hinshaw & Dr. Tiffany Timbers
 ---
 
 <!-- close content tag -->

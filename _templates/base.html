@@ -19,15 +19,17 @@
         <div class="content is-primary">
 
           <h1 class="title">
-            {% block header_title %} {% if file.title %} {{file.title}} {% else %} {{site.title}} {% endif %} {% endblock %}
+            {% block header_title %} 
+              {% if file.title %} {{file.title}} {% else %} {{site.title}} {% endif %}
+            {% endblock %}
           </h1>
 
           <h2 class="subtitle">
-            <!-- Check to see if this file is part of the "post"
-              collection. `indexOf()` returns the index of the object in the
-              array but returns -1 if the object is not in the array. If the
-              file IS part of the post collections, we'll have the date &
-              tags as the subtitle. -->
+            {# Check to see if this file is part of the "post"
+            collection. `indexOf()` returns the index of the object in the
+            array but returns -1 if the object is not in the array. If the
+            file IS part of the post collections, we'll have the date &
+            tags as the subtitle. #}
             {% if collections.post.files.indexOf(file) >= 0 %}
             <time
               class="post-date"
@@ -38,11 +40,17 @@
                   <a href="/tag/{{tag}}/">{{tag}}</a>
                   {% endfor%}
                 </span> -->
-              <!-- If the file is not part of the post collection then
-                  it's not a blog post! Then we'll use the provided subtitle.
-                  If the provided subtitle does not exist, it will be blank.  -->
+              {# If the file is not part of the post collection then
+              it's not a blog post! Then we'll use the provided subtitle.
+              If the provided subtitle does not exist, it will be blank. #}
               {% elif file.subtitle %} {{file.subtitle}} {% else %} {% endif %}
           </h2>
+
+          {% if file.byline %}
+            <h3 class="byline is-size-4">
+              <span>{{file.byline}}</span>
+            </h3>
+          {% endif %}
         </div>
         {% if file.lastUpdated %}
         <p class="has-text-centered">
