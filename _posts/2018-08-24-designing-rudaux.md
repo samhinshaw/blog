@@ -7,7 +7,7 @@ heroImage: paint-strokes.jpg
 heroColor: '#525659'
 imageAuthor: Samuel Zeller
 imageLink: https://unsplash.com/@samuelzeller
-byline: Sam Hinshaw & Dr. Tiffany Timbers
+byline: Sam Hinshaw & Tiffany Timbers
 ---
 
 <!-- close content tag -->
@@ -111,6 +111,8 @@ Nbgitpuller is a particularly well-designed tool which is able to redirect the s
 <h3 id='jupyterhub-servers'>JupyterHub Servers</h3>
 
 We use two JupyterHub servers to administer DSCI 100. These virtual machines for these servers are provisioned with Terraform, and set up with Ansible. [Ian Allison](https://github.com/ianabc) put in a tremendous amount of work setting up these servers and making their deployments programmatic and reproducible. All of the code for setting up these servers is available in our [infrastructure repository](https://github.com/UBC-DSCI/dsci-100-infra).
+
+> _Note_: The infrastructure repository is still under development, and may undergo significant changes before the course's release in January 2019.
 
 <h4 id='student-server'>Student Server</h4>
 
