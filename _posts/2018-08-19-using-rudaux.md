@@ -2,7 +2,7 @@
 layout: post
 title: Using Rudaux
 date: 2018-08-19
-excerpt: How to use rudaux to manage a course with Canvas, JupyterHub, and nbgrader.
+excerpt: Using rudaux to manage a course with Canvas, JupyterHub, and nbgrader.
 heroImage: radio-telescope-bw.jpg
 heroColor: '#1F1F1F'
 imageAuthor: Galen Crout
@@ -21,13 +21,13 @@ imageLink: https://unsplash.com/@galen_crout
     </div>
   </div>
   <footer class="card-footer">
-    <a href='https://samhinshaw.github.io/rudaux-docs/' class='card-footer-item'>
+    <a href='https://ubc-dsci.github.io/rudaux-docs/' class='card-footer-item'>
       <span class="icon is-medium">
         <i class="fas fa-book fa-lg"></i>
       </span>
       <span class='link-description'>Documentation</span>
     </a>
-    <a href='http://github.com/samhinshaw/rudaux' class='card-footer-item'>
+    <a href='http://github.com/ubc-dsci/rudaux' class='card-footer-item'>
       <span class="icon is-medium">
         <i class="fab fa-github fa-lg"></i>
       </span>
@@ -67,7 +67,7 @@ One of rudaux's best features is its ability to schedule automatic grading of as
 
 ## Configuration
 
-To allow rudaux to be easily run from a [command-line interface](#command-line-interface) (CLI), we decided to read configuration options from a file rather than requiring them to be specified at runtime. Please read the [rudaux configuration documentation](https://samhinshaw.github.io/rudaux-docs/config#configuring-rudaux) for a detailed breakdown of the necessary options, including a sample `rudaux_config.py`.
+To allow rudaux to be easily run from a [command-line interface](#command-line-interface) (CLI), we decided to read configuration options from a file rather than requiring them to be specified at runtime. Please read the [rudaux configuration documentation](https://ubc-dsci.github.io/rudaux-docs/config#configuring-rudaux) for a detailed breakdown of the necessary options, including a sample `rudaux_config.py`.
 
 ## Classes
 
@@ -149,7 +149,7 @@ course                                   \
 
 After [course instantiation](#course-instantiation), rudaux executes the following methods:
 
-1. `.get_external_tool_id()` queries the Canvas API to find the id of the external tool by the name provided within rudaux_config. As discussed in the [rudaux configuration documentation](https://samhinshaw.github.io/rudaux-docs/config#configuring-rudaux), this is necessary to link your LTI launch keys to assignment links created in Canvas.
+1. `.get_external_tool_id()` queries the Canvas API to find the id of the external tool by the name provided within rudaux_config. As discussed in the [rudaux configuration documentation](https://ubc-dsci.github.io/rudaux-docs/config#configuring-rudaux), this is necessary to link your LTI launch keys to assignment links created in Canvas.
 2. `.get_students_from_canvas()` queries the Canvas API for your student list.
 3. `.sync_nbgrader()` syncs student and assignment lists with nbgrader:
    - Add students into nbgrader gradebook that are present in Canvas.
@@ -248,4 +248,4 @@ This covers all of the main use-cases I have envisioned for rudaux. For more con
 from rudaux import Course, Assignment
 ```
 
-For information on how to use these classes directly, please consult the [rudaux docs](https://samhinshaw.github.io/rudaux-docs/).
+For information on how to use these classes directly, please consult the [rudaux docs](https://ubc-dsci.github.io/rudaux-docs/).
