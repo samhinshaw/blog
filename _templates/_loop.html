@@ -7,6 +7,11 @@
     <div class="post-meta">
       <time class="post-date" datetime="{{file.date | date('D MMMM YYYY')}}">{{file.date | date('D MMMM YYYY')}}</time>
     </div>
+    {% if file.byline %}
+    <div class="post-meta">
+      <span class="post-author">{{file.byline}}</span>
+    </div>
+    {% endif %}
   </header>
   <section class="post-excerpt">
     {{file.excerpt}} {#
