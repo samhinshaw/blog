@@ -2,7 +2,7 @@
 layout: post
 title: Designing Rudaux
 date: 2018-08-24
-excerpt: The development of Canvas and JupyterHub Integration for UBC's Data Science 100.
+excerpt: Development of Canvas and JupyterHub Integration for UBC's Data Science 100.
 heroImage: paint-strokes.jpg
 heroColor: '#525659'
 imageAuthor: Samuel Zeller
