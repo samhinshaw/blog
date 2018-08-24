@@ -145,7 +145,7 @@ h6,
 /* BUT make the hero headers white to contrast with the background */
 .image-hero .title,
 .image-hero .subtitle,
-.image-hero .byline {
+.image-hero #byline {
   color: #f0f0f0;
   font-family: 'Cormorant Garamond', Georgia, Cambria, 'Times New Roman', Times, serif;
 }
