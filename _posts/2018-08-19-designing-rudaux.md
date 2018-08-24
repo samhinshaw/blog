@@ -114,11 +114,25 @@ We use two JupyterHub servers to administer DSCI 100. These virtual machines for
 
 <h4 id='student-server'>Student Server</h4>
 
-The first Jupyterhub server is dedicated solely to student use. Students log in by clicking on a LTI-enabled link in Canvas, and are authenticated and redirected to the notebook for that assignment. Using [dockerspawner](https://github.com/jupyterhub/dockerspawner), a docker container is spawned for each user, and their home directory is mapped to a folder on a [ZFS fileserver](#fileserver).
+The first Jupyterhub server is dedicated solely to student use. Students log in by clicking on a LTI-enabled link in Canvas (looks like an assignment button to the students), and are authenticated and redirected to the notebook for that assignment. Using [dockerspawner](https://github.com/jupyterhub/dockerspawner), a docker container is spawned for each user, and their home directory is mapped to a folder on a [ZFS fileserver](#fileserver). The assignment is stored on the server persistantly, as is the students work. The students can revisit the notebook and see and edit their work as many times as they would like through the link in Canvas. 
 
 <h4 id='grading-server'>Grading Server</h4>
 
 By contrast, the grading server is only accessible to the instructor and TAs. This JupyterHub server uses [Shibboleth authentication](<https://en.wikipedia.org/wiki/Shibboleth_(Shibboleth_Consortium)>) for login and access control with UBC credentials. The grading is not done on the same server that students are using, as nbgrader can be quite resource-intensive, and we do not wish to degrade students' experience.
+
+We chose to use nbgrader as the software for grading for several reasons:
+
+1. It supports automated grading for code questions (and we also untilize it for multiple choice questions by storing the answer as a variable). And students can see and run the tests for autograded questions as many times as they would like to work toward the correct solution.
+
+2. It has a command line tool, as well as an API so that it can be used in a very automated fashion.
+
+3. It works with R (the language we are using for DSCI 100) in Jupyter notebooks, as well as Python (and probably any other language used in Jupyter). 
+
+4. It allows seamless integration of manual grading along with the autograded answers (we believe that some of the students work should be seen by human eyeballs and given human feedback).
+
+5. It has a nice GUI for TA's to perform manual grading and inline feedback.
+
+6. It generates a lovely HTML report for the students with grades and feedback inline with the questions.
 
 <h4 id='fileserver'>ZFS fileserver</h4>
 
