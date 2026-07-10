@@ -1,6 +1,5 @@
-_site/*
-.DS_Store
-\$HOME
 node_modules/
+dist/
+.astro/
+.DS_Store
 *.log
-.vscode
