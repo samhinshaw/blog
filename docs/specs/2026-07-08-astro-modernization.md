@@ -1,97 +1,87 @@
 # Modernizing samhinshaw.com: Reptar → Astro
 
-- **Status:** Draft plan (pre-implementation)
-- **Date:** 2026-07-08
+- **Status:** Approved plan (pre-implementation)
+- **Date:** 2026-07-08 · **Revised:** 2026-07-10 (simplified scope — cut compatibility/fidelity tax)
 - **Author:** Sam Hinshaw (with Claude)
-- **Scope:** Rebuild the blog on a modern SSG (Astro) styled with Vanilla Extract, drop Bulma, deploy to simple/free hosting. **No visual redesign now** — ship a barebones look; Sam will redesign later.
+- **Scope:** Rebuild the blog on Astro, styled with Vanilla Extract, drop Bulma, deploy free on Cloudflare Pages. **Deliberately barebones** — this is NOT a 1:1 migration. Several old features are intentionally deferred (see §11).
 
 ---
 
 ## 1. Goals & non-goals
 
 **Goals**
-- Replace the dormant **Reptar** SSG with **Astro**.
-- Style with **Vanilla Extract (VE)**; **remove Bulma** and LESS/node-sass.
-- **Barebones design for now** — a clean, minimal foundation that's easy to redesign on top of later.
-- **Convert posts to clean Markdown/MDX** (strip the embedded Bulma HTML).
-- **Simple, free hosting** with git-push deploys, custom domain, HTTPS, PR previews.
-- Features: **tag pages** + **system-preference dark mode** (no toggle). Plus baseline **RSS, sitemap, SEO/OpenGraph meta, and syntax highlighting**.
-- **Preserve existing post URLs** (inbound links / SEO).
+- Replace the dormant **Reptar** SSG with **Astro**; remove **Bulma** + LESS/node-sass.
+- Style with **Vanilla Extract (VE)**, kept minimal.
+- **Barebones** — a clean foundation Sam will redesign later. Prefer the simplest thing that works.
+- **Plain Markdown** posts (strip the embedded Bulma HTML; no MDX).
+- **Cloudflare Pages** (free), git-push deploys, custom domain, HTTPS.
+- Features: **tag pages**, **system-preference dark mode** (no toggle), **RSS**, **sitemap**, basic **SEO/OpenGraph meta**, and **syntax highlighting** (Astro's built-in Shiki).
+- Keep the **old post URLs** working — cheap, since we just name files by the old slug.
 
-**Non-goals (for now)**
-- Faithfulness to the current visual design (explicitly not wanted).
-- Comments and analytics (can be added later; both are static-friendly to bolt on).
-- Migrating to a CMS — content stays as files in the repo.
+**Non-goals (deliberately cut — see §11 for the deferral list)**
+- Fidelity to the old visual design; **hero photos**; self-hosted **Fira Code**; **icon** system.
+- **MDX** and rich in-post components (info-cards).
+- **Expressive Code** frames/copy-buttons (built-in Shiki is enough).
+- URL-preservation ceremony (live-site diff, redirects, strict URL audit).
+- Comments, analytics, PWA/manifest, image optimization — later, if ever.
 
 ---
 
 ## 2. Current state (migrating from)
 
-- **SSG:** Reptar (`reptar.config.js`), now unmaintained. Builds to a local `../../serve/samhinshaw.com/html` path (self-hosted today).
+- **SSG:** Reptar (`reptar.config.js`), unmaintained; builds to a local `serve/` path (self-hosted today).
 - **Templating:** Nunjucks in `_templates/` (`base` → `common` → `post`/`page`/`landing_page`, plus `_loop`/`_pagination`/`tag`).
-- **Styling:** Bulma 0.5.1 (via `css/bulma.sass`), LESS partials (`main.less`, `_variables.less`, `_elements.less`, `_layout.less` [unused]), a hand-picked `_highlight_atom-one-dark.css`, and `normalize.css`.
-- **Content:** 13 Markdown posts (2016–2018) in `_posts/`; root pages in `_root/` (`about`, `projects`, `blog`); landing `index.md`; `_error/404.md`. **Bulma markup is embedded inside post Markdown** (cards, columns, FontAwesome icons) — one post (`designing-rudaux`) even opens by closing a `</div>` left open by the old template.
-- **JS:** one `js/main.js` (browserify) — navbar burger, copyright modal, collapsible message — coupled to Bulma `is-active` classes and FontAwesome SVG swapping.
-- **Assets:** Fira Code woff2 (ligatures), FontAwesome icon font, ~41 hero photos referenced via inline `background-image`, favicons/manifest.
-- **URLs:** posts `/blog/:title/`, root pages `/:title/`, blog index `/blog/` with `/blog/:page/` pagination. Domain `www.samhinshaw.com`.
+- **Styling:** Bulma 0.5.1 + LESS partials + a hand-picked `_highlight_atom-one-dark.css` + `normalize.css`.
+- **Content:** 13 Markdown posts (2016–2018) in `_posts/`; root pages in `_root/` (`about`, `projects`, `blog`); landing `index.md`; `_error/404.md`. **Bulma markup is embedded inside post Markdown** (cards, columns, FontAwesome icons); one post (`designing-rudaux`) opens by closing a `</div>` left open by the old template.
+- **JS:** one `js/main.js` (navbar burger, copyright modal, collapsible) tied to Bulma classes + FontAwesome.
+- **Assets:** Fira Code woff2, FontAwesome font, ~41 hero photos (inline `background-image`), full favicon/PWA set, `data/dictionary.json` (3.2 MB, apparently dead).
+- **URLs:** posts `/blog/:title/` (from the slugified **title**, not the filename), root pages `/:title/`, blog index `/blog/`. Domain `www.samhinshaw.com`.
 
 ---
 
 ## 3. Target stack
 
-| Layer | Today | Proposed (current as of June 2026 — pin & verify at build time) |
+| Layer | Today | Proposed (current as of June 2026 — pin & verify at build) |
 |---|---|---|
-| SSG | Reptar | **Astro 7.0.x** (Content Layer API). Requires **Node 22.12+** |
-| Content | Nunjucks + inline Bulma HTML | Markdown/**MDX** in a typed content collection (`@astrojs/mdx` 7.0.0) |
-| Styling | Bulma 0.5.1 + LESS | **Vanilla Extract** (`@vanilla-extract/css` 1.21.0 + `@vanilla-extract/vite-plugin` 5.2.3) |
-| Bulma replacement | — | **Roll your own in VE** (§4); Open Props optional for tokens |
-| Code blocks | highlight.css theme | **Expressive Code** (`astro-expressive-code` 0.44.0) — Shiki-based, keeps Fira Code ligatures |
-| Fonts | Fira Code woff2 | Fira Code via VE `globalFontFace` (reuse existing woff2) |
-| Icons | FontAwesome font | **astro-icon** (inline SVG, themeable via `currentColor`) |
-| Dark mode | none | **System-only** via `@media (prefers-color-scheme: dark)` — no toggle, no JS |
-| Feeds/SEO | none | `@astrojs/rss` 4.0.18, `@astrojs/sitemap` 3.7.3 (requires `site`), OG/meta component |
-| Images | inline `background-image` | Keep in `public/images` for now; `astro:assets`/sharp later |
-| Hosting | self-hosted | **Cloudflare Pages** (free) — domain DNS already on Cloudflare; Vercel as the alternative (§5) |
+| SSG | Reptar | **Astro 7.0.x**, Node 22.12+ |
+| Content | Nunjucks + inline Bulma HTML | **Plain Markdown** in a typed content collection (no MDX) |
+| Styling | Bulma + LESS | **Vanilla Extract** (`@vanilla-extract/css` + `vite-plugin`), minimal |
+| Bulma replacement | — | **Roll-your-own VE** (tokens + reset + prose); no framework (§4) |
+| Code highlighting | highlight.css theme | **Built-in Shiki** (default; zero deps/config) |
+| Fonts | self-hosted Fira Code | **System font stack** (no self-hosted fonts) |
+| Icons | FontAwesome font | **None** — plain text/emoji links |
+| Dark mode | none | **System-only** via `@media (prefers-color-scheme: dark)` |
+| Feeds/SEO | none | `@astrojs/rss`, `@astrojs/sitemap` (needs `site`), small OG/meta component |
+| Post headers | hero photo + gradient + credit | **Title + date (+ optional byline) + prose** |
+| Images | inline `background-image` | Files retained in `public/images/`; not rendered as heroes for now |
+| Hosting | self-hosted | **Cloudflare Pages** (free) |
 
-> **Astro 7 note:** ships **Vite 8 + Rolldown** (new Rust bundler), a **new Rust `.astro` compiler** that is strict about invalid/unbalanced HTML (no auto-correction), and a **new default Markdown parser ("Sätteri")** replacing remark/rehype. To reuse specific remark/rehype plugins, reinstall `@astrojs/markdown-remark`.
+> **Dependency count drops to ~4:** `astro`, `@astrojs/rss`, `@astrojs/sitemap`, `@vanilla-extract/css` (+ its dev-only `vite-plugin`). Shiki is built into Astro.
+
+> **Astro 7 note:** ships **Vite 8 + Rolldown** (new Rust bundler) and a strict **Rust `.astro` compiler** (errors on unbalanced HTML — relevant to the post cleanup). Validate the VE build on this toolchain first (§9).
 
 ---
 
 ## 4. Replacing Bulma — decision
 
-**Key insight:** Vanilla Extract is not just a styling syntax — it's a full styling *system*: **theme contracts** (tokens), **Sprinkles** (atomic utilities), **Recipes** (component variants). So most "frameworks" *overlap* with VE rather than complement it.
+Vanilla Extract is itself a full styling *system* (theme contracts = tokens, Sprinkles = utilities, Recipes = component variants), so most "frameworks" (Tailwind, UnoCSS, Panda) are **redundant** with it, and the token/prose helpers (Open Props, Pico) are only *complementary*.
 
-| Option | Category | Fit with VE | Verdict |
-|---|---|---|---|
-| **Roll your own in VE** | native tokens + utilities + components | Native — one source of truth | ✅ **Chosen** |
-| **Open Props** | design tokens (CSS vars) | Complementary — seed a VE theme contract | ✅ Optional add-on |
-| Pico CSS | classless prose/base | Partial — but **maintainer inactive** (no release since Mar 2025) | ⚠️ Crib from, don't depend on |
-| Tailwind v4 | utility *system* | Redundant with Sprinkles; 2nd token source | ❌ Use *instead of* VE, not alongside |
-| UnoCSS | atomic engine | Redundant with Sprinkles | ❌ |
-| Panda CSS | build-time CSS-in-JS | Most redundant — a direct VE competitor | ❌ |
+**Decision: roll our own in VE, minimal.** For the barebones phase that means only:
+- a small **theme contract** (~15 tokens: color, space, type scale) with system light/dark;
+- a ~30-line **global reset** (also covers nav/footer layout);
+- a small **`globalStyle` "prose" sheet** for the Markdown body.
 
-**Decision:** roll our own in VE, kept deliberately minimal for the barebones phase:
-- a small **theme contract** (~15 tokens: color, space, type scale);
-- a ~30-line **global reset**;
-- a small **`globalStyle` "prose" sheet** for the Markdown body (headings, lists, tables, blockquotes, inline code) — VE's one real gap on a content site;
-- **defer Sprinkles/Recipes** until the redesign (trivial to add then; note Recipes is stable but pre-1.0).
-
-**Open Props:** recommended as the *token seed* so we don't hand-invent a scale — but purely optional. Pin the stable **1.7.x** line (ignore the long-stalled v2 betas). See §10 to confirm.
-
-> If VE were ever reconsidered, the only non-redundant replacements would be Tailwind v4 (simplest, instant `prose` plugin) or Panda CSS (closest like-for-like). Out of scope given the VE commitment.
+**Defer** Sprinkles/Recipes, and any token library (Open Props), until the redesign. No Tailwind/UnoCSS/Panda.
 
 ---
 
 ## 5. Hosting — decision
 
-Static Astro needs **no adapter** on any host (`astro build` emits static files; adapters are only for SSR/edge later).
+Static Astro needs **no adapter** (`astro build` emits static files).
 
-**Decision: Cloudflare Pages (free).** The domain's DNS is already managed in Cloudflare, so attaching the custom domain + automatic HTTPS is seamless (no cross-provider DNS). Plus: **unlimited bandwidth**, **no non-commercial restriction**, free per-branch/PR previews, and free privacy-first Web Analytics. Zero-config for static Astro (framework auto-detected; build `astro build`, output `dist/`).
+**Decision: Cloudflare Pages (free).** The domain's DNS is already in Cloudflare, so custom-domain + automatic HTTPS wiring is seamless. Plus **unlimited bandwidth**, **no non-commercial restriction**, free per-branch previews, and free privacy-first Web Analytics. Zero-config for static Astro (build `astro build`, output `dist/`). Future SSR (if ever) runs on Cloudflare Workers via `@astrojs/cloudflare`.
 
-- **Free-tier limits:** 500 builds/mo, 1 concurrent build, 20-min build timeout, 20,000 files/deploy, 25 MiB/file — all comfortably beyond a 13-post blog.
-- **Future SSR** (if ever needed) runs on **Cloudflare Workers** via `@astrojs/cloudflare` — fast/cheap V8 isolates (not full Node by default), fine for later dynamic bits (e.g. a search or dynamic-OG endpoint).
-- **Alternative — Vercel (Hobby/free):** the most polished DX and best-in-class previews, but its free tier is **non-commercial/personal only** (even donations count) with a 100 GB/mo bandwidth cap, and the domain lives elsewhere. Reasonable only if DX ever outweighs those.
-- Rejected: **Netlify** (2026 free tier tightened to a ~15 GB-equivalent credit model), **GitHub Pages** (no PR previews, static-forever).
+Alternative: **Vercel** (best DX/previews) — but non-commercial-only free tier, 100 GB cap, and the domain lives elsewhere. Rejected: Netlify (tightened 2026 free tier), GitHub Pages (no previews, static-only).
 
 ---
 
@@ -99,140 +89,131 @@ Static Astro needs **no adapter** on any host (`astro build` emits static files;
 
 ```
 src/
-  content.config.ts          # blog collection: glob() loader + Zod schema (import z from 'astro/zod')
-  content/blog/*.md(x)        # the 13 posts, cleaned
-  layouts/                    # Base, Post, Page  (ports of base/common/post/page Nunjucks templates → <slot/>)
+  consts.ts                    # site title/description/social/URL
+  content.config.ts            # blog collection: glob() loader + Zod schema (z from 'astro/zod')
+  content/blog/*.md            # the 13 posts, cleaned to plain Markdown
+  layouts/                     # BaseLayout, PageLayout, PostLayout (.astro)
+  components/                  # BaseHead (SEO/OG), Nav, Footer (.astro)
   pages/
-    index.astro              # landing (/)
-    about.astro
-    projects.astro
-    blog/[...slug].astro     # posts + paginated index emitted from ONE getStaticPaths (avoids collision)
-    tags/[tag].astro         # tag pages
-    rss.xml.js               # @astrojs/rss
+    index.astro                # landing (/)
+    about.astro                # /about/
+    projects.astro             # /projects/  (simple stub for now — see §11)
     404.astro
-  components/                 # Nav, Footer, SEO (OG/meta), Icon (astro-icon), Callout (MDX-friendly)
-  styles/                     # theme.css.ts (tokens + system dark), reset.css.ts, prose.css.ts
-public/images/*               # hero photos stay here for now (zero-effort, URL-stable)
-astro.config.mjs              # site, trailingSlash:'always', integrations + VE vite plugin
+    blog/index.astro           # /blog/  — lists ALL posts (no pagination)
+    blog/[slug].astro          # /blog/<slug>/  — a post
+    tags/index.astro           # /tags/  — all tags
+    tags/[tag].astro           # /tags/<tag>/
+    rss.xml.js                 # @astrojs/rss
+  styles/                      # theme.css.ts (tokens + system dark), reset.css.ts, prose.css.ts
+public/
+  images/*                     # retained (in-body images; heroes unused for now)
+  favicon.ico, apple-touch-icon.png
+scripts/check-urls.mjs         # build-output URL sanity check
+astro.config.mjs               # site, trailingSlash:'always', sitemap(), VE vite plugin
 ```
 
-**Content collection** — `src/content.config.ts`, `glob()` loader from `astro/loaders`, Zod schema (import `z` from `astro/zod`, **not** `astro:content`), `render()` from `astro:content`. Schema maps existing frontmatter 1:1: `title, date, excerpt, heroImage, heroColor, imageAuthor, imageLink, byline, subtitle, lastUpdated, draft, tags`.
-
-**astro.config.mjs** essentials:
-```js
-export default defineConfig({
-  site: 'https://www.samhinshaw.com',
-  trailingSlash: 'always',              // preserves Reptar's /blog/slug/ trailing slash
-  integrations: [
-    expressiveCode({ /* ... */ }),      // MUST come before mdx()
-    mdx(),
-    sitemap(),
-  ],
-  vite: { plugins: [vanillaExtractPlugin()] },  // VE has no first-party Astro integration
-});
-```
-
-**Styling / dark mode** — system-only dark mode is a real simplification: define light tokens on `:root`, override them inside `@media (prefers-color-scheme: dark)` in VE. **No toggle, no `localStorage`, no blocking head-script, no FOUC.**
-
-**Code blocks** — Expressive Code registered *before* `mdx()`; set Fira Code via `styleOverrides.codeFontFamily`. Frames/titles/text-markers/copy-button are on by default; **line numbers are optional** (`@expressive-code/plugin-line-numbers`). Replaces the old `_highlight_*.css` themes. Coexists with VE (both only emit CSS).
-
-**Fonts / icons** — declare the existing Fira Code woff2 via VE `globalFontFace` (lowest risk, keeps ligatures). Replace FontAwesome `<i class="fas …">` with `astro-icon` `<Icon>` / inline SVG.
-
-**Interactivity** — old navbar burger / copyright modal / collapsible collapse to a tiny `<script>` or CSS `details` — no framework island needed.
+- **Content collection:** `src/content.config.ts`, `glob()` from `astro/loaders`, Zod from `astro/zod`. Each post file is **named by its URL slug**; route by the file's `id`. Schema: `title, date, excerpt?, byline?, subtitle?, lastUpdated?, draft (default false), tags (default [])`.
+- **Styling / dark mode:** light tokens on `:root`, overridden in `@media (prefers-color-scheme: dark)` — no toggle, no JS, no flash.
+- **Code blocks:** Astro's built-in Shiki (default theme). No extra integration.
+- **Interactivity:** none needed — plain semantic nav, no burger/modal/island.
 
 ---
 
-## 7. URL preservation (critical)
+## 7. URL handling
 
-Reptar builds each post URL from the **slugified frontmatter `title`**, *not* the filename. **11 of 13 filenames diverge from their title-slug**, so any "strip the date off the filename" migration would 404 those inbound links. Preserve exactly:
+Reptar built post URLs from the slugified **title** (not the filename), so 11 of 13 filenames diverge from their URL. We preserve the URLs the cheap way: **name each new content file with its slug** (map below) and route by the file `id`; set `trailingSlash: 'always'` to keep the `/blog/foo/` shape. No live-site diff, no redirect audit.
 
-| Source file | URL to preserve |
-|---|---|
-| `2016-09-23-UpdateRstudio.md` | `/blog/automatically-update-rstudio/` |
-| `2017-02-09-autokey.md` | `/blog/installing-autokey/` |
-| `2017-02-09-encryption.md` | `/blog/encryption-commands-for-letsencrypt/` |
-| `2017-02-09-FirefoxNightly.md` | `/blog/how-to-install-firefox-nightly/` |
-| `2017-02-09-NodeJS.md` | `/blog/installing-node-js-on-linux/` ⚠️ |
-| `2017-02-09-SSH_keys.md` | `/blog/how-to-setup-your-ssh-keys/` |
-| `2017-02-10-zsh.md` | `/blog/installing-zsh/` |
-| `2017-09-04_reptar.md` | `/blog/building-a-blog-with-reptar-and-bulma/` |
-| `2017-09-13_ligatures.md` | `/blog/ligature-support-in-monospace-fonts/` |
-| `2017-09-28_template-literals.md` | `/blog/wrapping-template-literals-in-vs-code/` |
-| `2017-10-20_dynamic_package_loads.md` | `/blog/lazy-loading-r-packages-in-shiny/` |
-| `2018-08-24-designing-rudaux.md` | `/blog/designing-rudaux/` |
-| `2018-08-24-using-rudaux.md` | `/blog/using-rudaux/` |
+| Legacy file | New file `src/content/blog/…` | URL |
+|---|---|---|
+| `2016-09-23-UpdateRstudio.md` | `automatically-update-rstudio.md` | `/blog/automatically-update-rstudio/` |
+| `2017-02-09-autokey.md` | `installing-autokey.md` | `/blog/installing-autokey/` |
+| `2017-02-09-encryption.md` | `encryption-commands-for-letsencrypt.md` | `/blog/encryption-commands-for-letsencrypt/` |
+| `2017-02-09-FirefoxNightly.md` | `how-to-install-firefox-nightly.md` | `/blog/how-to-install-firefox-nightly/` |
+| `2017-02-09-NodeJS.md` | `installing-node-js-on-linux.md` | `/blog/installing-node-js-on-linux/` |
+| `2017-02-09-SSH_keys.md` | `how-to-setup-your-ssh-keys.md` | `/blog/how-to-setup-your-ssh-keys/` |
+| `2017-02-10-zsh.md` | `installing-zsh.md` | `/blog/installing-zsh/` |
+| `2017-09-04_reptar.md` | `building-a-blog-with-reptar-and-bulma.md` | `/blog/building-a-blog-with-reptar-and-bulma/` |
+| `2017-09-13_ligatures.md` | `ligature-support-in-monospace-fonts.md` | `/blog/ligature-support-in-monospace-fonts/` |
+| `2017-09-28_template-literals.md` | `wrapping-template-literals-in-vs-code.md` | `/blog/wrapping-template-literals-in-vs-code/` |
+| `2017-10-20_dynamic_package_loads.md` | `lazy-loading-r-packages-in-shiny.md` | `/blog/lazy-loading-r-packages-in-shiny/` |
+| `2018-08-24-designing-rudaux.md` | `designing-rudaux.md` | `/blog/designing-rudaux/` |
+| `2018-08-24-using-rudaux.md` | `using-rudaux.md` | `/blog/using-rudaux/` |
 
-**Approach**
-1. Generate each slug from the slugified frontmatter **title**, and **pin a `slug:` in each post's frontmatter** as the safety net (Astro's Content Layer honors a frontmatter `slug`, and it may contain slashes).
-2. **Diff every generated URL against the live site / its sitemap before cutover.** Slugify edge cases must be confirmed against ground truth — e.g. ⚠️ *Node.js* (does the live site emit `node-js` or `nodejs`?) and *LetsEncrypt*.
-3. Any URL that can't be reproduced exactly gets a redirect.
-
-**Route collision:** `/blog/` + `/blog/2/` pagination collides with `/blog/[...slug]` post routes. Fix by emitting both list and post pages from **one catch-all `getStaticPaths()`** (branch on a `type: 'list' | 'post'` prop), or move pagination to `/blog/page/N/` if changing those URLs is acceptable.
+Old paginated index pages (`/blog/2/`, `/blog/3/`) go away with the single-list blog. Optionally add two lines to `public/_redirects` (`/blog/2/ /blog/ 301`) — otherwise they simply 404 (negligible risk).
 
 ---
 
 ## 8. Migration plan (phased)
 
-**Phase 0 — De-risk (do first).** Scaffold Astro 7, add the VE Vite plugin, import one `.css.ts`, run a real `astro build`. Confirms VE builds on **Vite 8 / Rolldown** before investing. Fallback: pin Astro 6 (Vite 7), which is battle-tested with VE.
+**Phase 0 — De-risk (do first).** Scaffold Astro 7, add the VE Vite plugin, import one `.css.ts`, run a real `astro build`. Proves VE builds on Vite 8 / Rolldown before investing. Fallback: pin Astro 6 (Vite 7).
 
-**Phase 1 — Scaffold & config.** `astro.config.mjs` (`site`, `trailingSlash:'always'`, integrations `[expressiveCode(), mdx(), sitemap()]`, `vite.plugins:[vanillaExtractPlugin()]`); define the `blog` collection + schema.
+**Phase 1 — Scaffold & config.** `astro.config.mjs` (`site`, `trailingSlash:'always'`, `integrations:[sitemap()]`, `vite.plugins:[vanillaExtractPlugin()]`); `consts.ts`; content collection + schema.
 
-**Phase 2 — Content migration (bulk of the work, ~13 posts).**
-- Move `_posts/*` → `src/content/blog/`.
-- Convert inline Bulma HTML → clean MD/MDX: strip `columns`/`hero`/`card`; **rebalance the orphaned `</div>` "close content tag" hacks** (the strict Rust compiler will not auto-fix them); turn the few rich bits (e.g. the Rudaux info-card) into a small reusable `<Callout>` MDX component.
-- Convert FontAwesome `<i class="fas …">` → `astro-icon`.
-- Map frontmatter into the schema; add pinned `slug:` values.
+**Phase 2 — Content (13 posts).** Move each to `src/content/blog/<slug>.md`, strip Bulma markup, remove the orphan `</div>` hacks, convert info-cards to blockquotes, drop FontAwesome icons (text/emoji), rewrite relative inter-post links to absolute (`/blog/<slug>/`), add `tags`.
 
-**Phase 3 — Layouts, routing & URL preservation.** Port `base/common/post/page` → Astro layouts with `<slot/>` and `<Content/>`; implement §7 (slug-from-title + pins + slug diff; single catch-all for posts+pagination); root pages (`about`, `projects`), landing, `404`, tag pages.
+**Phase 3 — Styling.** VE theme (tokens + system dark) + reset + prose. Barebones on purpose.
 
-**Phase 4 — Styling (intentionally barebones).** VE theme contract + reset + prose `globalStyle`; system dark mode; Fira Code via `globalFontFace`; minimal Nav/Footer.
+**Phase 4 — Layouts & routes.** Base/Page/Post layouts; `blog/index.astro` (all posts), `blog/[slug].astro`, `tags/*`, `about`, `projects` (stub), `index`, `404`.
 
-**Phase 5 — Features.** RSS endpoint, sitemap, SEO/OG meta component, tag pages.
+**Phase 5 — Feeds/SEO.** RSS endpoint, sitemap integration, OG/meta component.
 
-**Phase 6 — Deploy.** Push to GitHub, connect the repo to **Cloudflare Pages** (build `astro build`, output `dist/`), attach the custom domain (DNS already in Cloudflare) with automatic HTTPS, **crawl old vs new URLs to confirm parity**, then cut over.
+**Phase 6 — Deploy.** Push to GitHub, connect Cloudflare Pages (build `astro build`, output `dist/`), attach the custom domain (DNS already in Cloudflare), verify the URL list, cut over.
 
 ---
 
 ## 9. Risks & mitigations
 
-1. **Astro 7 = Vite 8 + Rolldown (new Rust bundler).** VE's plugin advertises Vite 8 support, but Rolldown caused real plugin friction this cycle (e.g. a reported `@tailwindcss/vite` build failure on Astro 6's rolldown-vite — issue #16542, reported but not maintainer-repro'd). **Mitigation: the Phase-0 smoke test.** If it fails, pin **Astro 6 / Vite 7**.
-2. **Strict Rust compiler + new "Sätteri" Markdown parser.** Unbalanced HTML in posts now *errors* — handled by Phase-2 cleanup. Reinstall `@astrojs/markdown-remark` if a specific remark/rehype plugin is needed.
-3. **URL parity.** The §7 table + a live-site slug diff + redirects for stragglers.
-4. **VE Recipes is pre-1.0** (stable but slow-moving) — not used until the redesign, so no near-term impact.
+1. **Astro 7 = Vite 8 + Rolldown.** VE advertises Vite 8 support, but Rolldown caused plugin friction this cycle. **Mitigation: the Phase-0 smoke test.** Fallback: pin Astro 6 / Vite 7.
+2. **Strict Rust compiler.** Unbalanced HTML in posts now *errors* — handled by the Phase-2 cleanup (removing the `</div>` hacks and Bulma markup).
+3. That's essentially it now — dropping MDX/heroes/fonts/icons/EC removed most of the moving parts.
 
 ---
 
-## 10. Decisions (resolved — confirm or adjust)
+## 10. Decisions
 
-| # | Decision | Choice | Notes |
-|---|---|---|---|
-| 1 | Bulma replacement | **Roll your own in VE** | Minimal now; Sprinkles/Recipes deferred to redesign |
-| 1b | Token seed | **Open Props (optional, recommended)** | Pin 1.7.x; or hand-author ~15 tokens with zero deps |
-| 2 | Hosting | **Cloudflare Pages (free)** | Domain DNS already in Cloudflare; unlimited bandwidth, no commercial clause. Vercel is the alt if DX ever wins out |
-| 3 | Hero images | **Keep in `public/images` for now** | Optimize via `astro:assets` during the later redesign |
-| 4 | `projects` page | **Convert to clean MDX** (like posts) | Alternative: rebuild during the redesign |
-| — | Dark mode | **System-only** (`prefers-color-scheme`) | No picker/toggle (per Sam) |
-| — | Design fidelity | **Barebones now**, redesign later | No port of the Bulma-era look |
-| — | Post content | **Clean MD/MDX** | Rich bits become small MDX components |
-
----
-
-## 11. Open items to confirm against ground truth
-
-- **Live-site slug diff** — crawl `www.samhinshaw.com` (or fetch its current sitemap) and confirm all 13 post URLs, especially the ⚠️ slugify edge cases (`Node.js`, `LetsEncrypt`).
-- **`data/dictionary.json`** (3.2 MB) — determine whether anything still references it before dropping it.
-- **Old redirect/analytics needs** — confirm there are no other live paths (e.g. `/pages/`, tag URLs) that need preserving.
+| Decision | Choice |
+|---|---|
+| SSG / styling / hosting | Astro 7 · roll-your-own Vanilla Extract (minimal) · Cloudflare Pages (free) |
+| Design fidelity | **Barebones**, redesign later — not a 1:1 migration |
+| Posts | **Plain Markdown**, no MDX; Bulma/HTML stripped |
+| Post headers | **No heroes** — title + date (+ optional byline) |
+| Code blocks | **Built-in Shiki** (no Expressive Code) |
+| Fonts | **System stack** (no self-hosted Fira Code) |
+| Icons | **None** (text/emoji) |
+| Dark mode | **System-only** (`prefers-color-scheme`), no toggle |
+| Pagination | **None** — `/blog/` lists all posts |
+| Old URLs | Keep slugs by naming files; **no** diff/redirect ceremony |
+| Favicons | `favicon.ico` + `apple-touch-icon.png` only |
+| `data/dictionary.json` | **Drop** |
+| `projects` page | **Stub now**, rebuild later |
+| Kept features | tag pages · RSS · sitemap · basic SEO/OG · syntax highlighting |
 
 ---
 
-## 12. References (verified June 2026)
+## 11. Future considerations (deferred, not lost)
 
-- Astro 7 / Vite 8 / Rolldown / Sätteri: https://astro.build/blog/astro-7/ · Content collections: https://docs.astro.build/en/guides/content-collections/ · On-demand rendering (adapters): https://docs.astro.build/en/guides/on-demand-rendering/ · Syntax highlighting: https://docs.astro.build/en/guides/syntax-highlighting/ · Images: https://docs.astro.build/en/guides/images/
-- Vanilla Extract + Astro: https://vanilla-extract.style/documentation/integrations/astro/ · Theming: https://vanilla-extract.style/documentation/theming/
-- Expressive Code: https://expressive-code.com/
-- Open Props: https://open-props.style/ · Pico maintenance thread: https://github.com/picocss/pico/issues/640
-- Hosting: Vercel Hobby https://vercel.com/docs/plans/hobby · fair-use https://vercel.com/docs/limits/fair-use-guidelines · Netlify credit pricing https://www.netlify.com/changelog/2026-04-14-pricing-updates-april-2026/ · Cloudflare Pages limits https://developers.cloudflare.com/pages/platform/limits/ · GitHub Pages limits https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits
+These were intentionally cut to stay barebones — revisit during/after the redesign. Legacy assets remain in git history (and files under `public/`/`legacy/`) so nothing is lost.
+
+- **Icons** — reintroduce via `astro-icon` (inline SVG, themeable) or hand-inlined SVGs when the UI needs iconography.
+- **Hero photos** — bring back the photo-forward headers in the redesign (image files retained under `public/images/`; mind the `LICENSE_PHOTOS` attribution if the photos are re-displayed).
+- **Info-card components** — if posts want rich callouts again, add `@astrojs/mdx` and a small `<Callout>` component (the Rudaux cross-links are the motivating case).
+- **Fira Code with ligatures** — self-host the existing woff2 via VE `globalFontFace` (or Astro's Fonts API) to restore the monospace ligatures for code.
+- **Rebuild the `projects` page** — convert the dense legacy Bulma `projects` page into proper content/components (stubbed for launch).
+- **(Also worth it later)** richer code blocks via **Expressive Code** (frames, copy button); **image optimization** via `astro:assets`; **comments** (Giscus); **analytics** (Cloudflare Web Analytics).
+
+---
+
+## 12. Open items
+
+- Confirm the whole `public/images/` folder is worth retaining wholesale (cheap; keeps any in-body image references working). Prune unused hero-only images later.
+- `projects` stub content (a sentence + link) until the rebuild.
+
+## 13. References (verified June 2026)
+
+- Astro 7 / Vite 8 / Rolldown: https://astro.build/blog/astro-7/ · Content collections: https://docs.astro.build/en/guides/content-collections/ · Syntax highlighting (Shiki): https://docs.astro.build/en/guides/syntax-highlighting/
+- Vanilla Extract + Astro: https://vanilla-extract.style/documentation/integrations/astro/
+- Cloudflare Pages: https://developers.cloudflare.com/pages/ · limits https://developers.cloudflare.com/pages/platform/limits/
 
 ## Appendix — version pins (verify at install)
 
-`astro@7.0.3` · `@astrojs/mdx@7.0.0` · `@astrojs/rss@4.0.18` · `@astrojs/sitemap@3.7.3` · `@vanilla-extract/css@1.21.0` · `@vanilla-extract/vite-plugin@5.2.3` (peer `vite ^5||^6||^7||^8`) · `@vanilla-extract/sprinkles@1.7.0` · `@vanilla-extract/recipes@0.5.7` · `astro-expressive-code@0.44.0` · `sharp@0.35.2` · `open-props@1.7.23` · plus `astro-icon`. Requires **Node 22.12+**.
+`astro@^7.0.3` · `@astrojs/rss@^4.0.18` · `@astrojs/sitemap@^3.7.3` · `@vanilla-extract/css@^1.21.0` · `@vanilla-extract/vite-plugin@^5.2.3` (dev; peer `vite ^5||^6||^7||^8`). Node **22.12+**. Shiki ships with Astro (no separate dep).
