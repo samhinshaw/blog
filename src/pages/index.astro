@@ -1,5 +1,11 @@
-<!doctype html>
-<html lang="en">
-  <head><meta charset="utf-8" /><title>Sam Hinshaw</title></head>
-  <body><h1>Hello, Astro</h1></body>
-</html>
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { prose } from '../styles/prose.css';
+---
+<BaseLayout>
+  <div class={prose}>
+    <h1>Sam Hinshaw</h1>
+    <p>Bioinformatics &amp; web development. I build tools to help scientists do bioinformatics.</p>
+    <p><a href="/blog/">Read the blog →</a></p>
+  </div>
+</BaseLayout>

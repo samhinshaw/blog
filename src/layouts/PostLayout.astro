@@ -1,0 +1,20 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { prose, postMeta } from '../styles/prose.css';
+interface Props { post: CollectionEntry<'blog'>; }
+const { post } = Astro.props;
+const { title, date, byline, subtitle, lastUpdated, excerpt } = post.data;
+const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout title={title} description={excerpt}>
+  <article class={prose}>
+    <h1>{title}</h1>
+    <p class={postMeta}>
+      <time datetime={date.toISOString()}>{fmt(date)}</time>{byline && <> · {byline}</>}
+    </p>
+    {subtitle && <p><em>{subtitle}</em></p>}
+    <slot />
+    {lastUpdated && <p class={postMeta}><em>Updated {fmt(lastUpdated)}</em></p>}
+  </article>
+</BaseLayout>
