@@ -51,7 +51,7 @@
 | Dark mode | none | **System-only** via `@media (prefers-color-scheme: dark)` — no toggle, no JS |
 | Feeds/SEO | none | `@astrojs/rss` 4.0.18, `@astrojs/sitemap` 3.7.3 (requires `site`), OG/meta component |
 | Images | inline `background-image` | Keep in `public/images` for now; `astro:assets`/sharp later |
-| Hosting | self-hosted | **Vercel** (free) — Cloudflare Pages as the fallback (§5) |
+| Hosting | self-hosted | **Cloudflare Pages** (free) — domain DNS already on Cloudflare; Vercel as the alternative (§5) |
 
 > **Astro 7 note:** ships **Vite 8 + Rolldown** (new Rust bundler), a **new Rust `.astro` compiler** that is strict about invalid/unbalanced HTML (no auto-correction), and a **new default Markdown parser ("Sätteri")** replacing remark/rehype. To reuse specific remark/rehype plugins, reinstall `@astrojs/markdown-remark`.
 
@@ -86,10 +86,11 @@
 
 Static Astro needs **no adapter** on any host (`astro build` emits static files; adapters are only for SSR/edge later).
 
-**Decision: Vercel (Hobby / free).** Matches Sam's instinct, the most polished zero-config Astro deploy, best-in-class PR previews, free custom domain + HTTPS, cleanest future SSR on-ramp.
+**Decision: Cloudflare Pages (free).** The domain's DNS is already managed in Cloudflare, so attaching the custom domain + automatic HTTPS is seamless (no cross-provider DNS). Plus: **unlimited bandwidth**, **no non-commercial restriction**, free per-branch/PR previews, and free privacy-first Web Analytics. Zero-config for static Astro (framework auto-detected; build `astro build`, output `dist/`).
 
-- **Caveat:** Vercel Hobby is **non-commercial/personal use only** (even donations count as commercial) and bandwidth is capped at 100 GB/mo (irrelevant at this traffic). The day the blog is monetized → Pro ($20/mo) or move hosts.
-- **Fallback — Cloudflare Pages** if that clause or cap ever matters: unlimited bandwidth, no commercial restriction, equally zero-config; DX a notch less slick.
+- **Free-tier limits:** 500 builds/mo, 1 concurrent build, 20-min build timeout, 20,000 files/deploy, 25 MiB/file — all comfortably beyond a 13-post blog.
+- **Future SSR** (if ever needed) runs on **Cloudflare Workers** via `@astrojs/cloudflare` — fast/cheap V8 isolates (not full Node by default), fine for later dynamic bits (e.g. a search or dynamic-OG endpoint).
+- **Alternative — Vercel (Hobby/free):** the most polished DX and best-in-class previews, but its free tier is **non-commercial/personal only** (even donations count) with a 100 GB/mo bandwidth cap, and the domain lives elsewhere. Reasonable only if DX ever outweighs those.
 - Rejected: **Netlify** (2026 free tier tightened to a ~15 GB-equivalent credit model), **GitHub Pages** (no PR previews, static-forever).
 
 ---
@@ -188,7 +189,7 @@ Reptar builds each post URL from the **slugified frontmatter `title`**, *not* th
 
 **Phase 5 — Features.** RSS endpoint, sitemap, SEO/OG meta component, tag pages.
 
-**Phase 6 — Deploy.** Push to GitHub, connect Vercel, custom domain + HTTPS, **crawl old vs new URLs to confirm parity**, then cut over DNS.
+**Phase 6 — Deploy.** Push to GitHub, connect the repo to **Cloudflare Pages** (build `astro build`, output `dist/`), attach the custom domain (DNS already in Cloudflare) with automatic HTTPS, **crawl old vs new URLs to confirm parity**, then cut over.
 
 ---
 
@@ -207,7 +208,7 @@ Reptar builds each post URL from the **slugified frontmatter `title`**, *not* th
 |---|---|---|---|
 | 1 | Bulma replacement | **Roll your own in VE** | Minimal now; Sprinkles/Recipes deferred to redesign |
 | 1b | Token seed | **Open Props (optional, recommended)** | Pin 1.7.x; or hand-author ~15 tokens with zero deps |
-| 2 | Hosting | **Vercel (free)** | Cloudflare Pages fallback if the non-commercial clause/cap bites |
+| 2 | Hosting | **Cloudflare Pages (free)** | Domain DNS already in Cloudflare; unlimited bandwidth, no commercial clause. Vercel is the alt if DX ever wins out |
 | 3 | Hero images | **Keep in `public/images` for now** | Optimize via `astro:assets` during the later redesign |
 | 4 | `projects` page | **Convert to clean MDX** (like posts) | Alternative: rebuild during the redesign |
 | — | Dark mode | **System-only** (`prefers-color-scheme`) | No picker/toggle (per Sam) |
