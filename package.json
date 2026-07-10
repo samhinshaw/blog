@@ -1,31 +1,17 @@
 {
-  "name": "sam_blog",
-  "version": "1.0.0",
-  "description": "",
-  "main": "reptar.config.js",
+  "name": "samhinshaw-blog",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
   "scripts": {
-    "test": "snyk test"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "check:urls": "node scripts/check-urls.mjs",
+    "verify": "astro check && astro build && node scripts/check-urls.mjs"
   },
-  "keywords": [],
-  "author": "",
-  "repo": "https://github.com/samhinshaw/blog",
-  "license": "GPL-3.0",
   "dependencies": {
-    "bulma": "^0.5.1",
-    "hoek": "^5.0.3",
-    "normalize.css": "^7.0.0",
-    "reptar-excerpt": "^1.0.0",
-    "reptar-html-minifier": "^1.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^4.6.1",
-    "eslint-config-airbnb-base": "^12.0.0",
-    "eslint-plugin-import": "^2.7.0",
-    "less-plugin-npm-import": "^2.1.0",
-    "node-sass": "^4.5.3",
-    "prettier": "^1.6.1",
-    "prettier-eslint": "^8.0.0",
-    "sass-module-importer": "^1.4.0",
-    "snyk": "^1.82.0"
+    "astro": "^7.0.7"
   }
 }
