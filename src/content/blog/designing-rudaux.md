@@ -31,7 +31,7 @@ Therefore, with this in mind we decided upon using Canvas with JupyterHub for ou
 <dt><span>LTI Consumer:</span></dt>
 <dd>The service sending the launch request. Usually this will be your LMS. In our case, this refers to Canvas.</dd>
 <dt><span>LTI Tool Provider:</span></dt>
-<dd>The service receiving the launch request, and 'providing the service'. In our case this is JupyterHub.</dt>
+<dd>The service receiving the launch request, and 'providing the service'. In our case this is JupyterHub.</dd>
 <dt><span>LTI Consumer Key:</span></dt>
 <dd>A long randomly generated hex string that serves as the first half of our authentication token. This is similar to a username or a public key.</dd>
 <dt><span>LTI Consumer Secret:</span></dt>
