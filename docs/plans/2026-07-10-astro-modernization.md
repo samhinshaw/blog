@@ -652,7 +652,9 @@ console.log('\nAll expected URLs present.');
 - [ ] **Step 2: Run it (expected to fail now — content and routes don't exist yet)**
 
 Run: `npm run build && npm run check:urls`
-Expected: many `MISS` lines, exits non-zero. This is the red baseline it will turn green by Task 11.
+Expected: many `MISS` lines, exits non-zero. This is the red baseline it will turn green by Task 12.
+
+> **Amended in Task 9:** after the draft decision, this expected list is trimmed to the 7 **published** posts (the 6 draft URLs are removed), for 12 expected URLs total. See the execution amendment in Task 9.
 
 - [ ] **Step 3: Commit**
 
@@ -668,23 +670,25 @@ git commit -m "Add build-output URL parity check script"
 **Files:**
 - Create: `src/content/blog/<slug>.md` × 13 (source of truth: `legacy/_posts/`)
 
+> **Execution amendment (draft decision):** 6 of the 13 legacy posts carry `draft: true` in their old Reptar frontmatter. Per the site owner's decision, those 6 are **kept as drafts** — migrated into the new format (so they survive the `legacy/` deletion in Task 16) but carrying `draft: true`, which Astro's `!data.draft` filter keeps off every route, the blog index, RSS, and tag pages. Only the **7 non-draft posts publish**. The `check-urls.mjs` expected list (Task 8) is therefore trimmed to those 7 published post URLs (12 total with the 5 section URLs).
+
 **Post map** (new filename = URL slug; carry the date from the legacy filename/frontmatter; suggested tags):
 
-| New file `src/content/blog/…` | date | tags |
-|---|---|---|
-| `automatically-update-rstudio.md` | 2016-09-23 | `[r, rstudio]` |
-| `installing-autokey.md` | 2017-02-09 | `[linux, tools]` |
-| `encryption-commands-for-letsencrypt.md` | 2017-02-09 | `[security, tls]` |
-| `how-to-install-firefox-nightly.md` | 2017-02-09 | `[firefox, linux]` |
-| `installing-node-js-on-linux.md` | 2017-02-09 | `[node, linux]` |
-| `how-to-setup-your-ssh-keys.md` | 2017-02-09 | `[ssh, security]` |
-| `installing-zsh.md` | 2017-02-10 | `[zsh, shell]` |
-| `building-a-blog-with-reptar-and-bulma.md` | 2017-09-04 | `[web, blogging]` |
-| `ligature-support-in-monospace-fonts.md` | 2017-09-13 | `[fonts, editor]` |
-| `wrapping-template-literals-in-vs-code.md` | 2017-09-28 | `[javascript, vscode]` |
-| `lazy-loading-r-packages-in-shiny.md` | 2017-10-20 | `[r, shiny]` |
-| `designing-rudaux.md` | 2018-08-24 | `[rudaux, jupyterhub, education]` |
-| `using-rudaux.md` | 2018-08-24 | `[rudaux, jupyterhub, education]` |
+| New file `src/content/blog/…` | date | tags | publish? |
+|---|---|---|---|
+| `automatically-update-rstudio.md` | 2016-09-23 | `[r, rstudio]` | ✅ publish |
+| `installing-autokey.md` | 2017-02-09 | `[linux, tools]` | 📝 draft |
+| `encryption-commands-for-letsencrypt.md` | 2017-02-09 | `[security, tls]` | 📝 draft |
+| `how-to-install-firefox-nightly.md` | 2017-02-09 | `[firefox, linux]` | 📝 draft |
+| `installing-node-js-on-linux.md` | 2017-02-09 | `[node, linux]` | ✅ publish |
+| `how-to-setup-your-ssh-keys.md` | 2017-02-09 | `[ssh, security]` | 📝 draft |
+| `installing-zsh.md` | 2017-02-10 | `[zsh, shell]` | 📝 draft |
+| `building-a-blog-with-reptar-and-bulma.md` | 2017-09-04 | `[web, blogging]` | 📝 draft |
+| `ligature-support-in-monospace-fonts.md` | 2017-09-13 | `[fonts, editor]` | ✅ publish |
+| `wrapping-template-literals-in-vs-code.md` | 2017-09-28 | `[javascript, vscode]` | ✅ publish |
+| `lazy-loading-r-packages-in-shiny.md` | 2017-10-20 | `[r, shiny]` | ✅ publish |
+| `designing-rudaux.md` | 2018-08-24 | `[rudaux, jupyterhub, education]` | ✅ publish |
+| `using-rudaux.md` | 2018-08-24 | `[rudaux, jupyterhub, education]` | ✅ publish |
 
 **Per-post procedure** (repeat for each row; open the matching `legacy/_posts/<date>-*.md` as the source):
 

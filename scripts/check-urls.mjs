@@ -5,13 +5,7 @@ const DIST = 'dist';
 const expected = [
   '/', '/about/', '/projects/', '/blog/', '/tags/',
   '/blog/automatically-update-rstudio/',
-  '/blog/installing-autokey/',
-  '/blog/encryption-commands-for-letsencrypt/',
-  '/blog/how-to-install-firefox-nightly/',
   '/blog/installing-node-js-on-linux/',
-  '/blog/how-to-setup-your-ssh-keys/',
-  '/blog/installing-zsh/',
-  '/blog/building-a-blog-with-reptar-and-bulma/',
   '/blog/ligature-support-in-monospace-fonts/',
   '/blog/wrapping-template-literals-in-vs-code/',
   '/blog/lazy-loading-r-packages-in-shiny/',

@@ -1,0 +1,112 @@
+---
+title: Installing ZSH
+date: 2017-02-10
+excerpt: How to install ZSH on unix systems with Oh-My-ZSH, Powerline, and a material design color palette.
+draft: true
+tags: [zsh, shell]
+---
+
+### ZSH
+
+Note: this section was copied almost entirely from [NTag's](https://github.com/NTag) [gist](https://gist.github.com/NTag/39a27aea87aeabe54c09)
+
+
+#### Install ZSH
+
+```bash
+sudo apt-get install git zsh
+```
+
+#### Install OhMyZSH
+
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
+
+#### Install zsh-autosuggestions
+
+```bash
+git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+```
+
+Edit `~/.zshrc`:
+
+```bash
+# replace
+plugins=(git)
+# with
+plugins=(git zsh-autosuggestions)
+```
+
+create a file `~/.oh-my-zsh/custom/colors.zsh` containing:
+
+```bash
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
+```
+
+### Install zsh-syntax-highlighting
+
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+Edit `~/.zshrc`:
+
+```bash
+# replace
+plugins=(git zsh-autosuggestions)
+# with
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+```
+
+### Install Powerline
+
+Install pip:
+
+```bash
+curl https://bootstrap.pypa.io/get-pip.py | python
+sudo pip install powerline-status
+```
+Find where Powerline has been installed
+
+```bash
+pip show powerline-status
+```
+
+Add the location printed to the end of `~/.zshrc` as such:
+
+```bash
+. /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+```
+
+#### Set ZSH as default shell
+
+```bash
+chsh -s /usr/bin/zsh
+```
+
+## Material Design Terminal Colors
+
+1. Open Terminal Preferences and create a new profile
+2. Edit this profile and go to Colors
+3. Set Background to `#263238` and Text to `#FFFFFF`
+4. Set Palette using these colors:
+
+```bash
+black: '#546e7a',
+red: '#ff5252',
+green: '#9ECE58',
+yellow: '#ffca28',
+blue: '#396fe2',
+magenta: '#BB80B3',
+cyan: '#2DDAFD',
+white: '#F0F0F0',
+lightBlack: '#b0bec5',
+lightRed: '#ff8a80',
+lightGreen: '#C3E88D',
+lightYellow: '#FAED70',
+lightBlue: '#82aaff',
+lightMagenta: '#C792EA',
+lightCyan: '#89DDFF',
+lightWhite: '#FFFFFF'
+```
