@@ -1,9 +1,0 @@
-{% extends 'base.html' %} {% block body_class %}post-template{% endblock%} {% block content %}
-<div class="columns is-tablet is-centered">
-  <div class="column is-8-desktop is-10-tablet">
-    <div class="content">
-      {{file.content | safe}}
-    </div>
-  </div>
-</div>
-{% include "_pagination.html" %} {% endblock%}
