@@ -7,7 +7,7 @@ tags: [rudaux, jupyterhub, education]
 
 > This post is focused on the main functions of rudaux and how to implement it in your course's workflow. For a discussion on the motivation behind and development of rudaux, please read [*Designing Rudaux*](/blog/designing-rudaux/).
 >
-> 📖 [Documentation](https://ubc-dsci.github.io/rudaux-docs/) · 💻 [Source Code](http://github.com/ubc-dsci/rudaux)
+> 📖 [Documentation](https://ubc-dsci.github.io/rudaux-docs/) · 💻 [Source Code](https://github.com/ubc-dsci/rudaux)
 
 ## What is Rudaux For?
 

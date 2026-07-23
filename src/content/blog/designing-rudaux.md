@@ -8,7 +8,7 @@ tags: [rudaux, jupyterhub, education]
 
 > This post is focused on the motivation and design process in building Rudaux. For information on how to use Rudaux to integrate Canvas and JupyterHub, please read [*Using Rudaux*](/blog/using-rudaux/).
 >
-> 📖 [Documentation](https://ubc-dsci.github.io/rudaux-docs/) · 💻 [Source Code](http://github.com/ubc-dsci/rudaux)
+> 📖 [Documentation](https://ubc-dsci.github.io/rudaux-docs/) · 💻 [Source Code](https://github.com/ubc-dsci/rudaux)
 
 <h2 id='motivation'>Motivation</h2>
 

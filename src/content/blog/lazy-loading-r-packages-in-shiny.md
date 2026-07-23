@@ -8,7 +8,7 @@ tags: [r, shiny]
 
 ## Introduction
 
-Shiny is a powerful framework for quickly building user interfaces around R programs. However, [R is not a fast language](http://adv-r.had.co.nz/Performance.html), and this is particularly noticeable when loading R packages into memory.
+Shiny is a powerful framework for quickly building user interfaces around R programs. However, [R is not a fast language](https://adv-r.had.co.nz/Performance.html), and this is particularly noticeable when loading R packages into memory.
 
 In Shiny, R packages are loaded during app initialization. Unfortunately, this occurs before [first paint](https://developers.google.com/web/tools/lighthouse/audits/first-meaningful-paint), as the app's UI is actually rendered from R. This leads to poor UX, because package loads are extremely penalizing. However, if you are simply loading packages for data manipulation, there is no reason to block initial page rendering with your package loads.
 

@@ -18,7 +18,7 @@ I like to keep my automation scripts in `~/scripts`, but you may have a differen
 echo "Commencing RStudio update on" $(date +"%A %b %d, %Y") at $(date +"%r")
 cd /home/shinshaw/Downloads
 mkdir rstudio && cd rstudio
-wget -O rstudio.deb http://www.rstudio.org/download/latest/preview/desktop/ubuntu64/rstudio-latest-amd64.deb
+wget -O rstudio.deb https://www.rstudio.org/download/latest/preview/desktop/ubuntu64/rstudio-latest-amd64.deb
 sudo dpkg -i rstudio.deb
 cd /home/shinshaw/Downloads
 rm -r rstudio/
