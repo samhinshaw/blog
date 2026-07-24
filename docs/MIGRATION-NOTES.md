@@ -19,7 +19,7 @@ Design docs: [`specs/2026-07-08-astro-modernization.md`](specs/2026-07-08-astro-
 - **Exercise the two complex posts:**
   - `/blog/designing-rudaux/` — the "LTI Terminology" **`<details>` accordion** expands/collapses; the top **blockquote's Documentation / Source Code links** work.
   - Cross-links both directions: `using-rudaux` → `designing-rudaux/#grading-server` should jump to the Grading Server heading; `designing-rudaux` → `using-rudaux` should resolve.
-  - `/blog/lazy-loading-r-packages-in-shiny/` — confirm **code blocks are syntax-highlighted** (Shiki) and that the two *italic captions* substituted for the old live demo-buttons read acceptably in context.
+  - `/blog/lazy-loading-r-packages-in-shiny/` — confirm **code blocks are syntax-highlighted** (Shiki) and that the two _italic captions_ substituted for the old live demo-buttons read acceptably in context.
 - Check a post at mobile width (responsive layout).
 - Load `/rss.xml` (7 items) and `/sitemap-index.xml`.
 
@@ -42,17 +42,17 @@ Design docs: [`specs/2026-07-08-astro-modernization.md`](specs/2026-07-08-astro-
 
 Executed the 16-task plan via fresh subagents per task with review gates.
 
-| Area | What landed |
-|---|---|
-| **Repo** | Archived the Reptar/Bulma/LESS site to `legacy/`, moved kept assets to `public/`, rewrote `.gitignore`; removed `legacy/` entirely at the end. |
-| **Framework** | Scaffolded **Astro 7.0.7**, Node 22 pin (`.nvmrc`), strict `tsconfig`. |
-| **Styling** | **Vanilla Extract** via Vite plugin — *de-risked first* and confirmed it builds on Astro 7's Vite 8 / Rolldown bundler (no Astro 6 fallback needed). Roll-your-own system: `theme.css.ts` (tokens + **system dark mode**), `reset.css.ts`, `prose.css.ts`. No Bulma. |
-| **Integrations** | `@astrojs/sitemap`, `@astrojs/rss`, `@astrojs/check`; built-in **Shiki** highlighting. |
-| **Content** | Typed `blog` collection (Zod schema, glob loader). **Migrated 13 posts** — stripped Bulma/FontAwesome/template chrome, converted info-cards → blockquotes, the collapsible widget → native `<details>`, rewrote inter-post links to absolute `/blog/<slug>/`, preserved all code fences. Fixed a pre-existing malformed `</dt>` in the legacy source. |
-| **Routes** | Home, blog index + `[slug]` post pages (routed by `post.id`), about, **projects stub**, 404, tag index + per-tag pages, `rss.xml`. |
-| **Guardrail** | `scripts/check-urls.mjs` written *red-first* (TDD-style), goes green as routes land — asserts every published URL is emitted to `dist/`. |
-| **Docs** | `DEPLOY.md` runbook; rewrote `README`; amended the plan doc for the draft decision; this file. |
-| **QA** | Full `verify` gate + a rigorous final branch review (posts diffed against pre-archive source, build output checked for draft leakage) — clean, ready to deploy; fixed its one Minor finding (removed an unused `SITE_URL` const). |
+| Area             | What landed                                                                                                                                                                                                                                                                                                                                           |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Repo**         | Archived the Reptar/Bulma/LESS site to `legacy/`, moved kept assets to `public/`, rewrote `.gitignore`; removed `legacy/` entirely at the end.                                                                                                                                                                                                        |
+| **Framework**    | Scaffolded **Astro 7.0.7**, Node 22 pin (`.nvmrc`), strict `tsconfig`.                                                                                                                                                                                                                                                                                |
+| **Styling**      | **Vanilla Extract** via Vite plugin — _de-risked first_ and confirmed it builds on Astro 7's Vite 8 / Rolldown bundler (no Astro 6 fallback needed). Roll-your-own system: `theme.css.ts` (tokens + **system dark mode**), `reset.css.ts`, `prose.css.ts`. No Bulma.                                                                                  |
+| **Integrations** | `@astrojs/sitemap`, `@astrojs/rss`, `@astrojs/check`; built-in **Shiki** highlighting.                                                                                                                                                                                                                                                                |
+| **Content**      | Typed `blog` collection (Zod schema, glob loader). **Migrated 13 posts** — stripped Bulma/FontAwesome/template chrome, converted info-cards → blockquotes, the collapsible widget → native `<details>`, rewrote inter-post links to absolute `/blog/<slug>/`, preserved all code fences. Fixed a pre-existing malformed `</dt>` in the legacy source. |
+| **Routes**       | Home, blog index + `[slug]` post pages (routed by `post.id`), about, **projects stub**, 404, tag index + per-tag pages, `rss.xml`.                                                                                                                                                                                                                    |
+| **Guardrail**    | `scripts/check-urls.mjs` written _red-first_ (TDD-style), goes green as routes land — asserts every published URL is emitted to `dist/`.                                                                                                                                                                                                              |
+| **Docs**         | `DEPLOY.md` runbook; rewrote `README`; amended the plan doc for the draft decision; this file.                                                                                                                                                                                                                                                        |
+| **QA**           | Full `verify` gate + a rigorous final branch review (posts diffed against pre-archive source, build output checked for draft leakage) — clean, ready to deploy; fixed its one Minor finding (removed an unused `SITE_URL` const).                                                                                                                     |
 
 **Key decisions made in-flight:**
 

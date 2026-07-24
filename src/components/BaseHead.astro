@@ -1,10 +1,14 @@
 ---
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-interface Props { title?: string; description?: string; }
+interface Props {
+  title?: string;
+  description?: string;
+}
 const { title, description = SITE_DESCRIPTION } = Astro.props;
 const pageTitle = title ? `${title} · ${SITE_TITLE}` : SITE_TITLE;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
@@ -13,7 +17,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <link rel="canonical" href={canonical} />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={SITE_TITLE}
+  href="/rss.xml"
+/>
 <meta property="og:type" content="website" />
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={description} />

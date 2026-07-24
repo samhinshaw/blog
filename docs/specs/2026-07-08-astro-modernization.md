@@ -10,6 +10,7 @@
 ## 1. Goals & non-goals
 
 **Goals**
+
 - Replace the dormant **Reptar** SSG with **Astro**; remove **Bulma** + LESS/node-sass.
 - Style with **Vanilla Extract (VE)**, kept minimal.
 - **Barebones** — a clean foundation Sam will redesign later. Prefer the simplest thing that works.
@@ -19,6 +20,7 @@
 - Keep the **old post URLs** working — cheap, since we just name files by the old slug.
 
 **Non-goals (deliberately cut — see §11 for the deferral list)**
+
 - Fidelity to the old visual design; **hero photos**; self-hosted **Fira Code**; **icon** system.
 - **MDX** and rich in-post components (info-cards).
 - **Expressive Code** frames/copy-buttons (built-in Shiki is enough).
@@ -41,20 +43,20 @@
 
 ## 3. Target stack
 
-| Layer | Today | Proposed (current as of June 2026 — pin & verify at build) |
-|---|---|---|
-| SSG | Reptar | **Astro 7.0.x**, Node 22.12+ |
-| Content | Nunjucks + inline Bulma HTML | **Plain Markdown** in a typed content collection (no MDX) |
-| Styling | Bulma + LESS | **Vanilla Extract** (`@vanilla-extract/css` + `vite-plugin`), minimal |
-| Bulma replacement | — | **Roll-your-own VE** (tokens + reset + prose); no framework (§4) |
-| Code highlighting | highlight.css theme | **Built-in Shiki** (default; zero deps/config) |
-| Fonts | self-hosted Fira Code | **System font stack** (no self-hosted fonts) |
-| Icons | FontAwesome font | **None** — plain text/emoji links |
-| Dark mode | none | **System-only** via `@media (prefers-color-scheme: dark)` |
-| Feeds/SEO | none | `@astrojs/rss`, `@astrojs/sitemap` (needs `site`), small OG/meta component |
-| Post headers | hero photo + gradient + credit | **Title + date (+ optional byline) + prose** |
-| Images | inline `background-image` | Files retained in `public/images/`; not rendered as heroes for now |
-| Hosting | self-hosted | **Cloudflare Pages** (free) |
+| Layer             | Today                          | Proposed (current as of June 2026 — pin & verify at build)                 |
+| ----------------- | ------------------------------ | -------------------------------------------------------------------------- |
+| SSG               | Reptar                         | **Astro 7.0.x**, Node 22.12+                                               |
+| Content           | Nunjucks + inline Bulma HTML   | **Plain Markdown** in a typed content collection (no MDX)                  |
+| Styling           | Bulma + LESS                   | **Vanilla Extract** (`@vanilla-extract/css` + `vite-plugin`), minimal      |
+| Bulma replacement | —                              | **Roll-your-own VE** (tokens + reset + prose); no framework (§4)           |
+| Code highlighting | highlight.css theme            | **Built-in Shiki** (default; zero deps/config)                             |
+| Fonts             | self-hosted Fira Code          | **System font stack** (no self-hosted fonts)                               |
+| Icons             | FontAwesome font               | **None** — plain text/emoji links                                          |
+| Dark mode         | none                           | **System-only** via `@media (prefers-color-scheme: dark)`                  |
+| Feeds/SEO         | none                           | `@astrojs/rss`, `@astrojs/sitemap` (needs `site`), small OG/meta component |
+| Post headers      | hero photo + gradient + credit | **Title + date (+ optional byline) + prose**                               |
+| Images            | inline `background-image`      | Files retained in `public/images/`; not rendered as heroes for now         |
+| Hosting           | self-hosted                    | **Cloudflare Pages** (free)                                                |
 
 > **Dependency count drops to ~4:** `astro`, `@astrojs/rss`, `@astrojs/sitemap`, `@vanilla-extract/css` (+ its dev-only `vite-plugin`). Shiki is built into Astro.
 
@@ -64,9 +66,10 @@
 
 ## 4. Replacing Bulma — decision
 
-Vanilla Extract is itself a full styling *system* (theme contracts = tokens, Sprinkles = utilities, Recipes = component variants), so most "frameworks" (Tailwind, UnoCSS, Panda) are **redundant** with it, and the token/prose helpers (Open Props, Pico) are only *complementary*.
+Vanilla Extract is itself a full styling _system_ (theme contracts = tokens, Sprinkles = utilities, Recipes = component variants), so most "frameworks" (Tailwind, UnoCSS, Panda) are **redundant** with it, and the token/prose helpers (Open Props, Pico) are only _complementary_.
 
 **Decision: roll our own in VE, minimal.** For the barebones phase that means only:
+
 - a small **theme contract** (~15 tokens: color, space, type scale) with system light/dark;
 - a ~30-line **global reset** (also covers nav/footer layout);
 - a small **`globalStyle` "prose" sheet** for the Markdown body.
@@ -123,21 +126,21 @@ astro.config.mjs               # site, trailingSlash:'always', sitemap(), VE vit
 
 Reptar built post URLs from the slugified **title** (not the filename), so 11 of 13 filenames diverge from their URL. We preserve the URLs the cheap way: **name each new content file with its slug** (map below) and route by the file `id`; set `trailingSlash: 'always'` to keep the `/blog/foo/` shape. No live-site diff, no redirect audit.
 
-| Legacy file | New file `src/content/blog/…` | URL |
-|---|---|---|
-| `2016-09-23-UpdateRstudio.md` | `automatically-update-rstudio.md` | `/blog/automatically-update-rstudio/` |
-| `2017-02-09-autokey.md` | `installing-autokey.md` | `/blog/installing-autokey/` |
-| `2017-02-09-encryption.md` | `encryption-commands-for-letsencrypt.md` | `/blog/encryption-commands-for-letsencrypt/` |
-| `2017-02-09-FirefoxNightly.md` | `how-to-install-firefox-nightly.md` | `/blog/how-to-install-firefox-nightly/` |
-| `2017-02-09-NodeJS.md` | `installing-node-js-on-linux.md` | `/blog/installing-node-js-on-linux/` |
-| `2017-02-09-SSH_keys.md` | `how-to-setup-your-ssh-keys.md` | `/blog/how-to-setup-your-ssh-keys/` |
-| `2017-02-10-zsh.md` | `installing-zsh.md` | `/blog/installing-zsh/` |
-| `2017-09-04_reptar.md` | `building-a-blog-with-reptar-and-bulma.md` | `/blog/building-a-blog-with-reptar-and-bulma/` |
-| `2017-09-13_ligatures.md` | `ligature-support-in-monospace-fonts.md` | `/blog/ligature-support-in-monospace-fonts/` |
-| `2017-09-28_template-literals.md` | `wrapping-template-literals-in-vs-code.md` | `/blog/wrapping-template-literals-in-vs-code/` |
-| `2017-10-20_dynamic_package_loads.md` | `lazy-loading-r-packages-in-shiny.md` | `/blog/lazy-loading-r-packages-in-shiny/` |
-| `2018-08-24-designing-rudaux.md` | `designing-rudaux.md` | `/blog/designing-rudaux/` |
-| `2018-08-24-using-rudaux.md` | `using-rudaux.md` | `/blog/using-rudaux/` |
+| Legacy file                           | New file `src/content/blog/…`              | URL                                            |
+| ------------------------------------- | ------------------------------------------ | ---------------------------------------------- |
+| `2016-09-23-UpdateRstudio.md`         | `automatically-update-rstudio.md`          | `/blog/automatically-update-rstudio/`          |
+| `2017-02-09-autokey.md`               | `installing-autokey.md`                    | `/blog/installing-autokey/`                    |
+| `2017-02-09-encryption.md`            | `encryption-commands-for-letsencrypt.md`   | `/blog/encryption-commands-for-letsencrypt/`   |
+| `2017-02-09-FirefoxNightly.md`        | `how-to-install-firefox-nightly.md`        | `/blog/how-to-install-firefox-nightly/`        |
+| `2017-02-09-NodeJS.md`                | `installing-node-js-on-linux.md`           | `/blog/installing-node-js-on-linux/`           |
+| `2017-02-09-SSH_keys.md`              | `how-to-setup-your-ssh-keys.md`            | `/blog/how-to-setup-your-ssh-keys/`            |
+| `2017-02-10-zsh.md`                   | `installing-zsh.md`                        | `/blog/installing-zsh/`                        |
+| `2017-09-04_reptar.md`                | `building-a-blog-with-reptar-and-bulma.md` | `/blog/building-a-blog-with-reptar-and-bulma/` |
+| `2017-09-13_ligatures.md`             | `ligature-support-in-monospace-fonts.md`   | `/blog/ligature-support-in-monospace-fonts/`   |
+| `2017-09-28_template-literals.md`     | `wrapping-template-literals-in-vs-code.md` | `/blog/wrapping-template-literals-in-vs-code/` |
+| `2017-10-20_dynamic_package_loads.md` | `lazy-loading-r-packages-in-shiny.md`      | `/blog/lazy-loading-r-packages-in-shiny/`      |
+| `2018-08-24-designing-rudaux.md`      | `designing-rudaux.md`                      | `/blog/designing-rudaux/`                      |
+| `2018-08-24-using-rudaux.md`          | `using-rudaux.md`                          | `/blog/using-rudaux/`                          |
 
 Old paginated index pages (`/blog/2/`, `/blog/3/`) go away with the single-list blog. Optionally add two lines to `public/_redirects` (`/blog/2/ /blog/ 301`) — otherwise they simply 404 (negligible risk).
 
@@ -164,29 +167,29 @@ Old paginated index pages (`/blog/2/`, `/blog/3/`) go away with the single-list 
 ## 9. Risks & mitigations
 
 1. **Astro 7 = Vite 8 + Rolldown.** VE advertises Vite 8 support, but Rolldown caused plugin friction this cycle. **Mitigation: the Phase-0 smoke test.** Fallback: pin Astro 6 / Vite 7.
-2. **Strict Rust compiler.** Unbalanced HTML in posts now *errors* — handled by the Phase-2 cleanup (removing the `</div>` hacks and Bulma markup).
+2. **Strict Rust compiler.** Unbalanced HTML in posts now _errors_ — handled by the Phase-2 cleanup (removing the `</div>` hacks and Bulma markup).
 3. That's essentially it now — dropping MDX/heroes/fonts/icons/EC removed most of the moving parts.
 
 ---
 
 ## 10. Decisions
 
-| Decision | Choice |
-|---|---|
+| Decision                | Choice                                                                      |
+| ----------------------- | --------------------------------------------------------------------------- |
 | SSG / styling / hosting | Astro 7 · roll-your-own Vanilla Extract (minimal) · Cloudflare Pages (free) |
-| Design fidelity | **Barebones**, redesign later — not a 1:1 migration |
-| Posts | **Plain Markdown**, no MDX; Bulma/HTML stripped |
-| Post headers | **No heroes** — title + date (+ optional byline) |
-| Code blocks | **Built-in Shiki** (no Expressive Code) |
-| Fonts | **System stack** (no self-hosted Fira Code) |
-| Icons | **None** (text/emoji) |
-| Dark mode | **System-only** (`prefers-color-scheme`), no toggle |
-| Pagination | **None** — `/blog/` lists all posts |
-| Old URLs | Keep slugs by naming files; **no** diff/redirect ceremony |
-| Favicons | `favicon.ico` + `apple-touch-icon.png` only |
-| `data/dictionary.json` | **Drop** |
-| `projects` page | **Stub now**, rebuild later |
-| Kept features | tag pages · RSS · sitemap · basic SEO/OG · syntax highlighting |
+| Design fidelity         | **Barebones**, redesign later — not a 1:1 migration                         |
+| Posts                   | **Plain Markdown**, no MDX; Bulma/HTML stripped                             |
+| Post headers            | **No heroes** — title + date (+ optional byline)                            |
+| Code blocks             | **Built-in Shiki** (no Expressive Code)                                     |
+| Fonts                   | **System stack** (no self-hosted Fira Code)                                 |
+| Icons                   | **None** (text/emoji)                                                       |
+| Dark mode               | **System-only** (`prefers-color-scheme`), no toggle                         |
+| Pagination              | **None** — `/blog/` lists all posts                                         |
+| Old URLs                | Keep slugs by naming files; **no** diff/redirect ceremony                   |
+| Favicons                | `favicon.ico` + `apple-touch-icon.png` only                                 |
+| `data/dictionary.json`  | **Drop**                                                                    |
+| `projects` page         | **Stub now**, rebuild later                                                 |
+| Kept features           | tag pages · RSS · sitemap · basic SEO/OG · syntax highlighting              |
 
 ---
 

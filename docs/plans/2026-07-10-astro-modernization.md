@@ -33,13 +33,14 @@ legacy/                         # archived Reptar site (deleted in the final tas
 
 Each file has one job. `theme.css.ts` owns tokens + dark mode; `reset.css.ts` owns element defaults + nav/footer layout; `prose.css.ts` owns Markdown-body styling. Layouts compose; pages fetch + render.
 
-> **Note on verification:** this is a static site, so the primary gates are `astro build` (the strict Rust compiler fails on bad HTML), `astro check` (schema + types), and `scripts/check-urls.mjs` (asserts every expected URL exists in `dist/`). The URL script is written *before* the routes (Task 8) so it starts red and goes green as pages land.
+> **Note on verification:** this is a static site, so the primary gates are `astro build` (the strict Rust compiler fails on bad HTML), `astro check` (schema + types), and `scripts/check-urls.mjs` (asserts every expected URL exists in `dist/`). The URL script is written _before_ the routes (Task 8) so it starts red and goes green as pages land.
 
 ---
 
 ### Task 1: Archive the legacy site, stage assets
 
 **Files:**
+
 - Move (git mv): Reptar sources → `legacy/`; `images/` → `public/images/`; `favicon.ico`, `apple-touch-icon.png` → `public/`
 - Modify: `.gitignore`
 
@@ -96,6 +97,7 @@ Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
 ### Task 2: Scaffold Astro 7 and verify a baseline build
 
 **Files:**
+
 - Create: `package.json`, `tsconfig.json`, `.nvmrc`, `astro.config.mjs`, `src/pages/index.astro`
 
 - [ ] **Step 1: Confirm Node ≥ 22.12**
@@ -177,6 +179,7 @@ git commit -m "Scaffold Astro 7 with a baseline build"
 ### Task 3: De-risk Vanilla Extract on Vite 8 / Rolldown (the critical gate)
 
 **Files:**
+
 - Modify: `astro.config.mjs`
 - Create: `src/styles/_smoke.css.ts`, temp import in `src/pages/index.astro`
 
@@ -211,6 +214,7 @@ export const smoke = style({ color: 'rebeccapurple' });
 ---
 import { smoke } from '../styles/_smoke.css';
 ---
+
 <!doctype html>
 <html lang="en">
   <head><meta charset="utf-8" /><title>Sam Hinshaw</title></head>
@@ -228,6 +232,7 @@ Expected: build succeeds AND grep prints at least one `dist/**.css` file contain
 ```bash
 rm src/styles/_smoke.css.ts
 ```
+
 Then revert `src/pages/index.astro` to the plain placeholder from Task 2 (remove the import and `class={smoke}`).
 
 - [ ] **Step 7: Commit**
@@ -242,6 +247,7 @@ git commit -m "Add Vanilla Extract via vite-plugin (verified on Astro 7)"
 ### Task 4: Add integrations and finalize config
 
 **Files:**
+
 - Modify: `astro.config.mjs`
 - Install: `@astrojs/sitemap`, `@astrojs/rss`, dev `@astrojs/check`, `typescript`
 
@@ -283,6 +289,7 @@ git commit -m "Add sitemap + rss deps and finalize astro.config"
 ### Task 5: Site constants and content collection
 
 **Files:**
+
 - Create: `src/consts.ts`, `src/content.config.ts`
 
 - [ ] **Step 1: Create `src/consts.ts`**
@@ -345,15 +352,28 @@ git commit -m "Add site consts and blog content collection schema"
 ### Task 6: Vanilla Extract styling system
 
 **Files:**
+
 - Create: `src/styles/theme.css.ts`, `src/styles/reset.css.ts`, `src/styles/prose.css.ts`
 
 - [ ] **Step 1: Create `src/styles/theme.css.ts` (tokens + system dark mode)**
 
 ```ts
-import { createThemeContract, createGlobalTheme, globalStyle } from '@vanilla-extract/css';
+import {
+  createThemeContract,
+  createGlobalTheme,
+  globalStyle,
+} from '@vanilla-extract/css';
 
 export const vars = createThemeContract({
-  color: { bg: null, surface: null, text: null, muted: null, link: null, border: null, code: null },
+  color: {
+    bg: null,
+    surface: null,
+    text: null,
+    muted: null,
+    link: null,
+    border: null,
+    code: null,
+  },
   font: { body: null, mono: null },
   space: { xs: null, sm: null, md: null, lg: null, xl: null },
   size: { content: null },
@@ -362,12 +382,17 @@ export const vars = createThemeContract({
 
 createGlobalTheme(':root', vars, {
   color: {
-    bg: '#ffffff', surface: '#f6f6f7', text: '#1a1a1a', muted: '#5a5a5a',
-    link: '#443acc', border: '#e3e3e3', code: '#f2f2f2',
+    bg: '#ffffff',
+    surface: '#f6f6f7',
+    text: '#1a1a1a',
+    muted: '#5a5a5a',
+    link: '#443acc',
+    border: '#e3e3e3',
+    code: '#f2f2f2',
   },
   font: {
     body: "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-    mono: "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace",
+    mono: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
   },
   space: { xs: '4px', sm: '8px', md: '16px', lg: '24px', xl: '40px' },
   size: { content: '700px' },
@@ -407,18 +432,40 @@ globalStyle('body', {
   fontSize: '18px',
   WebkitFontSmoothing: 'antialiased',
 });
-globalStyle('main', { maxWidth: vars.size.content, margin: '0 auto', padding: `${vars.space.lg} ${vars.space.md}` });
+globalStyle('main', {
+  maxWidth: vars.size.content,
+  margin: '0 auto',
+  padding: `${vars.space.lg} ${vars.space.md}`,
+});
 globalStyle('a', { color: vars.color.link });
 globalStyle('img', { maxWidth: '100%', height: 'auto' });
 globalStyle('header.site nav', {
-  display: 'flex', gap: vars.space.md, alignItems: 'baseline', justifyContent: 'space-between',
-  flexWrap: 'wrap', maxWidth: vars.size.content, margin: '0 auto', padding: vars.space.md,
+  display: 'flex',
+  gap: vars.space.md,
+  alignItems: 'baseline',
+  justifyContent: 'space-between',
+  flexWrap: 'wrap',
+  maxWidth: vars.size.content,
+  margin: '0 auto',
+  padding: vars.space.md,
 });
-globalStyle('header.site nav ul', { display: 'flex', gap: vars.space.md, listStyle: 'none', margin: 0, padding: 0 });
+globalStyle('header.site nav ul', {
+  display: 'flex',
+  gap: vars.space.md,
+  listStyle: 'none',
+  margin: 0,
+  padding: 0,
+});
 globalStyle('footer.site', {
-  maxWidth: vars.size.content, margin: `${vars.space.xl} auto 0`, padding: vars.space.md,
-  color: vars.color.muted, borderTop: `1px solid ${vars.color.border}`,
-  display: 'flex', gap: vars.space.md, justifyContent: 'space-between', flexWrap: 'wrap',
+  maxWidth: vars.size.content,
+  margin: `${vars.space.xl} auto 0`,
+  padding: vars.space.md,
+  color: vars.color.muted,
+  borderTop: `1px solid ${vars.color.border}`,
+  display: 'flex',
+  gap: vars.space.md,
+  justifyContent: 'space-between',
+  flexWrap: 'wrap',
 });
 ```
 
@@ -431,20 +478,44 @@ import { vars } from './theme.css';
 export const prose = style({});
 export const postMeta = style({ color: vars.color.muted, fontSize: '0.9em' });
 
-globalStyle(`${prose} :is(h1,h2,h3,h4)`, { lineHeight: 1.25, marginTop: vars.space.xl, marginBottom: vars.space.sm });
-globalStyle(`${prose} :is(p,ul,ol,blockquote,pre,table)`, { marginTop: 0, marginBottom: vars.space.md });
+globalStyle(`${prose} :is(h1,h2,h3,h4)`, {
+  lineHeight: 1.25,
+  marginTop: vars.space.xl,
+  marginBottom: vars.space.sm,
+});
+globalStyle(`${prose} :is(p,ul,ol,blockquote,pre,table)`, {
+  marginTop: 0,
+  marginBottom: vars.space.md,
+});
 globalStyle(`${prose} blockquote`, {
-  margin: `${vars.space.md} 0`, paddingLeft: vars.space.md,
-  borderLeft: `4px solid ${vars.color.border}`, color: vars.color.muted,
+  margin: `${vars.space.md} 0`,
+  paddingLeft: vars.space.md,
+  borderLeft: `4px solid ${vars.color.border}`,
+  color: vars.color.muted,
 });
 globalStyle(`${prose} :not(pre) > code`, {
-  background: vars.color.code, padding: '0.15em 0.35em', borderRadius: vars.radius.md,
-  fontFamily: vars.font.mono, fontSize: '0.9em',
+  background: vars.color.code,
+  padding: '0.15em 0.35em',
+  borderRadius: vars.radius.md,
+  fontFamily: vars.font.mono,
+  fontSize: '0.9em',
 });
-globalStyle(`${prose} pre`, { padding: vars.space.md, borderRadius: vars.radius.md, overflowX: 'auto' });
+globalStyle(`${prose} pre`, {
+  padding: vars.space.md,
+  borderRadius: vars.radius.md,
+  overflowX: 'auto',
+});
 globalStyle(`${prose} table`, { width: '100%', borderCollapse: 'collapse' });
-globalStyle(`${prose} :is(th,td)`, { border: `1px solid ${vars.color.border}`, padding: vars.space.sm, textAlign: 'left' });
-globalStyle(`${prose} hr`, { border: 'none', borderTop: `1px solid ${vars.color.border}`, margin: `${vars.space.xl} 0` });
+globalStyle(`${prose} :is(th,td)`, {
+  border: `1px solid ${vars.color.border}`,
+  padding: vars.space.sm,
+  textAlign: 'left',
+});
+globalStyle(`${prose} hr`, {
+  border: 'none',
+  borderTop: `1px solid ${vars.color.border}`,
+  margin: `${vars.space.xl} 0`,
+});
 ```
 
 - [ ] **Step 4: Commit**
@@ -459,6 +530,7 @@ git commit -m "Add minimal Vanilla Extract theme, reset, and prose styles"
 ### Task 7: Components and layouts
 
 **Files:**
+
 - Create: `src/components/BaseHead.astro`, `Nav.astro`, `Footer.astro`; `src/layouts/BaseLayout.astro`, `PageLayout.astro`, `PostLayout.astro`
 - Modify: `src/pages/index.astro`
 
@@ -467,11 +539,15 @@ git commit -m "Add minimal Vanilla Extract theme, reset, and prose styles"
 ```astro
 ---
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-interface Props { title?: string; description?: string; }
+interface Props {
+  title?: string;
+  description?: string;
+}
 const { title, description = SITE_DESCRIPTION } = Astro.props;
 const pageTitle = title ? `${title} · ${SITE_TITLE}` : SITE_TITLE;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
+
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content={Astro.generator} />
@@ -480,7 +556,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 <link rel="canonical" href={canonical} />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title={SITE_TITLE}
+  href="/rss.xml"
+/>
 <meta property="og:type" content="website" />
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={description} />
@@ -494,6 +575,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 import { SITE_TITLE } from '../consts';
 ---
+
 <header class="site">
   <nav>
     <a href="/" rel="home"><strong>{SITE_TITLE}</strong></a>
@@ -513,9 +595,13 @@ import { SITE_TITLE } from '../consts';
 import { SOCIAL } from '../consts';
 const year = new Date().getFullYear();
 ---
+
 <footer class="site">
   <span>© {year} Sam Hinshaw</span>
-  <span><a href={SOCIAL.github}>GitHub</a> · <a href={SOCIAL.twitter}>Twitter</a></span>
+  <span
+    ><a href={SOCIAL.github}>GitHub</a> · <a href={SOCIAL.twitter}>Twitter</a
+    ></span
+  >
 </footer>
 ```
 
@@ -528,9 +614,13 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/theme.css';
 import '../styles/reset.css';
-interface Props { title?: string; description?: string; }
+interface Props {
+  title?: string;
+  description?: string;
+}
 const { title, description } = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en">
   <head><BaseHead title={title} description={description} /></head>
@@ -548,9 +638,13 @@ const { title, description } = Astro.props;
 ---
 import BaseLayout from './BaseLayout.astro';
 import { prose } from '../styles/prose.css';
-interface Props { title?: string; description?: string; }
+interface Props {
+  title?: string;
+  description?: string;
+}
 const { title, description } = Astro.props;
 ---
+
 <BaseLayout title={title} description={description}>
   <article class={prose}><slot /></article>
 </BaseLayout>
@@ -563,20 +657,42 @@ const { title, description } = Astro.props;
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from './BaseLayout.astro';
 import { prose, postMeta } from '../styles/prose.css';
-interface Props { post: CollectionEntry<'blog'>; }
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
 const { post } = Astro.props;
 const { title, date, byline, subtitle, lastUpdated, excerpt } = post.data;
-const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+const fmt = (d: Date) =>
+  d.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 ---
+
 <BaseLayout title={title} description={excerpt}>
   <article class={prose}>
     <h1>{title}</h1>
     <p class={postMeta}>
-      <time datetime={date.toISOString()}>{fmt(date)}</time>{byline && <> · {byline}</>}
+      <time datetime={date.toISOString()}>{fmt(date)}</time>{
+        byline && <> · {byline}</>
+      }
     </p>
-    {subtitle && <p><em>{subtitle}</em></p>}
+    {
+      subtitle && (
+        <p>
+          <em>{subtitle}</em>
+        </p>
+      )
+    }
     <slot />
-    {lastUpdated && <p class={postMeta}><em>Updated {fmt(lastUpdated)}</em></p>}
+    {
+      lastUpdated && (
+        <p class={postMeta}>
+          <em>Updated {fmt(lastUpdated)}</em>
+        </p>
+      )
+    }
   </article>
 </BaseLayout>
 ```
@@ -588,10 +704,14 @@ const fmt = (d: Date) => d.toLocaleDateString('en-US', { year: 'numeric', month:
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { prose } from '../styles/prose.css';
 ---
+
 <BaseLayout>
   <div class={prose}>
     <h1>Sam Hinshaw</h1>
-    <p>Bioinformatics &amp; web development. I build tools to help scientists do bioinformatics.</p>
+    <p>
+      Bioinformatics &amp; web development. I build tools to help scientists do
+      bioinformatics.
+    </p>
     <p><a href="/blog/">Read the blog →</a></p>
   </div>
 </BaseLayout>
@@ -614,6 +734,7 @@ git commit -m "Add head/nav/footer components and base/page/post layouts"
 ### Task 8: URL-parity check script (write it red first)
 
 **Files:**
+
 - Create: `scripts/check-urls.mjs`
 
 - [ ] **Step 1: Create `scripts/check-urls.mjs`**
@@ -624,7 +745,11 @@ import { join } from 'node:path';
 
 const DIST = 'dist';
 const expected = [
-  '/', '/about/', '/projects/', '/blog/', '/tags/',
+  '/',
+  '/about/',
+  '/projects/',
+  '/blog/',
+  '/tags/',
   '/blog/automatically-update-rstudio/',
   '/blog/installing-autokey/',
   '/blog/encryption-commands-for-letsencrypt/',
@@ -642,10 +767,18 @@ const expected = [
 
 let ok = true;
 for (const url of expected) {
-  try { await access(join(DIST, url, 'index.html')); console.log(`OK   ${url}`); }
-  catch { console.log(`MISS ${url}`); ok = false; }
+  try {
+    await access(join(DIST, url, 'index.html'));
+    console.log(`OK   ${url}`);
+  } catch {
+    console.log(`MISS ${url}`);
+    ok = false;
+  }
 }
-if (!ok) { console.error('\nURL check FAILED'); process.exit(1); }
+if (!ok) {
+  console.error('\nURL check FAILED');
+  process.exit(1);
+}
 console.log('\nAll expected URLs present.');
 ```
 
@@ -668,48 +801,47 @@ git commit -m "Add build-output URL parity check script"
 ### Task 9: Migrate the 13 posts to plain Markdown
 
 **Files:**
+
 - Create: `src/content/blog/<slug>.md` × 13 (source of truth: `legacy/_posts/`)
 
 > **Execution amendment (draft decision):** 6 of the 13 legacy posts carry `draft: true` in their old Reptar frontmatter. Per the site owner's decision, those 6 are **kept as drafts** — migrated into the new format (so they survive the `legacy/` deletion in Task 16) but carrying `draft: true`, which Astro's `!data.draft` filter keeps off every route, the blog index, RSS, and tag pages. Only the **7 non-draft posts publish**. The `check-urls.mjs` expected list (Task 8) is therefore trimmed to those 7 published post URLs (12 total with the 5 section URLs).
 
 **Post map** (new filename = URL slug; carry the date from the legacy filename/frontmatter; suggested tags):
 
-| New file `src/content/blog/…` | date | tags | publish? |
-|---|---|---|---|
-| `automatically-update-rstudio.md` | 2016-09-23 | `[r, rstudio]` | ✅ publish |
-| `installing-autokey.md` | 2017-02-09 | `[linux, tools]` | 📝 draft |
-| `encryption-commands-for-letsencrypt.md` | 2017-02-09 | `[security, tls]` | 📝 draft |
-| `how-to-install-firefox-nightly.md` | 2017-02-09 | `[firefox, linux]` | 📝 draft |
-| `installing-node-js-on-linux.md` | 2017-02-09 | `[node, linux]` | ✅ publish |
-| `how-to-setup-your-ssh-keys.md` | 2017-02-09 | `[ssh, security]` | 📝 draft |
-| `installing-zsh.md` | 2017-02-10 | `[zsh, shell]` | 📝 draft |
-| `building-a-blog-with-reptar-and-bulma.md` | 2017-09-04 | `[web, blogging]` | 📝 draft |
-| `ligature-support-in-monospace-fonts.md` | 2017-09-13 | `[fonts, editor]` | ✅ publish |
-| `wrapping-template-literals-in-vs-code.md` | 2017-09-28 | `[javascript, vscode]` | ✅ publish |
-| `lazy-loading-r-packages-in-shiny.md` | 2017-10-20 | `[r, shiny]` | ✅ publish |
-| `designing-rudaux.md` | 2018-08-24 | `[rudaux, jupyterhub, education]` | ✅ publish |
-| `using-rudaux.md` | 2018-08-24 | `[rudaux, jupyterhub, education]` | ✅ publish |
+| New file `src/content/blog/…`              | date       | tags                              | publish?   |
+| ------------------------------------------ | ---------- | --------------------------------- | ---------- |
+| `automatically-update-rstudio.md`          | 2016-09-23 | `[r, rstudio]`                    | ✅ publish |
+| `installing-autokey.md`                    | 2017-02-09 | `[linux, tools]`                  | 📝 draft   |
+| `encryption-commands-for-letsencrypt.md`   | 2017-02-09 | `[security, tls]`                 | 📝 draft   |
+| `how-to-install-firefox-nightly.md`        | 2017-02-09 | `[firefox, linux]`                | 📝 draft   |
+| `installing-node-js-on-linux.md`           | 2017-02-09 | `[node, linux]`                   | ✅ publish |
+| `how-to-setup-your-ssh-keys.md`            | 2017-02-09 | `[ssh, security]`                 | 📝 draft   |
+| `installing-zsh.md`                        | 2017-02-10 | `[zsh, shell]`                    | 📝 draft   |
+| `building-a-blog-with-reptar-and-bulma.md` | 2017-09-04 | `[web, blogging]`                 | 📝 draft   |
+| `ligature-support-in-monospace-fonts.md`   | 2017-09-13 | `[fonts, editor]`                 | ✅ publish |
+| `wrapping-template-literals-in-vs-code.md` | 2017-09-28 | `[javascript, vscode]`            | ✅ publish |
+| `lazy-loading-r-packages-in-shiny.md`      | 2017-10-20 | `[r, shiny]`                      | ✅ publish |
+| `designing-rudaux.md`                      | 2018-08-24 | `[rudaux, jupyterhub, education]` | ✅ publish |
+| `using-rudaux.md`                          | 2018-08-24 | `[rudaux, jupyterhub, education]` | ✅ publish |
 
 **Per-post procedure** (repeat for each row; open the matching `legacy/_posts/<date>-*.md` as the source):
 
 1. Create the new file with frontmatter:
+
 ```yaml
 ---
-title: "<copy from legacy frontmatter>"
+title: '<copy from legacy frontmatter>'
 date: <date from table>
-excerpt: "<copy if the legacy file had one, else omit>"
+excerpt: '<copy if the legacy file had one, else omit>'
 tags: [<from table>]
 # byline / subtitle / lastUpdated: include ONLY if the legacy frontmatter had them
 ---
 ```
-   Drop all Reptar-only keys: `layout`, `template`, `permalink`, `url`, `heroImage`, `heroColor`, `imageAuthor`, `imageLink`.
-2. Paste the legacy Markdown body (everything after the legacy frontmatter).
-3. Delete leftover template artifacts: any `<!-- close content tag -->` comment and any **orphan `</div>`** (opened by the old template, not by the file).
-4. Replace Bulma component blocks (`<div class="card…">`, `columns`, `hero`, `<span class="icon">…`) with plain Markdown — a blockquote, list, or link. Remove FontAwesome `<i class="fas fa-…">` icons (use an emoji or plain text).
-5. Rewrite relative inter-post links (`../using-rudaux`) to absolute trailing-slash URLs (`/blog/using-rudaux/`).
-6. Leave fenced code blocks untouched (Shiki highlights them). In-body image paths (`/images/…`) still resolve from `public/images/`.
+
+Drop all Reptar-only keys: `layout`, `template`, `permalink`, `url`, `heroImage`, `heroColor`, `imageAuthor`, `imageLink`. 2. Paste the legacy Markdown body (everything after the legacy frontmatter). 3. Delete leftover template artifacts: any `<!-- close content tag -->` comment and any **orphan `</div>`** (opened by the old template, not by the file). 4. Replace Bulma component blocks (`<div class="card…">`, `columns`, `hero`, `<span class="icon">…`) with plain Markdown — a blockquote, list, or link. Remove FontAwesome `<i class="fas fa-…">` icons (use an emoji or plain text). 5. Rewrite relative inter-post links (`../using-rudaux`) to absolute trailing-slash URLs (`/blog/using-rudaux/`). 6. Leave fenced code blocks untouched (Shiki highlights them). In-body image paths (`/images/…`) still resolve from `public/images/`.
 
 **Worked example — `designing-rudaux.md`.** The legacy body begins with the template-breakout hack + a Bulma card:
+
 ```html
 <!-- close content tag -->
 </div>
@@ -725,12 +857,15 @@ tags: [<from table>]
   </footer>
 </div>
 ```
+
 Becomes plain Markdown:
+
 ```markdown
-> This post covers the motivation and design behind Rudaux. For how to use it, see [*Using Rudaux*](/blog/using-rudaux/).
+> This post covers the motivation and design behind Rudaux. For how to use it, see [_Using Rudaux_](/blog/using-rudaux/).
 >
 > 📖 [Documentation](https://ubc-dsci.github.io/rudaux-docs/)
 ```
+
 Its frontmatter carries the real `byline` (`Sam Hinshaw & Tiffany Timbers`) and `excerpt` from the legacy file.
 
 - [ ] **Step 1:** Convert all 13 posts per the procedure above.
@@ -752,6 +887,7 @@ git commit -m "Migrate 13 posts to plain Markdown (strip Bulma/FontAwesome)"
 ### Task 10: Blog routes (single list + post page)
 
 **Files:**
+
 - Create: `src/pages/blog/index.astro`, `src/pages/blog/[slug].astro`
 
 - [ ] **Step 1: `src/pages/blog/index.astro` (lists all posts, newest first)**
@@ -762,21 +898,34 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { prose, postMeta } from '../../styles/prose.css';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const fmt = (d) => d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+const fmt = (d) =>
+  d.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 ---
+
 <BaseLayout title="Blog">
   <div class={prose}>
     <h1>Blog</h1>
     <ul>
-      {posts.map((post) => (
-        <li>
-          <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-          <div class={postMeta}><time datetime={post.data.date.toISOString()}>{fmt(post.data.date)}</time></div>
-          {post.data.excerpt && <p>{post.data.excerpt}</p>}
-        </li>
-      ))}
+      {
+        posts.map((post) => (
+          <li>
+            <a href={`/blog/${post.id}/`}>{post.data.title}</a>
+            <div class={postMeta}>
+              <time datetime={post.data.date.toISOString()}>
+                {fmt(post.data.date)}
+              </time>
+            </div>
+            {post.data.excerpt && <p>{post.data.excerpt}</p>}
+          </li>
+        ))
+      }
     </ul>
   </div>
 </BaseLayout>
@@ -797,6 +946,7 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 ---
+
 <PostLayout post={post}>
   <Content />
 </PostLayout>
@@ -819,6 +969,7 @@ git commit -m "Add blog index and post routes"
 ### Task 11: Root pages (landing, about, projects stub, 404)
 
 **Files:**
+
 - Create: `src/pages/about.astro`, `src/pages/projects.astro`, `src/pages/404.astro` (index.astro already done in Task 7)
 
 - [ ] **Step 1: `src/pages/about.astro`** (converted from `legacy/_root/about.md`, Bulma columns removed)
@@ -827,12 +978,32 @@ git commit -m "Add blog index and post routes"
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 ---
+
 <PageLayout title="About" description="About Sam Hinshaw">
   <h1>About Me</h1>
-  <p>I am a software developer that enjoys bringing new ideas to life. I like to solve complex problems with innovative solutions using cutting-edge tools. I like to ship clean, modular, testable code.</p>
-  <p>I am also a graduate student in bioinformatics at The University of British Columbia where I build tools to make bioinformatics more accessible to all scientists. I welcome you to view a <a href="/projects/">detailed breakdown of all my projects</a>.</p>
-  <p>I program mostly in Python and JavaScript, creating fully functional applications that make my research methodologies available to the public. There is also a special place in my heart for the first programming language I learned, R.</p>
-  <p>I have always had a passion for technology, and in my spare time I like to hack things together. I also enjoy giving back to the community by contributing to open-source projects.</p>
+  <p>
+    I am a software developer that enjoys bringing new ideas to life. I like to
+    solve complex problems with innovative solutions using cutting-edge tools. I
+    like to ship clean, modular, testable code.
+  </p>
+  <p>
+    I am also a graduate student in bioinformatics at The University of British
+    Columbia where I build tools to make bioinformatics more accessible to all
+    scientists. I welcome you to view a <a href="/projects/"
+      >detailed breakdown of all my projects</a
+    >.
+  </p>
+  <p>
+    I program mostly in Python and JavaScript, creating fully functional
+    applications that make my research methodologies available to the public.
+    There is also a special place in my heart for the first programming language
+    I learned, R.
+  </p>
+  <p>
+    I have always had a passion for technology, and in my spare time I like to
+    hack things together. I also enjoy giving back to the community by
+    contributing to open-source projects.
+  </p>
   <p>Other interests of mine include:</p>
   <ul>
     <li>📸 <a href="https://instagram.com/holtonhinshaw">Photography</a></li>
@@ -853,9 +1024,14 @@ import PageLayout from '../layouts/PageLayout.astro';
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 ---
+
 <PageLayout title="Projects" description="Projects by Sam Hinshaw">
   <h1>Projects</h1>
-  <p>This page is being rebuilt. In the meantime, see my work on <a href="https://github.com/samhinshaw">GitHub</a>.</p>
+  <p>
+    This page is being rebuilt. In the meantime, see my work on <a
+      href="https://github.com/samhinshaw">GitHub</a
+    >.
+  </p>
 </PageLayout>
 ```
 
@@ -866,6 +1042,7 @@ import PageLayout from '../layouts/PageLayout.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { prose } from '../styles/prose.css';
 ---
+
 <BaseLayout title="Not Found">
   <div class={prose}>
     <h1>404 — Not Found</h1>
@@ -886,6 +1063,7 @@ git commit -m "Add about, projects stub, and 404 pages"
 ### Task 12: Tag pages
 
 **Files:**
+
 - Create: `src/pages/tags/index.astro`, `src/pages/tags/[tag].astro`
 
 - [ ] **Step 1: `src/pages/tags/index.astro`**
@@ -898,14 +1076,22 @@ import { prose } from '../../styles/prose.css';
 
 const posts = await getCollection('blog', ({ data }) => !data.draft);
 const counts = new Map();
-for (const p of posts) for (const t of p.data.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
+for (const p of posts)
+  for (const t of p.data.tags) counts.set(t, (counts.get(t) ?? 0) + 1);
 const tags = [...counts.entries()].sort((a, b) => a[0].localeCompare(b[0]));
 ---
+
 <BaseLayout title="Tags">
   <div class={prose}>
     <h1>Tags</h1>
     <ul>
-      {tags.map(([tag, count]) => <li><a href={`/tags/${tag}/`}>{tag}</a> ({count})</li>)}
+      {
+        tags.map(([tag, count]) => (
+          <li>
+            <a href={`/tags/${tag}/`}>{tag}</a> ({count})
+          </li>
+        ))
+      }
     </ul>
   </div>
 </BaseLayout>
@@ -935,10 +1121,19 @@ export async function getStaticPaths() {
 }
 const { tag, posts } = Astro.props;
 ---
+
 <BaseLayout title={`Tag: ${tag}`}>
   <div class={prose}>
     <h1>Posts tagged “{tag}”</h1>
-    <ul>{posts.map((p) => <li><a href={`/blog/${p.id}/`}>{p.title}</a></li>)}</ul>
+    <ul>
+      {
+        posts.map((p) => (
+          <li>
+            <a href={`/blog/${p.id}/`}>{p.title}</a>
+          </li>
+        ))
+      }
+    </ul>
   </div>
 </BaseLayout>
 ```
@@ -960,6 +1155,7 @@ git commit -m "Add tag index and per-tag pages"
 ### Task 13: RSS feed
 
 **Files:**
+
 - Create: `src/pages/rss.xml.js`
 
 - [ ] **Step 1: `src/pages/rss.xml.js`**
@@ -970,8 +1166,9 @@ import { getCollection } from 'astro:content';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 
 export async function GET(context) {
-  const posts = (await getCollection('blog', ({ data }) => !data.draft))
-    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+  );
   return rss({
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
@@ -1023,6 +1220,7 @@ git commit -m "Fix issues found in full verification"
 ### Task 15: Cloudflare Pages deploy
 
 **Files:**
+
 - Optional create: `public/_redirects`
 - Create: `docs/DEPLOY.md`
 
@@ -1064,6 +1262,7 @@ git commit -m "Add Cloudflare Pages deploy runbook and redirects"
 ### Task 16: Remove the legacy archive
 
 **Files:**
+
 - Delete: `legacy/`
 - Modify: `readme.md`
 
@@ -1080,20 +1279,23 @@ git rm -r legacy/
 
 - [ ] **Step 3: Update `readme.md`**
 
-```markdown
+````markdown
 # samhinshaw.com
 
 Personal blog built with [Astro](https://astro.build) and [Vanilla Extract](https://vanilla-extract.style), deployed on Cloudflare Pages.
 
 ## Develop
+
 ```bash
 npm install
 npm run dev      # local dev server
 npm run verify   # check + build + URL parity
 ```
+````
 
 Posts live in `src/content/blog/*.md`. See `docs/specs/` and `docs/plans/` for the modernization design.
-```
+
+````
 
 - [ ] **Step 4: Final verification + commit**
 
@@ -1103,13 +1305,14 @@ Expected: all green.
 ```bash
 git add -A
 git commit -m "Remove legacy Reptar archive; update README"
-```
+````
 
 ---
 
 ## Self-Review
 
 **Spec coverage (spec §-by-§):**
+
 - §3 stack → Tasks 2–7, 13 (Astro, VE, Shiki default, system fonts, no icons, RSS/sitemap). ✅
 - §4 roll-your-own VE → Task 6 (theme/reset/prose only; no Sprinkles/Recipes/framework). ✅
 - §5 Cloudflare Pages → Task 15. ✅

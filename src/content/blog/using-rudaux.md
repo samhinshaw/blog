@@ -5,7 +5,7 @@ excerpt: Using rudaux to manage a course with Canvas, JupyterHub, and nbgrader.
 tags: [rudaux, jupyterhub, education]
 ---
 
-> This post is focused on the main functions of rudaux and how to implement it in your course's workflow. For a discussion on the motivation behind and development of rudaux, please read [*Designing Rudaux*](/blog/designing-rudaux/).
+> This post is focused on the main functions of rudaux and how to implement it in your course's workflow. For a discussion on the motivation behind and development of rudaux, please read [_Designing Rudaux_](/blog/designing-rudaux/).
 >
 > 📖 [Documentation](https://ubc-dsci.github.io/rudaux-docs/) · 💻 [Source Code](https://github.com/ubc-dsci/rudaux)
 

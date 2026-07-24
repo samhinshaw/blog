@@ -22,14 +22,19 @@ Here I will present one solution for lazy-loading packages in Shiny.
 
 In my app, my landing page has a large hero with a "Get Started" button. This presents a simple opportunity to inform users we are still loading.
 
-*A large, disabled "Loading R Packages…" button with a spinning icon.*
+_A large, disabled "Loading R Packages…" button with a spinning icon._
 
 HTML Markup with Bootstrap:
 
 ```html
-<button class="btn btn-default btn-lg disabled" id="getStarted" title="Let's Go!" type="button">
+<button
+  class="btn btn-default btn-lg disabled"
+  id="getStarted"
+  title="Let's Go!"
+  type="button"
+>
   <i class="fas fa-circle-notch fa-spin"></i>
-   <span>&nbsp;Loading R Packages...</span>
+  <span>&nbsp;Loading R Packages...</span>
 </button>
 ```
 
@@ -57,11 +62,11 @@ In this case, we will simply be sending any non-null value:
 
 ```js
 const handlers = {
-  lazyLoadPackages: val => {
+  lazyLoadPackages: (val) => {
     // First argument is input name in R
     // Second argument is value to send (or to depend on)
     Shiny.onInputChange('sessionInitialized', val);
-  }
+  },
 };
 ```
 
@@ -129,4 +134,4 @@ Thanks to HTML5's `classList()`, this is just some native JS.
 
 And that's it! You're done! Your button will transform:
 
-*The button transforms from a disabled "Loading R Packages…" spinner → a down arrow → an enabled "Get Started" button.*
+_The button transforms from a disabled "Loading R Packages…" spinner → a down arrow → an enabled "Get Started" button._

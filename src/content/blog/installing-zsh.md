@@ -10,7 +10,6 @@ tags: [zsh, shell]
 
 Note: this section was copied almost entirely from [NTag's](https://github.com/NTag) [gist](https://gist.github.com/NTag/39a27aea87aeabe54c09)
 
-
 #### Install ZSH
 
 ```bash
@@ -67,6 +66,7 @@ Install pip:
 curl https://bootstrap.pypa.io/get-pip.py | python
 sudo pip install powerline-status
 ```
+
 Find where Powerline has been installed
 
 ```bash

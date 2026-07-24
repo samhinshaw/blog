@@ -8,12 +8,12 @@ tags: [ssh, security]
 ## Create SSH Keys
 
 1. Make sure SSH-Agent is running `eval $(ssh-agent)`
-	+ Alternatively, add this to your `~/.bashrc`:
-	```bash
-	eval $(ssh-agent) > /dev/null`
-	source ~/Dropbox/Ubuntu/scripts/ssh-find-agent.sh
-	set_ssh_agent_socket
-	```
+   - Alternatively, add this to your `~/.bashrc`:
+   ```bash
+   eval $(ssh-agent) > /dev/null`
+   source ~/Dropbox/Ubuntu/scripts/ssh-find-agent.sh
+   set_ssh_agent_socket
+   ```
 2. Check to see if you have any existing keys: `ls ~/.ssh`
 3. Create your SSH keys: `ssh-keygen -t rsa -b 4096 -C "you.email@example.com"`
 4. Add your ssh keys to the SSH Agent: `ssh-add -t 15552000 ~/.ssh/id_rsa` The `-t` flag specifies a timeout value is in seconds. 15552000 seconds is six months.

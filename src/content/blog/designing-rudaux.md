@@ -6,7 +6,7 @@ byline: Sam Hinshaw & Tiffany Timbers
 tags: [rudaux, jupyterhub, education]
 ---
 
-> This post is focused on the motivation and design process in building Rudaux. For information on how to use Rudaux to integrate Canvas and JupyterHub, please read [*Using Rudaux*](/blog/using-rudaux/).
+> This post is focused on the motivation and design process in building Rudaux. For information on how to use Rudaux to integrate Canvas and JupyterHub, please read [_Using Rudaux_](/blog/using-rudaux/).
 >
 > 📖 [Documentation](https://ubc-dsci.github.io/rudaux-docs/) · 💻 [Source Code](https://github.com/ubc-dsci/rudaux)
 

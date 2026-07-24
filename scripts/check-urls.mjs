@@ -3,7 +3,11 @@ import { join } from 'node:path';
 
 const DIST = 'dist';
 const expected = [
-  '/', '/about/', '/projects/', '/blog/', '/tags/',
+  '/',
+  '/about/',
+  '/projects/',
+  '/blog/',
+  '/tags/',
   '/blog/automatically-update-rstudio/',
   '/blog/installing-node-js-on-linux/',
   '/blog/ligature-support-in-monospace-fonts/',
@@ -15,8 +19,16 @@ const expected = [
 
 let ok = true;
 for (const url of expected) {
-  try { await access(join(DIST, url, 'index.html')); console.log(`OK   ${url}`); }
-  catch { console.log(`MISS ${url}`); ok = false; }
+  try {
+    await access(join(DIST, url, 'index.html'));
+    console.log(`OK   ${url}`);
+  } catch {
+    console.log(`MISS ${url}`);
+    ok = false;
+  }
 }
-if (!ok) { console.error('\nURL check FAILED'); process.exit(1); }
+if (!ok) {
+  console.error('\nURL check FAILED');
+  process.exit(1);
+}
 console.log('\nAll expected URLs present.');

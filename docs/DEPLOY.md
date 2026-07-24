@@ -10,15 +10,13 @@ This site is a **static** Astro build (no adapter). Cloudflare Pages builds it f
 ## One-time setup
 
 1. **Push the branch.** Push `astro-modernization` to GitHub (merge to `master` first if you'd rather deploy from the default branch — set the production branch accordingly in step 4).
-2. **Create the project.** Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → pick this repo.
-3. **Build settings:**
+1. **Create the project.** Cloudflare dashboard → **Workers & Pages** → **Create** → **Pages** → **Connect to Git** → pick this repo.
+1. **Build settings:**
    - Framework preset: **Astro**
    - Build command: `npm run build`
    - Build output directory: `dist`
-   - Root directory: *(leave blank)*
-4. **Environment variables** (Settings → Environment variables):
-   - `NODE_VERSION` = `22`  ← required; the build needs Node ≥ 22.12 (matches `.nvmrc`).
-5. **Save and Deploy.** The first build runs and publishes to a `https://<project>.pages.dev` preview URL.
+   - Root directory: _(leave blank)_
+1. **Save and Deploy.** The first build runs and publishes to a `https://<project>.pages.dev` preview URL.
 
 ## Verify the preview before going live
 
