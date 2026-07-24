@@ -1,6 +1,5 @@
 ---
 import BaseLayout from './BaseLayout.astro';
-import { prose } from '../styles/prose.css';
 interface Props {
   title?: string;
   description?: string;
@@ -9,5 +8,5 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <article class={prose}><slot /></article>
+  <article><slot /></article>
 </BaseLayout>

@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { prose } from '../../styles/prose.css';
 
 const posts = await getCollection('blog', ({ data }) => !data.draft);
 const counts = new Map<string, number>();
@@ -11,7 +10,7 @@ const tags = [...counts.entries()].sort((a, b) => a[0].localeCompare(b[0]));
 ---
 
 <BaseLayout title="Tags">
-  <div class={prose}>
+  <div>
     <h1>Tags</h1>
     <ul>
       {

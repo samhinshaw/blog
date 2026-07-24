@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { prose } from '../../styles/prose.css';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
@@ -21,7 +20,7 @@ const { tag, posts } = Astro.props;
 ---
 
 <BaseLayout title={`Tag: ${tag}`}>
-  <div class={prose}>
+  <div>
     <h1>Posts tagged “{tag}”</h1>
     <ul>
       {

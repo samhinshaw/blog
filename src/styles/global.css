@@ -1,0 +1,85 @@
+/* Design tokens */
+:root {
+  --color-bg: #ffffff;
+  --color-surface: #f6f6f7;
+  --color-text: #1a1a1a;
+  --color-muted: #5a5a5a;
+  --color-link: #443acc;
+  --color-border: #e3e3e3;
+  --color-code: #f2f2f2;
+
+  --font-body: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+
+  --size-content: 700px;
+
+  --radius-md: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #111214;
+    --color-surface: #1a1c1f;
+    --color-text: #e6e6e6;
+    --color-muted: #a0a0a0;
+    --color-link: #8aa9ff;
+    --color-border: #2a2d31;
+    --color-code: #1e2024;
+  }
+}
+
+/* Reset & base elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: var(--size-content);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+
+a {
+  color: var(--color-link);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Base content typography (all pages) */
+main :is(h1, h2, h3, h4) {
+  line-height: 1.25;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+}
+
+main :is(p, ul, ol) {
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+}
+
+.post-meta {
+  color: var(--color-muted);
+  font-size: 0.9em;
+}
