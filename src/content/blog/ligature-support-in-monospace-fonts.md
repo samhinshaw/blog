@@ -11,7 +11,7 @@ tags: [fonts, editor]
 
 ## Background
 
-What a busy week! On Monday, I started using Visual Studio Code, replacing my previous text editor of choice, Atom. As it turns out, Wes Bos of the [Syntax Podcast](https://syntax.fm/) ([@WesBos](https://twitter.com/wesbos)) is doing the same right now. I learned about ligature implementation in programming fonts [via his twitter](https://twitter.com/kiliman/status/907709797193134082) yesterday. Then today, I saw a [blog post](https://blog.rstudio.com/2017/09/13/rstudio-v1.1---the-little-things/) about some of the smaller features implemented in RStudio 1.1, and, of course, ligature support was added!
+What a busy week! On Monday, I started using Visual Studio Code, replacing my previous text editor of choice, Atom. As it turns out, Wes Bos of the [Syntax Podcast](https://syntax.fm/) ([@WesBos](https://twitter.com/wesbos)) is doing the same right now. I learned about ligature (from Latin _ligatus_, 'bound') implementation in programming fonts [via his twitter](https://twitter.com/kiliman/status/907709797193134082) yesterday. Then today, I saw a [blog post](https://blog.rstudio.com/2017/09/13/rstudio-v1.1---the-little-things/) about some of the smaller features implemented in RStudio 1.1, and, of course, ligature support was added!
 
 Perhaps the most compelling reasons for me to check this out was the beautiful new assignment operator in R.
 
@@ -97,7 +97,7 @@ code {
 
 ## Conclusion
 
-That was it! You're done! For the moment, I'm enjoying ligatures due to their aesthetic, but I am curious if I will run into issues in the future with difficulty distinguishing between different operators. Specifically, in JavaScript, the difference between `==` and `===` can be code-breaking. But for now, I'm just going to enjoy!
+That was it! You're done! For the moment, I'm enjoying ligatures due to their aesthetic, but I am curious if I will run into issues in the future with difficulty distinguishing between different operators. Specifically, in JavaScript, the difference between `==` and `===` can be code-breaking (the double equals operator performs type-coercion, triple equals does not). But for now, I'm just going to enjoy!
 
 For more comprehensive installation instructions and troubleshooting, check out the [Fira Code Wiki on GitHub](https://github.com/tonsky/FiraCode/wiki).
 
