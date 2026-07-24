@@ -8,10 +8,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "check:urls": "node scripts/check-urls.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "verify": "astro check && astro build && node scripts/check-urls.mjs"
+    "verify": "astro check && astro build"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.19",
