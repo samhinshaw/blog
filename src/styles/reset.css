@@ -1,0 +1,48 @@
+/* Reset & base elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  font-size: 18px;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  max-width: var(--size-content);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+
+a {
+  color: var(--color-link);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Base content typography (all pages) */
+main :is(h1, h2, h3, h4) {
+  line-height: 1.25;
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+}
+
+main :is(p, ul, ol) {
+  margin-top: 0;
+  margin-bottom: var(--space-md);
+}
+
+.post-meta {
+  color: var(--color-muted);
+  font-size: 0.9em;
+}
