@@ -2,33 +2,15 @@
 import { SITE_TITLE } from '../consts';
 ---
 
-<header class="site">
-  <nav>
+<header>
+  <nav
+    class="mx-auto flex max-w-content flex-wrap items-baseline justify-between gap-4 p-4"
+  >
     <a href="/" rel="home"><strong>{SITE_TITLE}</strong></a>
-    <ul>
+    <ul class="flex gap-4">
       <li><a href="/blog/">Blog</a></li>
       <li><a href="/projects/">Projects</a></li>
       <li><a href="/about/">About</a></li>
     </ul>
   </nav>
 </header>
-
-<style>
-  nav {
-    display: flex;
-    gap: var(--space-md);
-    align-items: baseline;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    max-width: var(--size-content);
-    margin: 0 auto;
-    padding: var(--space-md);
-  }
-  nav ul {
-    display: flex;
-    gap: var(--space-md);
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-</style>

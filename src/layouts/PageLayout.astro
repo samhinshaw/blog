@@ -8,5 +8,5 @@ const { title, description } = Astro.props;
 ---
 
 <BaseLayout title={title} description={description}>
-  <article><slot /></article>
+  <article class="prose prose-lg max-w-none"><slot /></article>
 </BaseLayout>

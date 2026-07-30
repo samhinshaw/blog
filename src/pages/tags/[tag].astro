@@ -20,7 +20,7 @@ const { tag, posts } = Astro.props;
 ---
 
 <BaseLayout title={`Tag: ${tag}`}>
-  <div>
+  <div class="prose prose-lg max-w-none">
     <h1>Posts tagged “{tag}”</h1>
     <ul>
       {

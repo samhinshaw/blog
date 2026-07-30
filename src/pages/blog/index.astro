@@ -14,14 +14,14 @@ const fmt = (d: Date) =>
 ---
 
 <BaseLayout title="Blog">
-  <div>
+  <div class="prose prose-lg max-w-none">
     <h1>Blog</h1>
     <ul>
       {
         posts.map((post) => (
           <li>
             <a href={`/blog/${post.id}/`}>{post.data.title}</a>
-            <div class="post-meta">
+            <div class="text-muted text-sm">
               <time datetime={post.data.date.toISOString()}>
                 {fmt(post.data.date)}
               </time>

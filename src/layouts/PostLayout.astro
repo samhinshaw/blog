@@ -15,9 +15,9 @@ const fmt = (d: Date) =>
 ---
 
 <BaseLayout title={title} description={excerpt}>
-  <article>
+  <article class="prose prose-lg max-w-none">
     <h1>{title}</h1>
-    <p class="post-meta">
+    <p class="text-muted text-sm">
       <time datetime={date.toISOString()}>{fmt(date)}</time>{
         byline && <> · {byline}</>
       }
@@ -32,49 +32,10 @@ const fmt = (d: Date) =>
     <slot />
     {
       lastUpdated && (
-        <p class="post-meta">
+        <p class="text-muted text-sm">
           <em>Updated {fmt(lastUpdated)}</em>
         </p>
       )
     }
   </article>
 </BaseLayout>
-
-<style>
-  /* Rendered-markdown treatments. :global() reaches the slotted <Content />;
-     base typography (headings, paragraphs, lists) lives in reset.css. */
-  article :global(blockquote) {
-    margin: var(--space-md) 0;
-    padding-left: var(--space-md);
-    border-left: 4px solid var(--color-border);
-    color: var(--color-muted);
-  }
-  article :global(:not(pre) > code) {
-    background: var(--color-code);
-    padding: 0.15em 0.35em;
-    border-radius: var(--radius-md);
-    font-family: var(--font-mono);
-    font-size: 0.9em;
-  }
-  article :global(pre) {
-    margin: 0 0 var(--space-md);
-    padding: var(--space-md);
-    border-radius: var(--radius-md);
-    overflow-x: auto;
-  }
-  article :global(table) {
-    width: 100%;
-    margin: 0 0 var(--space-md);
-    border-collapse: collapse;
-  }
-  article :global(:is(th, td)) {
-    border: 1px solid var(--color-border);
-    padding: var(--space-sm);
-    text-align: left;
-  }
-  article :global(hr) {
-    border: none;
-    border-top: 1px solid var(--color-border);
-    margin: var(--space-xl) 0;
-  }
-</style>

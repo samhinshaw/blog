@@ -3,24 +3,12 @@ import { SOCIAL } from '../consts';
 const year = new Date().getFullYear();
 ---
 
-<footer class="site">
+<footer
+  class="mx-auto mt-10 flex max-w-content flex-wrap justify-between gap-4 border-t border-border p-4 text-muted"
+>
   <span>© {year} Sam Hinshaw</span>
   <span
     ><a href={SOCIAL.github}>GitHub</a> · <a href={SOCIAL.twitter}>Twitter</a
     ></span
   >
 </footer>
-
-<style>
-  footer.site {
-    max-width: var(--size-content);
-    margin: var(--space-xl) auto 0;
-    padding: var(--space-md);
-    color: var(--color-muted);
-    border-top: 1px solid var(--color-border);
-    display: flex;
-    gap: var(--space-md);
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-</style>
